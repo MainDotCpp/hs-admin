@@ -30,6 +30,12 @@ import {
     InlineResponse2002,
     InlineResponse2002FromJSON,
     InlineResponse2002ToJSON,
+    InlineResponse2003,
+    InlineResponse2003FromJSON,
+    InlineResponse2003ToJSON,
+    InlineResponse2004,
+    InlineResponse2004FromJSON,
+    InlineResponse2004ToJSON,
 } from '../models';
 
 export interface SchemaDeletePostRequest {
@@ -42,6 +48,16 @@ export interface SchemaIdGetRequest {
 
 export interface SchemaSavePostRequest {
     inlineObject?: InlineObject;
+}
+
+export interface VisitLogNoGetRequest {
+    no: string;
+}
+
+export interface VisitLogNoPageGetRequest {
+    no: string;
+    pageSize?: number;
+    page?: number;
 }
 
 /**
@@ -186,6 +202,74 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async schemaSavePost(requestParameters: SchemaSavePostRequest): Promise<InlineResponse2001> {
         const response = await this.schemaSavePostRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * 查询访问记录列表
+     */
+    async visitLogNoGetRaw(requestParameters: VisitLogNoGetRequest): Promise<runtime.ApiResponse<InlineResponse2003>> {
+        if (requestParameters.no === null || requestParameters.no === undefined) {
+            throw new runtime.RequiredError('no','Required parameter requestParameters.no was null or undefined when calling visitLogNoGet.');
+        }
+
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/visit_log/{no}`.replace(`{${"no"}}`, encodeURIComponent(String(requestParameters.no))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse2003FromJSON(jsonValue));
+    }
+
+    /**
+     * 查询访问记录列表
+     */
+    async visitLogNoGet(requestParameters: VisitLogNoGetRequest): Promise<InlineResponse2003> {
+        const response = await this.visitLogNoGetRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * 分页查询访问记录列表 
+     */
+    async visitLogNoPageGetRaw(requestParameters: VisitLogNoPageGetRequest): Promise<runtime.ApiResponse<InlineResponse2004>> {
+        if (requestParameters.no === null || requestParameters.no === undefined) {
+            throw new runtime.RequiredError('no','Required parameter requestParameters.no was null or undefined when calling visitLogNoPageGet.');
+        }
+
+        const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.pageSize !== undefined) {
+            queryParameters['pageSize'] = requestParameters.pageSize;
+        }
+
+        if (requestParameters.page !== undefined) {
+            queryParameters['page'] = requestParameters.page;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/visit_log/{no}/page`.replace(`{${"no"}}`, encodeURIComponent(String(requestParameters.no))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse2004FromJSON(jsonValue));
+    }
+
+    /**
+     * 分页查询访问记录列表 
+     */
+    async visitLogNoPageGet(requestParameters: VisitLogNoPageGetRequest): Promise<InlineResponse2004> {
+        const response = await this.visitLogNoPageGetRaw(requestParameters);
         return await response.value();
     }
 

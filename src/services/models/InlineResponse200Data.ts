@@ -36,25 +36,25 @@ export interface InlineResponse200Data {
      * @type {string}
      * @memberof InlineResponse200Data
      */
-    allow_region: string;
+    allowRegion: string;
     /**
      * 
      * @type {boolean}
      * @memberof InlineResponse200Data
      */
-    ban_proxy: boolean;
+    banProxy: boolean;
     /**
      * 
      * @type {string}
      * @memberof InlineResponse200Data
      */
-    dest_link: string;
+    destLink: string;
     /**
      * 
      * @type {string}
      * @memberof InlineResponse200Data
      */
-    ban_link: string;
+    banLink: string;
 }
 
 export function InlineResponse200DataFromJSON(json: any): InlineResponse200Data {
@@ -69,10 +69,10 @@ export function InlineResponse200DataFromJSONTyped(json: any, ignoreDiscriminato
         
         'id': json['id'],
         'no': json['no'],
-        'allow_region': json['allow_region'],
-        'ban_proxy': json['ban_proxy'],
-        'dest_link': json['dest_link'],
-        'ban_link': json['ban_link'],
+        'allowRegion': json['allow_region'],
+        'banProxy': json['ban_proxy'],
+        'destLink': json['dest_link'],
+        'banLink': json['ban_link'],
     };
 }
 
@@ -87,10 +87,10 @@ export function InlineResponse200DataToJSON(value?: InlineResponse200Data | null
         
         'id': value.id,
         'no': value.no,
-        'allow_region': value.allow_region,
-        'ban_proxy': value.ban_proxy,
-        'dest_link': value.dest_link,
-        'ban_link': value.ban_link,
+        'allow_region': value.allowRegion,
+        'ban_proxy': value.banProxy,
+        'dest_link': value.destLink,
+        'ban_link': value.banLink,
     };
 }
 
