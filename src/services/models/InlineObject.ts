@@ -36,25 +36,25 @@ export interface InlineObject {
      * @type {string}
      * @memberof InlineObject
      */
-    allowRegion: string;
+    allow_region: string;
     /**
      * 
      * @type {boolean}
      * @memberof InlineObject
      */
-    banProxy: boolean;
+    ban_proxy: boolean;
     /**
      * 
      * @type {string}
      * @memberof InlineObject
      */
-    destLink: string;
+    dest_link: string;
     /**
      * 
      * @type {string}
      * @memberof InlineObject
      */
-    banLink: string;
+    ban_link: string;
 }
 
 export function InlineObjectFromJSON(json: any): InlineObject {
@@ -69,10 +69,10 @@ export function InlineObjectFromJSONTyped(json: any, ignoreDiscriminator: boolea
         
         'id': json['id'],
         'no': json['no'],
-        'allowRegion': json['allow_region'],
-        'banProxy': json['ban_proxy'],
-        'destLink': json['dest_link'],
-        'banLink': json['ban_link'],
+        'allow_region': json['allow_region'],
+        'ban_proxy': json['ban_proxy'],
+        'dest_link': json['dest_link'],
+        'ban_link': json['ban_link'],
     };
 }
 
@@ -87,10 +87,10 @@ export function InlineObjectToJSON(value?: InlineObject | null): any {
         
         'id': value.id,
         'no': value.no,
-        'allow_region': value.allowRegion,
-        'ban_proxy': value.banProxy,
-        'dest_link': value.destLink,
-        'ban_link': value.banLink,
+        'allow_region': value.allow_region,
+        'ban_proxy': value.ban_proxy,
+        'dest_link': value.dest_link,
+        'ban_link': value.ban_link,
     };
 }
 

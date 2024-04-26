@@ -39,7 +39,5 @@ export default defineConfig({
     },
   ],
   npmClient: 'pnpm',
-  publicPath: '/hs/',
-  base:'/hs/'
 });
 

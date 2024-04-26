@@ -60,7 +60,7 @@ export interface VisitLog {
      * @type {string}
      * @memberof VisitLog
      */
-    visitTime: string;
+    visit_time: string;
     /**
      * 
      * @type {number}
@@ -102,19 +102,19 @@ export interface VisitLog {
      * @type {string}
      * @memberof VisitLog
      */
-    continentCode: string;
+    continent_code: string;
     /**
      * 
      * @type {string}
      * @memberof VisitLog
      */
-    countryCode: string;
+    country_code: string;
     /**
      * 
      * @type {string}
      * @memberof VisitLog
      */
-    cloakResponse: string;
+    cloak_response: string;
 }
 
 export function VisitLogFromJSON(json: any): VisitLog {
@@ -133,16 +133,16 @@ export function VisitLogFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'ua': json['ua'],
         'lang': json['lang'],
         'referer': json['referer'],
-        'visitTime': json['visit_time'],
+        'visit_time': json['visit_time'],
         'status': json['status'],
         'isp': json['isp'],
         'organization': json['organization'],
         'country': json['country'],
         'longitude': json['longitude'],
         'latitude': json['latitude'],
-        'continentCode': json['continent_code'],
-        'countryCode': json['country_code'],
-        'cloakResponse': json['cloak_response'],
+        'continent_code': json['continent_code'],
+        'country_code': json['country_code'],
+        'cloak_response': json['cloak_response'],
     };
 }
 
@@ -161,16 +161,16 @@ export function VisitLogToJSON(value?: VisitLog | null): any {
         'ua': value.ua,
         'lang': value.lang,
         'referer': value.referer,
-        'visit_time': value.visitTime,
+        'visit_time': value.visit_time,
         'status': value.status,
         'isp': value.isp,
         'organization': value.organization,
         'country': value.country,
         'longitude': value.longitude,
         'latitude': value.latitude,
-        'continent_code': value.continentCode,
-        'country_code': value.countryCode,
-        'cloak_response': value.cloakResponse,
+        'continent_code': value.continent_code,
+        'country_code': value.country_code,
+        'cloak_response': value.cloak_response,
     };
 }
 

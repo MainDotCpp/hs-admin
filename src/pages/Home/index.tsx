@@ -23,6 +23,7 @@ const HomePage: React.FC = () => {
       <div className={styles.container}>
         <ProTable
           actionRef={actionRef}
+          scroll={{ x: 1000 }}
           search={false}
           toolbar={{
             actions: [
@@ -54,13 +55,13 @@ const HomePage: React.FC = () => {
             width: 200
             , render: (text, record) => {
               return <Space>
-                <Link to={`/log/${record.id}`}>访问记录</Link>
+                <Link to={`/log`}>访问记录</Link>
                 <Link to={`/edit/${record.id}`}>编辑</Link>
                 <Popconfirm title="是否要删除" onConfirm={async () => {
                   await api.schemaDeletePost({
                     inlineObject1: { id: record.id },
                   });
-                  message.success("删除成功")
+                  message.success('删除成功');
                   actionRef.current?.reload();
                 }}>
                   <a>删除</a>
