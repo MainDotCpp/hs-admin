@@ -17,7 +17,9 @@
     "@ant-design/pro-form": "^2.25.1",
     "@umijs/max": "^4.1.10",
     "@umijs/openapi": "^1.12.1",
-    "antd": "^5.4.0"
+    "ahooks": "^3.7.11",
+    "antd": "^5.4.0",
+    "react-query": "^3.39.3"
   },
   "devDependencies": {
     "@types/react": "^18.0.33",

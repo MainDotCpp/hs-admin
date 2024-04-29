@@ -10,6 +10,35 @@ declare namespace API {
     language?: string;
   };
 
+  type CloakConfig = {
+    /** ID */
+    id?: string;
+    /** 配置名称 */
+    name?: string;
+    /** 允许访问的地区 */
+    allowRegion?: string;
+    /** 是否使用Cloak服务 */
+    useCloakProvider?: boolean;
+    /** Cloak服务商 */
+    cloakProvider?: 'SHENG_DUN';
+    /** Cloak服务商接口地址 */
+    cloakProviderApiUrl?: string;
+    /** Cloak 服务商密钥 */
+    cloakProviderApiSecret?: string;
+    /** 预览密钥 */
+    previewSecret?: string;
+  };
+
+  type CloakConfigQueryDTO = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: CloakConfig[];
+    /** 总数 */
+    total?: number;
+  };
+
   type CloakLog = {
     id?: number;
     /** 配置ID */
@@ -113,12 +142,20 @@ declare namespace API {
     id: number;
   };
 
+  type deleteByIdParams = {
+    id: string;
+  };
+
   type getByIdParams = {
     id: number;
   };
 
   type getByIdParams = {
     id: number;
+  };
+
+  type getByIdParams = {
+    id: string;
   };
 
   type getByKeyParams = {
@@ -129,6 +166,10 @@ declare namespace API {
     code?: number;
     message?: string;
     data?: Record<string, any>;
+  };
+
+  type listParams = {
+    queryDTO: CloakConfigQueryDTO;
   };
 
   type PageDTOShortLinkConfig = {
@@ -147,6 +188,10 @@ declare namespace API {
 
   type pageParams = {
     queryDTO: CloakLogQueryDTO;
+  };
+
+  type pageParams = {
+    queryDTO: CloakConfigQueryDTO;
   };
 
   type ShortLinkConfig = {

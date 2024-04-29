@@ -1,4 +1,5 @@
 import { defineConfig } from '@umijs/max';
+import * as process from 'process';
 
 export default defineConfig({
   antd: {},
@@ -22,6 +23,12 @@ export default defineConfig({
       redirect: '/shortlink',
     },
     {
+      name: '斗篷管理',
+      icon: 'LinkOutlined',
+      path: '/cloak',
+      component: './CloakConfig',
+    },
+    {
       name: '短链管理',
       icon: 'LinkOutlined',
       path: '/shortlink',
@@ -32,6 +39,13 @@ export default defineConfig({
       icon: 'LinkOutlined',
       path: '/cloakLog',
       component: './CloakLog',
+    },
+    {
+      name: '测试 ',
+      icon: 'LinkOutlined',
+      hideInMenu: process.env.NODE_ENV === 'production',
+      path: '/demo',
+      component: './Demo',
     },
   ],
   npmClient: 'pnpm',

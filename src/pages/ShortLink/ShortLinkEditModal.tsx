@@ -1,14 +1,22 @@
-import { ModalForm, ProFormText } from '@ant-design/pro-form';
+import { ModalForm, ProForm, ProFormItem, ProFormSelect, ProFormText } from '@ant-design/pro-form';
 import React from 'react';
 import api from '@/api';
-import { message } from 'antd';
+import { Form, Input, message } from 'antd';
+import styled from 'styled-components';
+import useFormInstance = ProForm.useFormInstance;
 
 type ShortLinkEditModalProps = {
   id?: number;
   children?: React.ReactNode;
   onFinished?: () => void;
 }
+const InputAfter = styled.div`
+    color: #1890ff;
+    user-select: none;
+    cursor: pointer;
+`;
 const ShortLinkEditModal = (props: ShortLinkEditModalProps) => {
+  const [form] = Form.useForm();
 
   const onFinish = async (formData: any) => {
     await api.shortlink.save(formData);
@@ -17,14 +25,30 @@ const ShortLinkEditModal = (props: ShortLinkEditModalProps) => {
     return true;
   };
   return <ModalForm
-    request={api.shortlink.get}
+    modalProps={{
+      destroyOnClose: true,
+    }}
+    title="编辑短链"
+    request={api.shortlink.getById}
     params={{ id: props.id }}
     trigger={props.children}
     onFinish={onFinish}
+    form={form}
   >
-    <ProFormText name="id" label="ID" />
-    <ProFormText name="key" label="编号" />
-    <ProFormText name="cloakId" label="斗篷id" />
+    <ProFormText name="id" label="ID" hidden />
+    <ProFormItem name="key" label="代号">
+      <Input addonAfter={<InputAfter onClick={() => {
+        form.setFieldsValue({
+          key: Math.random().toString(36).substr(2, 3),
+        });
+      }}>生成</InputAfter>} />
+    </ProFormItem>
+    <ProFormSelect name="cloakId" request={api.cloakConfig.list} label="斗篷" fieldProps={{
+      fieldNames: {
+        label: 'name',
+        value: 'id',
+      },
+    }} />
     <ProFormText name="targetUrl" label="跳转地址" />
     <ProFormText name="remark" label="备注" />
   </ModalForm>;
