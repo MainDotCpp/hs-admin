@@ -1,0 +1,29 @@
+import { ModalForm, ProFormText } from '@ant-design/pro-form';
+import React from 'react';
+import api from '@/api';
+import { message } from 'antd';
+
+type {{biz_name_upper}}EditModalProps = {
+  id?: number;
+  children?: React.ReactNode;
+  onFinished?: () => void;
+}
+const {{biz_name_upper}}EditModal = (props:{{biz_name_upper}}EditModalProps) => {
+
+  const onFinish = async (formData: any) => {
+    await api.{{biz_name}}.save(formData);
+    message.success('保存成功');
+    props.onFinished?.();
+    return true;
+  };
+  return <ModalForm
+    request={api.{{biz_name}}.get}
+    params={ { id: props.id }}
+    trigger={props.children}
+    onFinish={onFinish}
+  >
+    <ProFormText name="id" label="ID" />
+  </ModalForm>;
+};
+
+export default {{biz_name_upper}}EditModal;

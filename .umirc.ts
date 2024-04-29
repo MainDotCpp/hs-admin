@@ -7,35 +7,31 @@ export default defineConfig({
   initialState: {},
   request: {},
   layout: {
-    title: '短链平台',
+    title: '海狮管理后台',
   },
   proxy: {
-    '/': {
-      'target': 'https://a2site.xyz/',
+    '/api': {
+      'target': 'http://localhost:8888/',
       'changeOrigin': true,
+      'pathRewrite': { '^/api': '' },
     },
   },
   routes: [
     {
       path: '/',
-      redirect: '/short-link',
+      redirect: '/shortlink',
     },
     {
-      name: '短链列表',
-      path: '/short-link',
-      component: './Home',
+      name: '短链管理',
+      icon: 'LinkOutlined',
+      path: '/shortlink',
+      component: './ShortLink',
     },
     {
-      name: '编辑配置',
-      hideInMenu: true,
-      path: '/edit/:id',
-      component: './Edit',
-    },
-    {
-      name: '编辑配置',
-      hideInMenu: true,
-      path: '/log/:id',
-      component: './VisitLog',
+      name: '斗篷日志',
+      icon: 'LinkOutlined',
+      path: '/cloakLog',
+      component: './CloakLog',
     },
   ],
   npmClient: 'pnpm',
