@@ -2,9 +2,11 @@ import { PageContainer } from '@ant-design/pro-layout';
 import React, { useRef } from 'react';
 import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import api from '@/api';
-import { Button, message, Popconfirm } from 'antd';
+import { Button, message, Popconfirm, Space } from 'antd';
 import ShortLinkEditModal from '@/pages/ShortLink/ShortLinkEditModal';
 import { useRequest } from 'ahooks';
+import { useModel } from '@@/exports';
+import { Link } from '@umijs/max';
 
 export default function Page() {
   const actionRef = useRef<ActionType>();
@@ -17,14 +19,23 @@ export default function Page() {
   };
   const columns: ProColumns<API.ShortLinkConfig>[] = [
     { dataIndex: 'id', title: 'ID', search: false, hidden: true },
-    { dataIndex: 'key', title: '编号', search: false, width: 200 },
+    {
+      dataIndex: 'key', title: '短链', search: false, width: 200,
+      copyable: true,
+      renderText: (text) => {
+        const link = `https://d-l.ink/${text}`;
+        return <a href={link} target='_blank'>
+          {link}
+        </a>;
+      },
+    },
     {
       dataIndex: 'cloakId', title: '斗篷', search: false, width: 200, renderText: (text) => {
         const cloakConfig = cloakConfigList?.find((item) => item.id === text);
         return cloakConfig?.name;
       },
     },
-    { dataIndex: 'targetUrl', title: '跳转地址', search: false, width: 200 },
+    { dataIndex: 'targetUrl', title: '跳转地址', search: false, width: 200, renderText: (text) => <a href={text} target='_blank'>{text}</a>},
     { dataIndex: 'remark', title: '备注', search: false, width: 200 },
     {
       dataIndex: 'id',
@@ -34,6 +45,7 @@ export default function Page() {
       width: 100,
       render: (text, record, _, action) => {
         return [
+          <Link key='jump' to={`/cloakLog?relatedId=${record.id}&scene=SHORT_LINK`}>访问记录</Link>,
           <ShortLinkEditModal id={record.id} key="edit" onFinished={action?.reload}>
             <a>编辑</a>
           </ShortLinkEditModal>,

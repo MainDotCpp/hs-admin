@@ -35,21 +35,21 @@ const ShortLinkEditModal = (props: ShortLinkEditModalProps) => {
     onFinish={onFinish}
     form={form}
   >
-    <ProFormText name="id" label="ID" hidden />
-    <ProFormItem name="key" label="代号">
+    <ProFormText name="id" label="ID" hidden  />
+    <ProFormItem name="key" label="代号" rules={[{required:true}]}>
       <Input addonAfter={<InputAfter onClick={() => {
         form.setFieldsValue({
           key: Math.random().toString(36).substr(2, 3),
         });
       }}>生成</InputAfter>} />
     </ProFormItem>
-    <ProFormSelect name="cloakId" request={api.cloakConfig.list} label="斗篷" fieldProps={{
+    <ProFormSelect name="cloakId" request={api.cloakConfig.list} label="斗篷" rules={[{required:true}]} fieldProps={{
       fieldNames: {
         label: 'name',
         value: 'id',
       },
     }} />
-    <ProFormText name="targetUrl" label="跳转地址" />
+    <ProFormText name="targetUrl" label="跳转地址" rules={[{required:true}]} />
     <ProFormText name="remark" label="备注" />
   </ModalForm>;
 };
