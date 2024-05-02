@@ -24,32 +24,35 @@ const ShortLinkEditModal = (props: ShortLinkEditModalProps) => {
     props.onFinished?.();
     return true;
   };
+
+  const getInitialValues = async () => {
+    return props.id ? await api.shortlink.getById({ id: props.id }) : {};
+  };
   return <ModalForm
     modalProps={{
       destroyOnClose: true,
     }}
     title="编辑短链"
-    request={api.shortlink.getById}
-    params={{ id: props.id }}
+    request={getInitialValues}
     trigger={props.children}
     onFinish={onFinish}
     form={form}
   >
-    <ProFormText name="id" label="ID" hidden  />
-    <ProFormItem name="key" label="代号" rules={[{required:true}]}>
+    <ProFormText name="id" label="ID" hidden />
+    <ProFormItem name="key" label="代号" rules={[{ required: true }]}>
       <Input addonAfter={<InputAfter onClick={() => {
         form.setFieldsValue({
           key: Math.random().toString(36).substr(2, 3),
         });
       }}>生成</InputAfter>} />
     </ProFormItem>
-    <ProFormSelect name="cloakId" request={api.cloakConfig.list} label="斗篷" rules={[{required:true}]} fieldProps={{
+    <ProFormSelect name="cloakId" request={api.cloakConfig.list} label="斗篷" rules={[{ required: true }]} fieldProps={{
       fieldNames: {
         label: 'name',
         value: 'id',
       },
     }} />
-    <ProFormText name="targetUrl" label="跳转地址" rules={[{required:true}]} />
+    <ProFormText name="targetUrl" label="跳转地址" rules={[{ required: true }]} />
     <ProFormText name="remark" label="备注" />
   </ModalForm>;
 };

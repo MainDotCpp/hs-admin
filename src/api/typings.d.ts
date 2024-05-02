@@ -105,6 +105,11 @@ declare namespace API {
     remark?: string;
     /** 第三方cloak返回 */
     thirdCloakResponse?: string;
+    /** 关联ID */
+    relatedId?: number;
+    /** 访问 URL */
+    accessUrl?: string;
+    scene?: 'SHORT_LINK' | 'LANDING_PAGE' | 'API';
   };
 
   type CloakLogQueryDTO = {
@@ -132,6 +137,8 @@ declare namespace API {
       | 'FORBID_BY_USER_AGENT'
       | 'FORBID_BY_REFERER'
       | 'FORBID_BY_THIRD_CLOAK';
+    relatedId: number;
+    scene?: 'SHORT_LINK' | 'LANDING_PAGE' | 'API';
   };
 
   type deleteByIdParams = {
@@ -170,6 +177,10 @@ declare namespace API {
 
   type listParams = {
     queryDTO: CloakConfigQueryDTO;
+  };
+
+  type lParams = {
+    key: string;
   };
 
   type PageDTOShortLinkConfig = {

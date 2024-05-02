@@ -14,7 +14,6 @@ export default defineConfig({
     '/api': {
       'target': 'http://localhost:8888/',
       'changeOrigin': true,
-      'pathRewrite': { '^/api': '' },
     },
   },
   routes: [
@@ -25,6 +24,7 @@ export default defineConfig({
     {
       name: '斗篷管理',
       icon: 'LinkOutlined',
+      hideInMenu: process.env.NODE_ENV === 'production',
       path: '/cloak',
       component: './CloakConfig',
     },
@@ -36,7 +36,7 @@ export default defineConfig({
     },
     {
       name: '斗篷日志',
-      icon: 'LinkOutlined',
+      icon: 'ClockCircleOutlined',
       path: '/cloakLog',
       component: './CloakLog',
     },

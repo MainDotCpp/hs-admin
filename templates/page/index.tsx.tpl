@@ -27,7 +27,7 @@ export default function Page() {
           <Popconfirm
             key="delete"
             title={`确定删除吗？`} onConfirm={async () => {
-            await api.{{{service}}}.delete(record.id);
+            await api.{{{service}}}.deleteById({ id: record.id });
             message.success('删除成功');
             action.reload();
           }}>

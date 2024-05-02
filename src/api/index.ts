@@ -5,10 +5,12 @@
 import * as cloak from './cloak';
 import * as cloakConfig from './cloakConfig';
 import * as cloakLog from './cloakLog';
+import * as shortLinkEngine from './shortLinkEngine';
 import * as shortlink from './shortlink';
 export default {
   shortlink,
   cloakLog,
   cloakConfig,
   cloak,
+  shortLinkEngine,
 };

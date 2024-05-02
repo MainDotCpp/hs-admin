@@ -27,6 +27,14 @@ export default function Page() {
     },
     {
       ellipsis: true,
+      dataIndex: 'accessTime', title: '访问时间',valueType:'dateTime', width: 200, search: false,
+    },
+    {
+      ellipsis: true,
+      dataIndex: 'accessUrl', title: '访问地址',width: 200, search: false,
+    },
+    {
+      ellipsis: true,
       dataIndex: 'ip', title: 'ip', width: 200, search: false,
     },
     {

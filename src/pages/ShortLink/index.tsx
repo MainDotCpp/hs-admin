@@ -21,10 +21,9 @@ export default function Page() {
     { dataIndex: 'id', title: 'ID', search: false, hidden: true },
     {
       dataIndex: 'key', title: '短链', search: false, width: 200,
-      copyable: true,
-      renderText: (text) => {
+      render: (text) => {
         const link = `https://d-l.ink/${text}`;
-        return <a href={link} target='_blank'>
+        return <a href={link} target="_blank">
           {link}
         </a>;
       },
@@ -35,7 +34,13 @@ export default function Page() {
         return cloakConfig?.name;
       },
     },
-    { dataIndex: 'targetUrl', title: '跳转地址', search: false, width: 200, renderText: (text) => <a href={text} target='_blank'>{text}</a>},
+    {
+      dataIndex: 'targetUrl',
+      title: '跳转地址',
+      search: false,
+      width: 200,
+      renderText: (text) => <a href={text} target="_blank">{text}</a>,
+    },
     { dataIndex: 'remark', title: '备注', search: false, width: 200 },
     {
       dataIndex: 'id',
@@ -45,14 +50,14 @@ export default function Page() {
       width: 100,
       render: (text, record, _, action) => {
         return [
-          <Link key='jump' to={`/cloakLog?relatedId=${record.id}&scene=SHORT_LINK`}>访问记录</Link>,
+          <Link key="jump" to={`/cloakLog?relatedId=${record.id}&scene=SHORT_LINK`}>访问记录</Link>,
           <ShortLinkEditModal id={record.id} key="edit" onFinished={action?.reload}>
             <a>编辑</a>
           </ShortLinkEditModal>,
           <Popconfirm
             key="delete"
             title={`确定删除吗？`} onConfirm={async () => {
-            await api.shortlink.delete(record.id);
+            await api.shortlink.deleteById({ id: record.id });
             message.success('删除成功');
             action.reload();
           }}>

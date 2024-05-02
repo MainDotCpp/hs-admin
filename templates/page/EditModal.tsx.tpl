@@ -16,8 +16,11 @@ const {{{biz}}}EditModal = (props: {{{biz}}}EditModalProps) => {
     props.onFinished?.();
     return true;
   };
+  const getInitialValues = async () => {
+    return props.id ? await api.{{{biz}}}.getById({ id: props.id }) : {};
+  };
   return <ModalForm
-    request={api.{{{service}}}.get}
+    request={getInitialValues}
     params={ { id: props.id } }
     trigger={props.children}
     onFinish={onFinish}

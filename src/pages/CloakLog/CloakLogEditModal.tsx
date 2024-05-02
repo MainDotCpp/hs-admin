@@ -8,7 +8,7 @@ type CloakLogEditModalProps = {
   children?: React.ReactNode;
   onFinished?: () => void;
 }
-const CloakLogEditModal = (props:CloakLogEditModalProps) => {
+const CloakLogEditModal = (props: CloakLogEditModalProps) => {
 
   const onFinish = async (formData: any) => {
     await api.cloakLog.save(formData);
@@ -17,8 +17,8 @@ const CloakLogEditModal = (props:CloakLogEditModalProps) => {
     return true;
   };
   return <ModalForm
-    request={api.cloakLog.get}
-    params={ { id: props.id }}
+    request={props.id || api.cloakLog.getById}
+    params={{ id: props.id }}
     trigger={props.children}
     onFinish={onFinish}
   >
