@@ -3,22 +3,22 @@ import React from 'react';
 import api from '@/api';
 import { message } from 'antd';
 
-type {{biz_name_upper}}EditModalProps = {
+type LoadingConfigEditModalProps = {
   id?: number;
   children?: React.ReactNode;
   onFinished?: () => void;
 }
-const {{biz_name_upper}}EditModal = (props:{{biz_name_upper}}EditModalProps) => {
+const LoadingConfigEditModal = (props:LoadingConfigEditModalProps) => {
 
   const onFinish = async (formData: any) => {
-    await api.{{biz_name}}.save(formData);
+    await api.loadingConfig.save(formData);
     message.success('保存成功');
     props.onFinished?.();
     return true;
   };
 
   const getInitialValues = async () => {
-    return props.id ? await api.{{ biz_name }}.getById({ id: props.id }) : {};
+    return props.id ? await api.loadingConfig.getById({ id: props.id }) : {};
   };
   return <ModalForm
     modalProps={ {
@@ -33,4 +33,4 @@ const {{biz_name_upper}}EditModal = (props:{{biz_name_upper}}EditModalProps) => 
   </ModalForm>;
 };
 
-export default {{biz_name_upper}}EditModal;
+export default LoadingConfigEditModal;

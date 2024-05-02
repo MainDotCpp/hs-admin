@@ -41,6 +41,12 @@ export default defineConfig({
       component: './CloakLog',
     },
     {
+      name: '落地页',
+      icon: 'ClockCircleOutlined',
+      path: '/loading',
+      component: './LoadingConfig',
+    },
+    {
       name: '测试 ',
       icon: 'LinkOutlined',
       hideInMenu: process.env.NODE_ENV === 'production',

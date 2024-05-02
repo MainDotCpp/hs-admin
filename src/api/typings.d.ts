@@ -160,7 +160,15 @@ declare namespace API {
   };
 
   type deleteByIdParams = {
+    id: number;
+  };
+
+  type deleteByIdParams = {
     id: string;
+  };
+
+  type getByIdParams = {
+    id: number;
   };
 
   type getByIdParams = {
@@ -186,7 +194,31 @@ declare namespace API {
   };
 
   type listParams = {
+    queryDTO: LoadingConfigQueryDTO;
+  };
+
+  type listParams = {
     queryDTO: CloakConfigQueryDTO;
+  };
+
+  type LoadingConfig = {
+    id?: number;
+    /** 落地页路径 */
+    path?: string;
+    /** 落地页id */
+    templateId?: string;
+    /** 斗篷配置 */
+    cloakId?: string;
+  };
+
+  type LoadingConfigQueryDTO = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: LoadingConfig[];
+    /** 总数 */
+    total?: number;
   };
 
   type lParams = {
@@ -206,6 +238,10 @@ declare namespace API {
 
   type pageParams = {
     pageDTO: PageDTOShortLinkConfig;
+  };
+
+  type pageParams = {
+    queryDTO: LoadingConfigQueryDTO;
   };
 
   type pageParams = {
