@@ -27,6 +27,16 @@ declare namespace API {
     cloakProviderApiSecret?: string;
     /** 预览密钥 */
     previewSecret?: string;
+    /** 是否启用地区检测 */
+    enableRegionDetection?: boolean;
+    /** 是否启用爬虫检测 */
+    enableSpiderDetection?: boolean;
+    /** 是否启用语言检测 */
+    enableLanguageDetection?: boolean;
+    /** 是否启用代理检测 */
+    enableProxyDetection?: boolean;
+    /** 是否启用UA检测 */
+    enableUaDetection?: boolean;
   };
 
   type CloakConfigQueryDTO = {
@@ -181,6 +191,7 @@ declare namespace API {
 
   type lParams = {
     key: string;
+    preview: boolean;
   };
 
   type PageDTOShortLinkConfig = {
@@ -215,5 +226,9 @@ declare namespace API {
     targetUrl?: string;
     /** 备注 */
     remark?: string;
+    /** pv */
+    pv?: number;
+    /** uv */
+    uv?: number;
   };
 }

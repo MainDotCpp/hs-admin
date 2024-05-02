@@ -43,11 +43,17 @@ export default function Page() {
     },
     { dataIndex: 'remark', title: '备注', search: false, width: 200 },
     {
+      dataIndex: 'pv', title: '访问数据',tooltip:'每 5 分钟更新一次数据', search: false, width: 200, render: (_, record) => <Space>
+        <div>{record.pv}次</div>
+        <div>{record.uv}人</div>
+      </Space>,
+    },
+    {
       dataIndex: 'id',
       title: '操作',
       valueType: 'option',
       fixed: 'right',
-      width: 100,
+      width: 200,
       render: (text, record, _, action) => {
         return [
           <Link key="jump" to={`/cloakLog?relatedId=${record.id}&scene=SHORT_LINK`}>访问记录</Link>,

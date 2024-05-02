@@ -11,7 +11,9 @@ export async function l(
   const { key: param0, ...queryParams } = params;
   return request<Record<string, any>>(`/api/l/${param0}`, {
     method: 'GET',
-    params: { ...queryParams },
+    params: {
+      ...queryParams,
+    },
     ...(options || {}),
   });
 }

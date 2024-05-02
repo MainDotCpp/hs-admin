@@ -27,25 +27,28 @@ export default function Page() {
     },
     {
       ellipsis: true,
-      dataIndex: 'accessTime', title: '访问时间',valueType:'dateTime', width: 200, search: false,
+      dataIndex: 'accessTime', title: '访问时间', valueType: 'dateTime', width: 200, search: false,
     },
     {
       ellipsis: true,
-      dataIndex: 'accessUrl', title: '访问地址',width: 200, search: false,
+      dataIndex: 'accessUrl', title: '访问地址', width: 200, search: false,
     },
     {
       ellipsis: true,
       dataIndex: 'ip', title: 'ip', width: 200, search: false,
     },
     {
-      dataIndex: 'configId', title: '斗篷', search: false, width: 200, renderText: (text) => {
-        const cloakConfig = cloakConfigList?.find((item) => item.id === text);
-        return cloakConfig?.name;
-      },
+      dataIndex: 'configId',
+      title: '斗篷',
+      width: 200,
+      valueEnum: cloakConfigList?.reduce((acc, item) => {
+        acc[item.id] = item.name;
+        return acc;
+      }, {}),
     },
     {
       ellipsis: true,
-      dataIndex: 'status', title: '状态', width: 200, search: false,
+      dataIndex: 'status', title: '状态', width: 200,
       valueEnum: {
         PERMIT: '✅ 允许访问',
         FORBID_BY_REGION: '🚫 区域拦截',
@@ -99,31 +102,29 @@ export default function Page() {
     },
     {
       ellipsis: true,
-      dataIndex: 'isMobile', title: '是否是移动设备', width: 200, search: false, valueEnum: {
-        true: "✅",
-        false: "❌"
+      dataIndex: 'isMobile', title: '移动设备', width: 200, valueEnum: {
+        true: '✅',
+        false: '❌',
       },
     },
     {
       ellipsis: true,
       dataIndex: 'isProxy',
-      title: '是否使用代理',
+      title: '代理',
       width: 200,
-      search: false,
       valueEnum: {
-        true: "✅",
-        false: "❌"
+        true: '✅',
+        false: '❌',
       },
     },
     {
       ellipsis: true,
       dataIndex: 'isCrawler',
-      title: '是否是爬虫',
+      title: '爬虫',
       width: 200,
-      search: false,
       valueEnum: {
-        true: "✅",
-        false: "❌"
+        true: '✅',
+        false: '❌',
       },
     },
   ];
