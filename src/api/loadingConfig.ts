@@ -8,7 +8,7 @@ export async function deleteById(
   params: API.deleteByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResult>(`/api/loadingConfig/deleteById`, {
+  return request<API.HttpResultBoolean>(`/api/loadingConfig/deleteById`, {
     method: 'POST',
     params: {
       ...params,
@@ -23,7 +23,7 @@ export async function getById(
   params: API.getByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResult>(`/api/loadingConfig/getById`, {
+  return request<API.HttpResultLoadingConfig>(`/api/loadingConfig/getById`, {
     method: 'GET',
     params: {
       ...params,
@@ -32,13 +32,28 @@ export async function getById(
   });
 }
 
-/** 斗篷配置列表 GET /loadingConfig/list */
+/** 根据key获取落地页配置 GET /loadingConfig/getByPath */
+export async function getByPath(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.getByPathParams,
+  options?: { [key: string]: any },
+) {
+  return request<API.HttpResultLoadingConfig>(`/api/loadingConfig/getByPath`, {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** 落地页配置列表 GET /loadingConfig/list */
 export async function list(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.listParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResult>(`/api/loadingConfig/list`, {
+  return request<API.HttpResultListLoadingConfig>(`/api/loadingConfig/list`, {
     method: 'GET',
     params: {
       ...params,
@@ -55,7 +70,7 @@ export async function page(
   params: API.pageParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResult>(`/api/loadingConfig/page`, {
+  return request<API.HttpResultPageDTOLoadingConfig>(`/api/loadingConfig/page`, {
     method: 'GET',
     params: {
       ...params,
@@ -68,7 +83,7 @@ export async function page(
 
 /** 保存落地页配置 POST /loadingConfig/save */
 export async function save(body: API.LoadingConfig, options?: { [key: string]: any }) {
-  return request<API.HttpResult>(`/api/loadingConfig/save`, {
+  return request<API.HttpResultLoadingConfig>(`/api/loadingConfig/save`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

@@ -8,7 +8,7 @@ export async function deleteById(
   params: API.deleteByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResult>(`/api/shortlink/deleteById`, {
+  return request<API.HttpResultBoolean>(`/api/shortlink/deleteById`, {
     method: 'POST',
     params: {
       ...params,
@@ -23,7 +23,7 @@ export async function getById(
   params: API.getByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResult>(`/api/shortlink/getById`, {
+  return request<API.HttpResultShortLinkConfig>(`/api/shortlink/getById`, {
     method: 'GET',
     params: {
       ...params,
@@ -38,7 +38,7 @@ export async function getByKey(
   params: API.getByKeyParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResult>(`/api/shortlink/getByKey`, {
+  return request<API.HttpResultShortLinkConfig>(`/api/shortlink/getByKey`, {
     method: 'GET',
     params: {
       ...params,
@@ -53,7 +53,7 @@ export async function page(
   params: API.pageParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResult>(`/api/shortlink/page`, {
+  return request<API.HttpResultPageDTOShortLinkConfig>(`/api/shortlink/page`, {
     method: 'GET',
     params: {
       ...params,
@@ -66,7 +66,7 @@ export async function page(
 
 /** 保存短链接配置 POST /shortlink/save */
 export async function save(body: API.ShortLinkConfig, options?: { [key: string]: any }) {
-  return request<API.HttpResult>(`/api/shortlink/save`, {
+  return request<API.HttpResultShortLinkConfig>(`/api/shortlink/save`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

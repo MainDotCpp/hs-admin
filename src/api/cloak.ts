@@ -10,7 +10,7 @@ export async function check(
   options?: { [key: string]: any },
 ) {
   const { key: param0, ...queryParams } = params;
-  return request<API.HttpResult>(`/api/cloak/check/${param0}`, {
+  return request<API.HttpResultCloakCheckResult>(`/api/cloak/check/${param0}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

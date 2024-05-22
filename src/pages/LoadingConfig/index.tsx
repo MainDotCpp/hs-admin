@@ -4,15 +4,30 @@ import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import api from '@/api';
 import { Button, message, Popconfirm } from 'antd';
 import LoadingConfigEditModal from '@/pages/LoadingConfig/LoadingConfigEditModal';
+import { useRequest } from 'ahooks';
 
 export default function Page() {
   const actionRef = useRef<ActionType>();
+  const { data: cloakConfigList } = useRequest(api.cloakConfig.list, {
+    defaultParams: [{}],
+  });
   const getTableData = async (params: any) => {
     return api.loadingConfig.page(params);
   };
   const columns: ProColumns<API.LoadingConfig>[] = [
     { dataIndex: 'id', title: 'ID', search: false, hidden: true },
-    { dataIndex: 'id', title: 'ID', width: 100, search: false },
+    { dataIndex: 'domain', title: '域名', width: 100, search: false },
+    { dataIndex: 'title', title: '标题', width: 100, search: false },
+    { dataIndex: 'targetLink', title: '跳转链接', width: 100, search: false },
+    {
+      dataIndex: 'configId',
+      title: '斗篷',
+      width: 200,
+      valueEnum: cloakConfigList?.reduce((acc, item) => {
+        acc[item.id] = item.name;
+        return acc;
+      }, {}),
+    },
     {
       dataIndex: 'id',
       title: '操作',
@@ -40,9 +55,9 @@ export default function Page() {
   return (
     <PageContainer>
       <ProTable
-        rowKey='id'
+        rowKey="id"
         actionRef={actionRef}
-        toolbar={ {
+        toolbar={{
           actions: [
             <LoadingConfigEditModal key="create" onFinished={() => actionRef.current?.reload()}>
               <Button type="primary">新建</Button>
@@ -50,7 +65,7 @@ export default function Page() {
           ],
         }}
         size="small"
-        scroll={ { x: 1000 }}
+        scroll={{ x: 1000 }}
         columns={columns}
         request={getTableData}
       ></ProTable>

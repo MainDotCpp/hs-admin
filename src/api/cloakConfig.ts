@@ -8,7 +8,7 @@ export async function deleteById(
   params: API.deleteByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResult>(`/api/cloakConfig/deleteById`, {
+  return request<API.HttpResultBoolean>(`/api/cloakConfig/deleteById`, {
     method: 'POST',
     params: {
       ...params,
@@ -23,7 +23,7 @@ export async function getById(
   params: API.getByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResult>(`/api/cloakConfig/getById`, {
+  return request<API.HttpResultCloakConfig>(`/api/cloakConfig/getById`, {
     method: 'GET',
     params: {
       ...params,
@@ -38,7 +38,7 @@ export async function list(
   params: API.listParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResult>(`/api/cloakConfig/list`, {
+  return request<API.HttpResultListCloakConfig>(`/api/cloakConfig/list`, {
     method: 'GET',
     params: {
       ...params,
@@ -55,7 +55,7 @@ export async function page(
   params: API.pageParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResult>(`/api/cloakConfig/page`, {
+  return request<API.HttpResultPageDTOCloakConfig>(`/api/cloakConfig/page`, {
     method: 'GET',
     params: {
       ...params,
@@ -68,7 +68,7 @@ export async function page(
 
 /** 保存斗篷配置  POST /cloakConfig/save */
 export async function save(body: API.CloakConfig, options?: { [key: string]: any }) {
-  return request<API.HttpResult>(`/api/cloakConfig/save`, {
+  return request<API.HttpResultCloakConfig>(`/api/cloakConfig/save`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

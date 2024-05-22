@@ -1,4 +1,34 @@
 declare namespace API {
+  type BlacklistIp = {
+    id?: number;
+    ip: {
+      multicastAddress?: boolean;
+      loopbackAddress?: boolean;
+      siteLocalAddress?: boolean;
+      mcglobal?: boolean;
+      mcnodeLocal?: boolean;
+      mclinkLocal?: boolean;
+      mcsiteLocal?: boolean;
+      mcorgLocal?: boolean;
+      linkLocalAddress?: boolean;
+      hostAddress?: string;
+      address?: string[];
+      hostName?: string;
+      canonicalHostName?: string;
+      anyLocalAddress?: boolean;
+    };
+  };
+
+  type BlacklistIpQueryDTO = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: BlacklistIp[];
+    /** 总数 */
+    total?: number;
+  };
+
   type checkParams = {
     key: string;
   };
@@ -8,6 +38,22 @@ declare namespace API {
     userAgent?: string;
     referer?: string;
     language?: string;
+  };
+
+  type CloakCheckResult = {
+    /** 是否允许访问 */
+    permit?: boolean;
+    /** 状态 */
+    status?:
+      | 'PERMIT'
+      | 'FORBID_BY_REGION'
+      | 'FORBID_BY_IP'
+      | 'FORBID_BY_PROXY'
+      | 'FORBID_BY_SPIDER'
+      | 'FORBID_BY_USER_AGENT'
+      | 'FORBID_BY_REFERER'
+      | 'FORBID_BY_THIRD_CLOAK'
+      | 'FORBID_BY_BLACKLIST_IP';
   };
 
   type CloakConfig = {
@@ -37,6 +83,10 @@ declare namespace API {
     enableProxyDetection?: boolean;
     /** 是否启用UA检测 */
     enableUaDetection?: boolean;
+    /** 是否启用黑名单IP检测 */
+    enableBlacklistIpDetection?: boolean;
+    /** 是否启用黑名单IP收集 */
+    enableBlacklistIpCollection?: boolean;
   };
 
   type CloakConfigQueryDTO = {
@@ -108,7 +158,8 @@ declare namespace API {
       | 'FORBID_BY_SPIDER'
       | 'FORBID_BY_USER_AGENT'
       | 'FORBID_BY_REFERER'
-      | 'FORBID_BY_THIRD_CLOAK';
+      | 'FORBID_BY_THIRD_CLOAK'
+      | 'FORBID_BY_BLACKLIST_IP';
     /** 访问时间 */
     accessTime?: number;
     /** 备注 */
@@ -146,7 +197,8 @@ declare namespace API {
       | 'FORBID_BY_SPIDER'
       | 'FORBID_BY_USER_AGENT'
       | 'FORBID_BY_REFERER'
-      | 'FORBID_BY_THIRD_CLOAK';
+      | 'FORBID_BY_THIRD_CLOAK'
+      | 'FORBID_BY_BLACKLIST_IP';
     relatedId: number;
     scene?: 'SHORT_LINK' | 'LANDING_PAGE' | 'API';
   };
@@ -164,33 +216,174 @@ declare namespace API {
   };
 
   type deleteByIdParams = {
+    id: number;
+  };
+
+  type deleteByIdParams = {
+    id: string;
+  };
+
+  type deleteByIdParams = {
+    id: number;
+  };
+
+  type getByIdParams = {
+    id: number;
+  };
+
+  type getByIdParams = {
+    id: number;
+  };
+
+  type getByIdParams = {
+    id: number;
+  };
+
+  type getByIdParams = {
+    id: number;
+  };
+
+  type getByIdParams = {
     id: string;
   };
 
   type getByIdParams = {
     id: number;
-  };
-
-  type getByIdParams = {
-    id: number;
-  };
-
-  type getByIdParams = {
-    id: number;
-  };
-
-  type getByIdParams = {
-    id: string;
   };
 
   type getByKeyParams = {
     key: string;
   };
 
-  type HttpResult = {
+  type getByPathParams = {
+    domain: string;
+    path: string;
+  };
+
+  type HttpResultBlacklistIp = {
     code?: number;
     message?: string;
-    data?: Record<string, any>;
+    data?: BlacklistIp;
+  };
+
+  type HttpResultBoolean = {
+    code?: number;
+    message?: string;
+    data?: boolean;
+  };
+
+  type HttpResultCloakCheckResult = {
+    code?: number;
+    message?: string;
+    data?: CloakCheckResult;
+  };
+
+  type HttpResultCloakConfig = {
+    code?: number;
+    message?: string;
+    data?: CloakConfig;
+  };
+
+  type HttpResultCloakLog = {
+    code?: number;
+    message?: string;
+    data?: CloakLog;
+  };
+
+  type HttpResultLandingTemplate = {
+    code?: number;
+    message?: string;
+    data?: LandingTemplate;
+  };
+
+  type HttpResultListBlacklistIp = {
+    code?: number;
+    message?: string;
+    data?: BlacklistIp[];
+  };
+
+  type HttpResultListCloakConfig = {
+    code?: number;
+    message?: string;
+    data?: CloakConfig[];
+  };
+
+  type HttpResultListLandingTemplate = {
+    code?: number;
+    message?: string;
+    data?: LandingTemplate[];
+  };
+
+  type HttpResultListLoadingConfig = {
+    code?: number;
+    message?: string;
+    data?: LoadingConfig[];
+  };
+
+  type HttpResultLoadingConfig = {
+    code?: number;
+    message?: string;
+    data?: LoadingConfig;
+  };
+
+  type HttpResultPageDTOBlacklistIp = {
+    code?: number;
+    message?: string;
+    data?: PageDTOBlacklistIp;
+  };
+
+  type HttpResultPageDTOCloakConfig = {
+    code?: number;
+    message?: string;
+    data?: PageDTOCloakConfig;
+  };
+
+  type HttpResultPageDTOCloakLog = {
+    code?: number;
+    message?: string;
+    data?: PageDTOCloakLog;
+  };
+
+  type HttpResultPageDTOLandingTemplate = {
+    code?: number;
+    message?: string;
+    data?: PageDTOLandingTemplate;
+  };
+
+  type HttpResultPageDTOLoadingConfig = {
+    code?: number;
+    message?: string;
+    data?: PageDTOLoadingConfig;
+  };
+
+  type HttpResultPageDTOShortLinkConfig = {
+    code?: number;
+    message?: string;
+    data?: PageDTOShortLinkConfig;
+  };
+
+  type HttpResultShortLinkConfig = {
+    code?: number;
+    message?: string;
+    data?: ShortLinkConfig;
+  };
+
+  type LandingTemplate = {
+    id?: number;
+    /** 模板名称 */
+    name?: string;
+    /** 模板路径 */
+    path?: string;
+  };
+
+  type LandingTemplateQueryDTO = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: LandingTemplate[];
+    /** 总数 */
+    total?: number;
   };
 
   type listParams = {
@@ -198,7 +391,15 @@ declare namespace API {
   };
 
   type listParams = {
+    queryDTO: LandingTemplateQueryDTO;
+  };
+
+  type listParams = {
     queryDTO: CloakConfigQueryDTO;
+  };
+
+  type listParams = {
+    queryDTO: BlacklistIpQueryDTO;
   };
 
   type LoadingConfig = {
@@ -206,9 +407,17 @@ declare namespace API {
     /** 落地页路径 */
     path?: string;
     /** 落地页id */
-    templateId?: string;
+    templatePath?: string;
     /** 斗篷配置 */
     cloakId?: string;
+    /** 标题 */
+    title?: string;
+    /** 目标链接 */
+    targetLink?: string;
+    /** 域名 */
+    domain?: string;
+    /** 像素代码 */
+    pixelCode?: string;
   };
 
   type LoadingConfigQueryDTO = {
@@ -224,6 +433,56 @@ declare namespace API {
   type lParams = {
     key: string;
     preview: boolean;
+  };
+
+  type PageDTOBlacklistIp = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: BlacklistIp[];
+    /** 总数 */
+    total?: number;
+  };
+
+  type PageDTOCloakConfig = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: CloakConfig[];
+    /** 总数 */
+    total?: number;
+  };
+
+  type PageDTOCloakLog = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: CloakLog[];
+    /** 总数 */
+    total?: number;
+  };
+
+  type PageDTOLandingTemplate = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: LandingTemplate[];
+    /** 总数 */
+    total?: number;
+  };
+
+  type PageDTOLoadingConfig = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: LoadingConfig[];
+    /** 总数 */
+    total?: number;
   };
 
   type PageDTOShortLinkConfig = {
@@ -245,11 +504,19 @@ declare namespace API {
   };
 
   type pageParams = {
+    queryDTO: LandingTemplateQueryDTO;
+  };
+
+  type pageParams = {
     queryDTO: CloakLogQueryDTO;
   };
 
   type pageParams = {
     queryDTO: CloakConfigQueryDTO;
+  };
+
+  type pageParams = {
+    queryDTO: BlacklistIpQueryDTO;
   };
 
   type ShortLinkConfig = {

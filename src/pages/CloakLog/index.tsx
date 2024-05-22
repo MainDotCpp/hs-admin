@@ -6,6 +6,7 @@ import { Button, message, Popconfirm } from 'antd';
 import CloakLogEditModal from '@/pages/CloakLog/CloakLogEditModal';
 import { useParams, useSearchParams } from '@@/exports';
 import { useRequest } from 'ahooks';
+import { countriesEnum } from '@/constants/countries';
 
 export default function Page() {
   const actionRef = useRef<ActionType>();
@@ -36,6 +37,9 @@ export default function Page() {
     {
       ellipsis: true,
       dataIndex: 'ip', title: 'ip', width: 200, search: false,
+    },
+    {
+      dataIndex: 'countryCode', title: 'ip归属地', width: 200, valueEnum: countriesEnum,
     },
     {
       dataIndex: 'configId',
