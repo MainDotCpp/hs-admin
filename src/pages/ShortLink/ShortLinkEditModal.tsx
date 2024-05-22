@@ -4,6 +4,7 @@ import api from '@/api';
 import { Form, Input, message } from 'antd';
 import styled from 'styled-components';
 import useFormInstance = ProForm.useFormInstance;
+import { useLocalStorageState } from 'ahooks';
 
 type ShortLinkEditModalProps = {
   id?: number;
@@ -17,7 +18,7 @@ const InputAfter = styled.div`
 `;
 const ShortLinkEditModal = (props: ShortLinkEditModalProps) => {
   const [form] = Form.useForm();
-
+  const [defaultGroup,setDefaultGroup] = useLocalStorageState('default-group')
   const onFinish = async (formData: any) => {
     await api.shortlink.save(formData);
     message.success('保存成功');
@@ -26,7 +27,7 @@ const ShortLinkEditModal = (props: ShortLinkEditModalProps) => {
   };
 
   const getInitialValues = async () => {
-    return props.id ? await api.shortlink.getById({ id: props.id }) : {};
+    return props.id ? await api.shortlink.getById({ id: props.id }) : {groupId:defaultGroup?.value || 1};
   };
   return <ModalForm
     modalProps={{
@@ -46,6 +47,12 @@ const ShortLinkEditModal = (props: ShortLinkEditModalProps) => {
         });
       }}>生成</InputAfter>} />
     </ProFormItem>
+    <ProFormSelect name="groupId" request={api.shortLinkGroup.list} label="分组" rules={[{ required: true }]} fieldProps={{
+      fieldNames: {
+        label: 'name',
+        value: 'id',
+      },
+    }} />
     <ProFormSelect name="cloakId" request={api.cloakConfig.list} label="斗篷" rules={[{ required: true }]} fieldProps={{
       fieldNames: {
         label: 'name',

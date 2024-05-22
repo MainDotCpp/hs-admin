@@ -15,11 +15,13 @@
     "@ant-design/icons": "^5.0.1",
     "@ant-design/pro-components": "^2.4.4",
     "@ant-design/pro-form": "^2.25.1",
+    "@ant-design/pro-layout": "^7.19.7",
     "@umijs/max": "^4.1.10",
     "@umijs/openapi": "^1.12.1",
     "ahooks": "^3.7.11",
     "antd": "^5.4.0",
-    "react-query": "^3.39.3"
+    "react-query": "^3.39.3",
+    "styled-components": "^6.1.11"
   },
   "devDependencies": {
     "@types/react": "^18.0.33",

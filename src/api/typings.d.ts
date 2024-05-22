@@ -2,7 +2,12 @@ declare namespace API {
   type BlacklistIp = {
     id?: number;
     ip: {
+      hostAddress?: string;
+      address?: string[];
+      hostName?: string;
+      linkLocalAddress?: boolean;
       multicastAddress?: boolean;
+      anyLocalAddress?: boolean;
       loopbackAddress?: boolean;
       siteLocalAddress?: boolean;
       mcglobal?: boolean;
@@ -10,12 +15,7 @@ declare namespace API {
       mclinkLocal?: boolean;
       mcsiteLocal?: boolean;
       mcorgLocal?: boolean;
-      linkLocalAddress?: boolean;
-      hostAddress?: string;
-      address?: string[];
-      hostName?: string;
       canonicalHostName?: string;
-      anyLocalAddress?: boolean;
     };
   };
 
@@ -220,10 +220,18 @@ declare namespace API {
   };
 
   type deleteByIdParams = {
+    id: number;
+  };
+
+  type deleteByIdParams = {
     id: string;
   };
 
   type deleteByIdParams = {
+    id: number;
+  };
+
+  type getByIdParams = {
     id: number;
   };
 
@@ -320,6 +328,12 @@ declare namespace API {
     data?: LoadingConfig[];
   };
 
+  type HttpResultListShortLinkGroup = {
+    code?: number;
+    message?: string;
+    data?: ShortLinkGroup[];
+  };
+
   type HttpResultLoadingConfig = {
     code?: number;
     message?: string;
@@ -362,10 +376,30 @@ declare namespace API {
     data?: PageDTOShortLinkConfig;
   };
 
+  type HttpResultPageDTOShortLinkGroup = {
+    code?: number;
+    message?: string;
+    data?: PageDTOShortLinkGroup;
+  };
+
   type HttpResultShortLinkConfig = {
     code?: number;
     message?: string;
     data?: ShortLinkConfig;
+  };
+
+  type HttpResultShortLinkGroup = {
+    code?: number;
+    message?: string;
+    data?: ShortLinkGroup;
+  };
+
+  type LandingCloakCheckDTO = {
+    /** 斗篷ID */
+    cloakKey?: string;
+    /** 落地页ID */
+    landingId?: number;
+    clientInfo?: CloakCheckDTO;
   };
 
   type LandingTemplate = {
@@ -384,6 +418,10 @@ declare namespace API {
     data?: LandingTemplate[];
     /** 总数 */
     total?: number;
+  };
+
+  type listParams = {
+    queryDTO: ShortLinkGroupQueryDTO;
   };
 
   type listParams = {
@@ -495,8 +533,22 @@ declare namespace API {
     total?: number;
   };
 
+  type PageDTOShortLinkGroup = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: ShortLinkGroup[];
+    /** 总数 */
+    total?: number;
+  };
+
   type pageParams = {
     pageDTO: PageDTOShortLinkConfig;
+  };
+
+  type pageParams = {
+    queryDTO: ShortLinkGroupQueryDTO;
   };
 
   type pageParams = {
@@ -533,5 +585,23 @@ declare namespace API {
     pv?: number;
     /** uv */
     uv?: number;
+    /** 分组ID */
+    groupId?: number;
+  };
+
+  type ShortLinkGroup = {
+    id?: number;
+    /** 分组名称 */
+    name?: string;
+  };
+
+  type ShortLinkGroupQueryDTO = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: ShortLinkGroup[];
+    /** 总数 */
+    total?: number;
   };
 }
