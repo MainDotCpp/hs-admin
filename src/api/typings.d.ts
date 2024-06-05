@@ -6,8 +6,8 @@ declare namespace API {
       address?: string[];
       hostName?: string;
       linkLocalAddress?: boolean;
-      multicastAddress?: boolean;
       anyLocalAddress?: boolean;
+      multicastAddress?: boolean;
       loopbackAddress?: boolean;
       siteLocalAddress?: boolean;
       mcglobal?: boolean;
@@ -224,10 +224,34 @@ declare namespace API {
   };
 
   type deleteByIdParams = {
+    id: number;
+  };
+
+  type deleteByIdParams = {
+    id: number;
+  };
+
+  type deleteByIdParams = {
+    id: number;
+  };
+
+  type deleteByIdParams = {
     id: string;
   };
 
   type deleteByIdParams = {
+    id: number;
+  };
+
+  type getByIdParams = {
+    id: number;
+  };
+
+  type getByIdParams = {
+    id: number;
+  };
+
+  type getByIdParams = {
     id: number;
   };
 
@@ -328,10 +352,28 @@ declare namespace API {
     data?: LoadingConfig[];
   };
 
+  type HttpResultListPermission = {
+    code?: number;
+    message?: string;
+    data?: Permission[];
+  };
+
+  type HttpResultListRole = {
+    code?: number;
+    message?: string;
+    data?: Role[];
+  };
+
   type HttpResultListShortLinkGroup = {
     code?: number;
     message?: string;
     data?: ShortLinkGroup[];
+  };
+
+  type HttpResultListUser = {
+    code?: number;
+    message?: string;
+    data?: User[];
   };
 
   type HttpResultLoadingConfig = {
@@ -370,6 +412,18 @@ declare namespace API {
     data?: PageDTOLoadingConfig;
   };
 
+  type HttpResultPageDTOPermission = {
+    code?: number;
+    message?: string;
+    data?: PageDTOPermission;
+  };
+
+  type HttpResultPageDTORole = {
+    code?: number;
+    message?: string;
+    data?: PageDTORole;
+  };
+
   type HttpResultPageDTOShortLinkConfig = {
     code?: number;
     message?: string;
@@ -382,6 +436,24 @@ declare namespace API {
     data?: PageDTOShortLinkGroup;
   };
 
+  type HttpResultPageDTOUser = {
+    code?: number;
+    message?: string;
+    data?: PageDTOUser;
+  };
+
+  type HttpResultPermission = {
+    code?: number;
+    message?: string;
+    data?: Permission;
+  };
+
+  type HttpResultRole = {
+    code?: number;
+    message?: string;
+    data?: Role;
+  };
+
   type HttpResultShortLinkConfig = {
     code?: number;
     message?: string;
@@ -392,6 +464,24 @@ declare namespace API {
     code?: number;
     message?: string;
     data?: ShortLinkGroup;
+  };
+
+  type HttpResultString = {
+    code?: number;
+    message?: string;
+    data?: string;
+  };
+
+  type HttpResultUser = {
+    code?: number;
+    message?: string;
+    data?: User;
+  };
+
+  type HttpResultUserinfo = {
+    code?: number;
+    message?: string;
+    data?: Userinfo;
   };
 
   type LandingCloakCheckDTO = {
@@ -421,7 +511,19 @@ declare namespace API {
   };
 
   type listParams = {
+    queryDTO: UserQueryDTO;
+  };
+
+  type listParams = {
     queryDTO: ShortLinkGroupQueryDTO;
+  };
+
+  type listParams = {
+    queryDTO: RoleQueryDTO;
+  };
+
+  type listParams = {
+    queryDTO: PermissionQueryDTO;
   };
 
   type listParams = {
@@ -466,6 +568,11 @@ declare namespace API {
     data?: LoadingConfig[];
     /** 总数 */
     total?: number;
+  };
+
+  type LoginReqDTO = {
+    username?: string;
+    password?: string;
   };
 
   type lParams = {
@@ -523,6 +630,26 @@ declare namespace API {
     total?: number;
   };
 
+  type PageDTOPermission = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: Permission[];
+    /** 总数 */
+    total?: number;
+  };
+
+  type PageDTORole = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: Role[];
+    /** 总数 */
+    total?: number;
+  };
+
   type PageDTOShortLinkConfig = {
     /** 页码 */
     current?: number;
@@ -543,12 +670,34 @@ declare namespace API {
     total?: number;
   };
 
+  type PageDTOUser = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: User[];
+    /** 总数 */
+    total?: number;
+  };
+
   type pageParams = {
-    pageDTO: PageDTOShortLinkConfig;
+    queryDTO: UserQueryDTO;
+  };
+
+  type pageParams = {
+    pageDTO: ShortLinkConfigQueryDTO;
   };
 
   type pageParams = {
     queryDTO: ShortLinkGroupQueryDTO;
+  };
+
+  type pageParams = {
+    queryDTO: RoleQueryDTO;
+  };
+
+  type pageParams = {
+    queryDTO: PermissionQueryDTO;
   };
 
   type pageParams = {
@@ -571,6 +720,46 @@ declare namespace API {
     queryDTO: BlacklistIpQueryDTO;
   };
 
+  type Permission = {
+    id?: number;
+    name?: string;
+    code?: string;
+  };
+
+  type PermissionQueryDTO = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: Permission[];
+    /** 总数 */
+    total?: number;
+  };
+
+  type Role = {
+    id?: number;
+    name?: string;
+    code?: string;
+    description?: string;
+    /** 权限 */
+    permissions?: Permission[];
+  };
+
+  type RoleQueryDTO = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: Role[];
+    /** 总数 */
+    total?: number;
+  };
+
+  type SetRoleDTO = {
+    userId?: number;
+    roleIds?: number[];
+  };
+
   type ShortLinkConfig = {
     id?: number;
     /** 配置KEY */
@@ -589,6 +778,17 @@ declare namespace API {
     groupId?: number;
   };
 
+  type ShortLinkConfigQueryDTO = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: ShortLinkConfig[];
+    /** 总数 */
+    total?: number;
+    groupId?: number;
+  };
+
   type ShortLinkGroup = {
     id?: number;
     /** 分组名称 */
@@ -601,6 +801,42 @@ declare namespace API {
     /** 页面大小 */
     pageSize?: number;
     data?: ShortLinkGroup[];
+    /** 总数 */
+    total?: number;
+  };
+
+  type User = {
+    id?: number;
+    /** 用户名 */
+    username?: string;
+    /** 密码 */
+    password?: string;
+    /** 昵称 */
+    nickname?: string;
+    /** 状态 */
+    status?: number;
+    /** 创建时间 */
+    createTime?: number;
+    /** 更新时间 */
+    updateTime?: number;
+    /** 角色 */
+    roles?: Role[];
+  };
+
+  type Userinfo = {
+    id?: number;
+    username?: string;
+    nickname?: string;
+    roles?: string[];
+    permissions?: string[];
+  };
+
+  type UserQueryDTO = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: User[];
     /** 总数 */
     total?: number;
   };

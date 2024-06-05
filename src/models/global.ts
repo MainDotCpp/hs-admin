@@ -3,6 +3,7 @@ import { DEFAULT_NAME } from '@/constants';
 import { useEffect, useState } from 'react';
 import { Geo } from '@/services';
 
+export let ACCESS_TOKEN = '';
 const useUser = () => {
   const [name, setName] = useState<string>(DEFAULT_NAME);
   const [geoList, setGeoList] = useState<Geo[]>([]);

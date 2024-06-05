@@ -53,6 +53,12 @@ export default defineConfig({
       path: '/demo',
       component: './Demo',
     },
+    {
+      path: '/login',
+      layout: false,
+      hideInMenu: true,
+      component: './Login',
+    },
   ],
   npmClient: 'pnpm',
 });
