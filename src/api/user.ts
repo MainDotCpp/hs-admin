@@ -23,7 +23,7 @@ export async function getById(
   params: API.getByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultUser>(`/api/user/getById`, {
+  return request<API.HttpResultUserDto>(`/api/user/getById`, {
     method: 'GET',
     params: {
       ...params,
@@ -46,7 +46,7 @@ export async function list(
   params: API.listParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultListUser>(`/api/user/list`, {
+  return request<API.HttpResultListUserDto>(`/api/user/list`, {
     method: 'GET',
     params: {
       ...params,
@@ -63,7 +63,7 @@ export async function page(
   params: API.pageParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultPageDTOUser>(`/api/user/page`, {
+  return request<API.HttpResultPageDTOUserDto>(`/api/user/page`, {
     method: 'GET',
     params: {
       ...params,
@@ -75,8 +75,8 @@ export async function page(
 }
 
 /** 保存用户 POST /user/save */
-export async function save(body: API.User, options?: { [key: string]: any }) {
-  return request<API.HttpResultUser>(`/api/user/save`, {
+export async function save(body: API.UserDto, options?: { [key: string]: any }) {
+  return request<API.HttpResultUserDto>(`/api/user/save`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

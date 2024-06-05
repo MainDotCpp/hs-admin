@@ -9,6 +9,7 @@ export default defineConfig({
   request: {},
   layout: {
     title: '海狮管理后台',
+
   },
   proxy: {
     '/api': {
@@ -54,11 +55,21 @@ export default defineConfig({
       component: './Demo',
     },
     {
+      path: '/system',
+      name: '系统管理',
+      access: 'hasAdminRole',
+      icon: 'SettingOutlined',
+      routes: [
+        { path: '/system/user', name: '用户管理', icon: 'UserOutlined', component: './User' },
+      ],
+    },
+    {
       path: '/login',
       layout: false,
       hideInMenu: true,
       component: './Login',
     },
+
   ],
   npmClient: 'pnpm',
 });

@@ -2,11 +2,11 @@ import { PageContainer } from '@ant-design/pro-layout';
 import React, { useRef } from 'react';
 import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import api from '@/api';
-import { Button, message, Popconfirm, Space, Tag } from 'antd';
+import { Button, message, Popconfirm, Space } from 'antd';
 import ShortLinkEditModal from '@/pages/ShortLink/ShortLinkEditModal';
 import { useLocalStorageState, useRequest } from 'ahooks';
 import { Link } from '@umijs/max';
-import ShortLinkGroupEditModal from '@/pages/ShortLink/ShortLinkGroupEditModal';
+import { useAccess } from '@@/exports';
 
 export default function Page() {
   const actionRef = useRef<ActionType>();
@@ -14,7 +14,9 @@ export default function Page() {
     defaultParams: [{}],
   });
   const { data: shortLinkGroup } = useRequest(api.shortLinkGroup.list, { defaultParams: [{}] });
-  const [defaultGroup,setDefaultGroup] = useLocalStorageState('default-group')
+  const [defaultGroup, setDefaultGroup] = useLocalStorageState('default-group');
+  const access = useAccess();
+
 
   const getTableData = async (params: any) => {
     return api.shortlink.page(params);
@@ -30,32 +32,7 @@ export default function Page() {
         </a>;
       },
     },
-    {
-      dataIndex: 'groupId',
-      title: '分组',
-      valueType: 'select',
-      search:{
-        transform: (value) => ({groupId:value.value || value})
-      },
-      formItemProps: {
-        initialValue: defaultGroup,
-      },
-      fieldProps:{
-        onChange: (value) => {
-          console.log(shortLinkGroup);
-          let _group: any = shortLinkGroup?.find((item) => item.id == value);
-          console.log(_group);
-          setDefaultGroup({label:_group.name,value:_group.id});
-        }
-      },
-      valueEnum: shortLinkGroup?.reduce((acc, item) => {
-        acc[item.id] = { text: item.name };
-        return acc;
-      }, {} as any),
-      width: 100, render: (text) => {
-        return <Tag color="blue">{text}</Tag>;
-      },
-    },
+
     {
       dataIndex: 'cloakId', title: '斗篷', search: false, width: 200, renderText: (text) => {
         const cloakConfig = cloakConfigList?.find((item) => item.id === text);
@@ -81,6 +58,39 @@ export default function Page() {
         <div>{record.uv}人</div>
       </Space>,
     },
+    {
+      dataIndex: 'groupId',
+      title: '分组',
+      valueType: 'select',
+      search: false,
+      width: 200,
+      renderText: (text) => {
+        const group = shortLinkGroup?.find((item) => item.id === text);
+        return group?.name;
+      },
+    },
+    {
+      dataIndex: 'createdBy',
+      title: '创建人',
+      width: 200,
+      search: access.hasAdminRole,
+      request: api.user.list,
+      valueType: 'select',
+      fieldProps: {
+        fieldNames: {
+          label: 'nickname',
+          value: 'id',
+        },
+      },
+
+    },
+    {
+      dataIndex: 'createdDate',
+      title: '创建时间',
+      valueType: 'dateTime',
+      width: 200,
+    },
+
     {
       dataIndex: 'id',
       title: '操作',
@@ -116,7 +126,6 @@ export default function Page() {
             <ShortLinkEditModal key="create" onFinished={() => actionRef.current?.reload()}>
               <Button type="primary">新建</Button>
             </ShortLinkEditModal>,
-            <ShortLinkGroupEditModal key="group" />,
           ],
         }}
         size="small"

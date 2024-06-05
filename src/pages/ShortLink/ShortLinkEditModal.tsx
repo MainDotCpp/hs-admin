@@ -1,10 +1,10 @@
-import { ModalForm, ProForm, ProFormItem, ProFormSelect, ProFormText } from '@ant-design/pro-form';
+import { ModalForm, ProFormItem, ProFormSelect, ProFormText } from '@ant-design/pro-form';
 import React from 'react';
 import api from '@/api';
 import { Form, Input, message } from 'antd';
 import styled from 'styled-components';
-import useFormInstance = ProForm.useFormInstance;
 import { useLocalStorageState } from 'ahooks';
+import { useAccess } from '@@/exports';
 
 type ShortLinkEditModalProps = {
   id?: number;
@@ -17,8 +17,9 @@ const InputAfter = styled.div`
     cursor: pointer;
 `;
 const ShortLinkEditModal = (props: ShortLinkEditModalProps) => {
+  const access = useAccess();
   const [form] = Form.useForm();
-  const [defaultGroup,setDefaultGroup] = useLocalStorageState('default-group')
+  const [defaultGroup, setDefaultGroup] = useLocalStorageState('default-group');
   const onFinish = async (formData: any) => {
     await api.shortlink.save(formData);
     message.success('保存成功');
@@ -27,7 +28,7 @@ const ShortLinkEditModal = (props: ShortLinkEditModalProps) => {
   };
 
   const getInitialValues = async () => {
-    return props.id ? await api.shortlink.getById({ id: props.id }) : {groupId:defaultGroup?.value || 1};
+    return props.id ? await api.shortlink.getById({ id: props.id }) : { groupId: defaultGroup?.value || 1 };
   };
   return <ModalForm
     modalProps={{
@@ -47,12 +48,7 @@ const ShortLinkEditModal = (props: ShortLinkEditModalProps) => {
         });
       }}>生成</InputAfter>} />
     </ProFormItem>
-    <ProFormSelect name="groupId" request={api.shortLinkGroup.list} label="分组" rules={[{ required: true }]} fieldProps={{
-      fieldNames: {
-        label: 'name',
-        value: 'id',
-      },
-    }} />
+
     <ProFormSelect name="cloakId" request={api.cloakConfig.list} label="斗篷" rules={[{ required: true }]} fieldProps={{
       fieldNames: {
         label: 'name',
@@ -61,6 +57,12 @@ const ShortLinkEditModal = (props: ShortLinkEditModalProps) => {
     }} />
     <ProFormText name="targetUrl" label="跳转地址" rules={[{ required: true }]} />
     <ProFormText name="remark" label="备注" />
+    <ProFormSelect hidden={!access.hasAdminRole} name="createdBy" request={api.user.list} label="创建人" fieldProps={{
+      fieldNames: {
+        label: 'nickname',
+        value: 'id',
+      },
+    }} />
   </ModalForm>;
 };
 

@@ -45,7 +45,7 @@ const Page = () => {
           const accessToken = await api.auth.login(formData);
           window.localStorage.setItem('accessToken', accessToken);
           // 跳转到首页
-          navigate('/');
+          window.location = '/';
         }}
         // subTitle="全球最大的代码托管平台"
 

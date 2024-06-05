@@ -1,13 +1,12 @@
 import { Outlet } from 'umi';
-import { QueryClient, QueryClientProvider, useQueryClient } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 const client = new QueryClient({});
 const Layout = () => {
   return <>
     <QueryClientProvider client={client}>
       <Outlet />
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/*<ReactQueryDevtools initialIsOpen={false} />*/}
     </QueryClientProvider>
   </>;
 };

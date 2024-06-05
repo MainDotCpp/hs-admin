@@ -13,3 +13,11 @@ export async function login(body: API.LoginReqDTO, options?: { [key: string]: an
     ...(options || {}),
   });
 }
+
+/** 登出 POST /auth/logout */
+export async function logout(options?: { [key: string]: any }) {
+  return request<API.HttpResultBoolean>(`/api/auth/logout`, {
+    method: 'POST',
+    ...(options || {}),
+  });
+}

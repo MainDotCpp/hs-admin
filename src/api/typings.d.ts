@@ -6,8 +6,8 @@ declare namespace API {
       address?: string[];
       hostName?: string;
       linkLocalAddress?: boolean;
-      anyLocalAddress?: boolean;
       multicastAddress?: boolean;
+      anyLocalAddress?: boolean;
       loopbackAddress?: boolean;
       siteLocalAddress?: boolean;
       mcglobal?: boolean;
@@ -370,10 +370,10 @@ declare namespace API {
     data?: ShortLinkGroup[];
   };
 
-  type HttpResultListUser = {
+  type HttpResultListUserDto = {
     code?: number;
     message?: string;
-    data?: User[];
+    data?: UserDto[];
   };
 
   type HttpResultLoadingConfig = {
@@ -436,10 +436,10 @@ declare namespace API {
     data?: PageDTOShortLinkGroup;
   };
 
-  type HttpResultPageDTOUser = {
+  type HttpResultPageDTOUserDto = {
     code?: number;
     message?: string;
-    data?: PageDTOUser;
+    data?: PageDTOUserDto;
   };
 
   type HttpResultPermission = {
@@ -472,10 +472,10 @@ declare namespace API {
     data?: string;
   };
 
-  type HttpResultUser = {
+  type HttpResultUserDto = {
     code?: number;
     message?: string;
-    data?: User;
+    data?: UserDto;
   };
 
   type HttpResultUserinfo = {
@@ -670,12 +670,12 @@ declare namespace API {
     total?: number;
   };
 
-  type PageDTOUser = {
+  type PageDTOUserDto = {
     /** 页码 */
     current?: number;
     /** 页面大小 */
     pageSize?: number;
-    data?: User[];
+    data?: UserDto[];
     /** 总数 */
     total?: number;
   };
@@ -776,6 +776,10 @@ declare namespace API {
     uv?: number;
     /** 分组ID */
     groupId?: number;
+    createdBy?: number;
+    createdDate?: string;
+    lastModifiedBy?: number;
+    lastModifiedDate?: string;
   };
 
   type ShortLinkConfigQueryDTO = {
@@ -805,22 +809,16 @@ declare namespace API {
     total?: number;
   };
 
-  type User = {
+  type UserDto = {
     id?: number;
-    /** 用户名 */
     username?: string;
-    /** 密码 */
-    password?: string;
-    /** 昵称 */
     nickname?: string;
-    /** 状态 */
+    password?: string;
     status?: number;
-    /** 创建时间 */
     createTime?: number;
-    /** 更新时间 */
     updateTime?: number;
-    /** 角色 */
-    roles?: Role[];
+    roleIds?: number[];
+    roleNames?: string[];
   };
 
   type Userinfo = {
@@ -836,7 +834,7 @@ declare namespace API {
     current?: number;
     /** 页面大小 */
     pageSize?: number;
-    data?: User[];
+    data?: UserDto[];
     /** 总数 */
     total?: number;
   };

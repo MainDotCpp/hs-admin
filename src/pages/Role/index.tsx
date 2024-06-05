@@ -3,16 +3,14 @@ import { PageContainer } from '@ant-design/pro-layout';
 import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import api from '@/api';
 import { Button, message, Popconfirm } from 'antd';
-import {{
-  biz_name_upper
-}}EditModal from '@/pages/';
+import RoleEditModal from '@/pages/Role/RoleEditModal';
 
 export default function Page() {
   const actionRef = useRef<ActionType>();
   const getTableData = async (params: any) => {
-    return api.{{biz_name}}.page(params);
+    return api.role.page(params);
   };
-  const columns: ProColumns<API.{{biz_name_upper}}>[] = [
+  const columns: ProColumns<API.Role>[] = [
     { dataIndex: 'id', title: 'ID', search: false, hidden: true },
     { dataIndex: 'id', title: 'ID', width: 100, search: false },
     {
@@ -23,13 +21,13 @@ export default function Page() {
       width: 100,
       render: (text, record, _, action) => {
         return [
-          <{{ biz_name_upper }}EditModal id={record.id} key="edit">
+          <RoleEditModal id={record.id} key="edit">
             <a>编辑</a>
-          </{{ biz_name_upper }}EditModal>,
+          </RoleEditModal>,
           <Popconfirm
             key="delete"
             title={`确定删除吗？`} onConfirm={async () => {
-            await api.{{biz_name}}.deleteById({ id: record.id });
+            await api.role.deleteById(record.id);
             message.success('删除成功');
             action.reload();
           }}>
@@ -42,18 +40,17 @@ export default function Page() {
   return (
     <PageContainer>
       <ProTable
-        rowKey="id"
-        search={false}
+        rowKey='id'
         actionRef={actionRef}
-        toolbar={{
+        toolbar={ {
           actions: [
-            <{{ biz_name_upper }}EditModal key="create" onFinished={() => actionRef.current?.reload()}>
+            <RoleEditModal key="create" onFinished={() => actionRef.current?.reload()}>
               <Button type="primary">新建</Button>
-            </{{ biz_name_upper }}EditModal>,
+            </RoleEditModal>,
           ],
         }}
         size="small"
-        scroll={{ x: 1000 }}
+        scroll={ { x: 1000 }}
         columns={columns}
         request={getTableData}
       ></ProTable>
