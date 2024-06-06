@@ -24,7 +24,8 @@ export default defineConfig({
     },
     {
       name: '斗篷管理',
-      icon: 'LinkOutlined',
+      icon: 'SafetyCertificateOutlined',
+      access: 'CLOAK__VIEW',
       hideInMenu: process.env.NODE_ENV === 'production',
       path: '/cloak',
       component: './CloakConfig',
@@ -32,6 +33,7 @@ export default defineConfig({
     {
       name: '短链管理',
       icon: 'LinkOutlined',
+      access: 'SHORT_LINK__VIEW',
       path: '/shortlink',
       component: './ShortLink',
     },
@@ -56,11 +58,12 @@ export default defineConfig({
     },
     {
       path: '/system',
-      name: '系统管理',
-      access: 'hasAdminRole',
+      name: '系统设置',
+      access: 'SETTING__VIEW',
       icon: 'SettingOutlined',
       routes: [
-        { path: '/system/user', name: '用户管理', icon: 'UserOutlined', component: './User' },
+        { path: '/system/user', name: '用户管理', icon: 'UserOutlined', access: 'USER__VIEW', component: './User' },
+        { path: '/system/role', name: '角色管理', icon: 'UserOutlined', access: 'ROLE__VIEW', component: './Role' },
       ],
     },
     {

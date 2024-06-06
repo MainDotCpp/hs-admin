@@ -6,16 +6,16 @@ import { Button, message, Popconfirm, Space } from 'antd';
 import ShortLinkEditModal from '@/pages/ShortLink/ShortLinkEditModal';
 import { useLocalStorageState, useRequest } from 'ahooks';
 import { Link } from '@umijs/max';
-import { useAccess } from '@@/exports';
+import { useAccess } from '@@/plugin-access';
 
 export default function Page() {
+  const access = useAccess();
   const actionRef = useRef<ActionType>();
   const { data: cloakConfigList } = useRequest(api.cloakConfig.list, {
     defaultParams: [{}],
   });
   const { data: shortLinkGroup } = useRequest(api.shortLinkGroup.list, { defaultParams: [{}] });
   const [defaultGroup, setDefaultGroup] = useLocalStorageState('default-group');
-  const access = useAccess();
 
 
   const getTableData = async (params: any) => {
@@ -73,7 +73,7 @@ export default function Page() {
       dataIndex: 'createdBy',
       title: '创建人',
       width: 200,
-      search: access.hasAdminRole,
+      search: access.SHORT_LINK__ALL_DATA,
       request: api.user.list,
       valueType: 'select',
       fieldProps: {
@@ -88,6 +88,7 @@ export default function Page() {
       dataIndex: 'createdDate',
       title: '创建时间',
       valueType: 'dateTime',
+      search: false,
       width: 200,
     },
 
@@ -100,10 +101,10 @@ export default function Page() {
       render: (text, record, _, action) => {
         return [
           <Link key="jump" to={`/cloakLog?relatedId=${record.id}&scene=SHORT_LINK`}>访问记录</Link>,
-          <ShortLinkEditModal id={record.id} key="edit" onFinished={action?.reload}>
+          access.SHORT_LINK__EDIT && <ShortLinkEditModal id={record.id} key="edit" onFinished={action?.reload}>
             <a>编辑</a>
           </ShortLinkEditModal>,
-          <Popconfirm
+          access.SHORT_LINK__DELETE && <Popconfirm
             key="delete"
             title={`确定删除吗？`} onConfirm={async () => {
             await api.shortlink.deleteById({ id: record.id });
@@ -123,7 +124,7 @@ export default function Page() {
         actionRef={actionRef}
         toolbar={{
           actions: [
-            <ShortLinkEditModal key="create" onFinished={() => actionRef.current?.reload()}>
+            access.SHORT_LINK__EDIT && <ShortLinkEditModal key="create" onFinished={() => actionRef.current?.reload()}>
               <Button type="primary">新建</Button>
             </ShortLinkEditModal>,
           ],
