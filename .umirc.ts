@@ -26,7 +26,6 @@ export default defineConfig({
       name: '斗篷管理',
       icon: 'SafetyCertificateOutlined',
       access: 'CLOAK__VIEW',
-      hideInMenu: process.env.NODE_ENV === 'production',
       path: '/cloak',
       component: './CloakConfig',
     },

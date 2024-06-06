@@ -2,6 +2,7 @@ import { ModalForm, ProFormDependency, ProFormSelect, ProFormSwitch, ProFormText
 import React from 'react';
 import api from '@/api';
 import { message, Tabs } from 'antd';
+import { countriesGroup } from '@/constants/countries';
 
 
 const TabTitle = ({ title, enable }) => {
@@ -27,7 +28,11 @@ const CloakConfigEditModal = (props: CloakConfigEditModalProps) => {
     width="80%"
     request={async () => {
       if (!props.id) return {};
-      return api.cloakConfig.getById({ id: props.id });
+      let config = await api.cloakConfig.getById({ id: props.id });
+      return {
+        ...config,
+        allowRegion: config.allowRegion?.split(','),
+      };
     }}
     modalProps={{
       destroyOnClose: true,
@@ -49,11 +54,17 @@ const CloakConfigEditModal = (props: CloakConfigEditModalProps) => {
         <Tabs.TabPane key="1" tab="基本配置">
           <ProFormText name="id" label="ID" hidden />
           <ProFormText name="name" label="配置名称" rules={[{ required: true }]} />
+          <ProFormSwitch name="enableBlacklistIpDetection" label="开启黑名单检测" hidden />
+          <ProFormSwitch name="enableBlacklistIpCollection" label="开启黑名单检测" hidden />
         </Tabs.TabPane>
         <Tabs.TabPane key="2" tab={<TabTitle title="地区检测" enable={enableRegionDetection} />}>
           <ProFormSwitch name="enableRegionDetection" label="启用地区检测" />
           {enableRegionDetection &&
-            <ProFormText name="allowRegion" label="允许地区" rules={[{ required: true }]} />}
+            <ProFormSelect
+              mode="multiple"
+              transform={(value) => value.join(',')}
+              showSearch name="allowRegion" label="允许地区" rules={[{ required: true }]}
+              options={countriesGroup} />}
         </Tabs.TabPane>
         <Tabs.TabPane key="3" tab={<TabTitle title="爬虫检测" enable={enableSpiderDetection} />}>
           <ProFormSwitch name="enableSpiderDetection" label="启用爬虫检测" />

@@ -2,9 +2,10 @@ import React, { useRef } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import api from '@/api';
-import { Button, message, Popconfirm } from 'antd';
+import { Button, message, Popconfirm, Tag } from 'antd';
 import CloakConfigEditModal from '@/pages/CloakConfig/CloakConfigEditModal';
 import { useAccess } from '@@/plugin-access';
+import { countriesEnum } from '@/constants/countries';
 
 export default function Page() {
   const access = useAccess();
@@ -12,6 +13,7 @@ export default function Page() {
   const getTableData = async (params: any) => {
     return api.cloakConfig.page(params);
   };
+
   const columns: ProColumns<API.CloakConfig>[] = [
     { dataIndex: 'id', title: 'ID', search: false, hidden: true, width: 100, ellipsis: true },
     { dataIndex: 'name', title: '配置名称', width: 100, search: false, width: 100, ellipsis: true },
@@ -19,11 +21,13 @@ export default function Page() {
       dataIndex: 'allowRegion',
       title: '地区检测',
       search: false,
-      width: 50,
+      width: 100,
       align: 'center',
       ellipsis: true,
-      render: (_, record) => <>
-        {record.enableRegionDetection ? record.allowRegion : '✖'}
+      renderText: (text, record) => <>
+        {record.enableRegionDetection ? text?.split(',').map(code => {
+          return <Tag>{countriesEnum[code]}</Tag>;
+        }) : '✖'}
       </>,
     },
     {
@@ -101,7 +105,7 @@ export default function Page() {
           access.CLOAK__DELETE && <Popconfirm
             key="delete"
             title={`确定删除吗？`} onConfirm={async () => {
-            await api.cloakConfig.deleteById(record.id);
+            await api.cloakConfig.deleteById({ id: record.id });
             message.success('删除成功');
             action.reload();
           }}>

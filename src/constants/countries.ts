@@ -254,3 +254,1089 @@ export const countriesEnum = countries.reduce((acc, item) => {
   acc[item.code] = item.cn;
   return acc;
 }, {});
+
+
+export const countriesGroup = [
+  {
+    'label': '东亚', 'options': [
+      {
+        'value': 'CN',
+        'label': '中国',
+      },
+      {
+        'value': 'HK',
+        'label': '中国香港',
+      },
+      {
+        'value': 'JP',
+        'label': '日本',
+      },
+      {
+        'value': 'KP',
+        'label': '朝鲜',
+      },
+      {
+        'value': 'KR',
+        'label': '韩国',
+      },
+      {
+        'value': 'MO',
+        'label': '中国澳门',
+      },
+      {
+        'value': 'MN',
+        'label': '蒙古',
+      },
+      {
+        'value': 'TW',
+        'label': '中国台湾',
+      },
+    ],
+  },
+  {
+    'label': '西亚', 'options': [
+      {
+        'value': 'AM',
+        'label': '亚美尼亚',
+      },
+      {
+        'value': 'AZ',
+        'label': '阿塞拜疆',
+      },
+      {
+        'value': 'BH',
+        'label': '巴林',
+      },
+      {
+        'value': 'GE',
+        'label': '格鲁吉亚',
+      },
+      {
+        'value': 'IQ',
+        'label': '伊拉克',
+      },
+      {
+        'value': 'IL',
+        'label': '以色列',
+      },
+      {
+        'value': 'JO',
+        'label': '约旦',
+      },
+      {
+        'value': 'KW',
+        'label': '科威特',
+      },
+      {
+        'value': 'LB',
+        'label': '黎巴嫩',
+      },
+      {
+        'value': 'OM',
+        'label': '阿曼',
+      },
+      {
+        'value': 'PS',
+        'label': '巴勒斯坦',
+      },
+      {
+        'value': 'QA',
+        'label': '卡塔尔',
+      },
+      {
+        'value': 'SA',
+        'label': '沙特阿拉伯',
+      },
+      {
+        'value': 'SY',
+        'label': '叙利亚',
+      },
+      {
+        'value': 'TR',
+        'label': '土耳其',
+      },
+      {
+        'value': 'AE',
+        'label': '阿拉伯联合酋长国',
+      },
+      {
+        'value': 'YE',
+        'label': '也门',
+      },
+    ],
+  },
+  {
+    'label': '南亚', 'options': [
+      {
+        'value': 'AF',
+        'label': '阿富汗',
+      },
+      {
+        'value': 'BD',
+        'label': '孟加拉国',
+      },
+      {
+        'value': 'BT',
+        'label': '不丹',
+      },
+      {
+        'value': 'IN',
+        'label': '印度',
+      },
+      {
+        'value': 'IR',
+        'label': '伊朗',
+      },
+      {
+        'value': 'MV',
+        'label': '马尔代夫',
+      },
+      {
+        'value': 'NP',
+        'label': '尼泊尔',
+      },
+      {
+        'value': 'PK',
+        'label': '巴基斯坦',
+      },
+      {
+        'value': 'LK',
+        'label': '斯里兰卡',
+      },
+    ],
+  },
+  {
+    'label': '东南亚', 'options': [
+      {
+        'value': 'BN',
+        'label': '文莱',
+      },
+      {
+        'value': 'KH',
+        'label': '柬埔寨',
+      },
+      {
+        'value': 'TL',
+        'label': '东帝汶',
+      },
+      {
+        'value': 'ID',
+        'label': '印度尼西亚',
+      },
+      {
+        'value': 'LA',
+        'label': '老挝',
+      },
+      {
+        'value': 'MY',
+        'label': '马来西亚',
+      },
+      {
+        'value': 'MM',
+        'label': '缅甸',
+      },
+      {
+        'value': 'PH',
+        'label': '菲律宾',
+      },
+      {
+        'value': 'SG',
+        'label': '新加坡',
+      },
+      {
+        'value': 'TH',
+        'label': '泰国',
+      },
+      {
+        'value': 'VN',
+        'label': '越南',
+      },
+    ],
+  },
+  {
+    'label': '中亚', 'options': [
+      {
+        'value': 'KZ',
+        'label': '哈萨克斯坦',
+      },
+      {
+        'value': 'KG',
+        'label': '吉尔吉斯斯坦',
+      },
+      {
+        'value': 'TJ',
+        'label': '塔吉克斯坦',
+      },
+      {
+        'value': 'TM',
+        'label': '土库曼斯坦',
+      },
+      {
+        'value': 'UZ',
+        'label': '乌兹别克斯坦',
+      },
+    ],
+  },
+  {
+    'label': '北美洲', 'options': [
+      {
+        'value': 'BM',
+        'label': '百慕大',
+      },
+      {
+        'value': 'CA',
+        'label': '加拿大',
+      },
+      {
+        'value': 'GL',
+        'label': '格陵兰',
+      },
+      {
+        'value': 'PM',
+        'label': '圣皮埃尔和密克隆群岛',
+      },
+      {
+        'value': 'US',
+        'label': '美国',
+      },
+      {
+        'value': 'UM',
+        'label': '美国本土外小岛屿',
+      },
+    ],
+  },
+  {
+    'label': '中美洲', 'options': [
+      {
+        'value': 'BZ',
+        'label': '伯利兹',
+      },
+      {
+        'value': 'CR',
+        'label': '哥斯达黎加',
+      },
+      {
+        'value': 'SV',
+        'label': '萨尔瓦多',
+      },
+      {
+        'value': 'GT',
+        'label': '危地马拉',
+      },
+      {
+        'value': 'HN',
+        'label': '洪都拉斯',
+      },
+      {
+        'value': 'MX',
+        'label': '墨西哥',
+      },
+      {
+        'value': 'NI',
+        'label': '尼加拉瓜',
+      },
+      {
+        'value': 'PA',
+        'label': '巴拿马',
+      },
+    ],
+  },
+  {
+    'label': '南美洲', 'options': [
+      {
+        'value': 'AR',
+        'label': '阿根廷',
+      },
+      {
+        'value': 'BO',
+        'label': '玻利维亚',
+      },
+      {
+        'value': 'BR',
+        'label': '巴西',
+      },
+      {
+        'value': 'CL',
+        'label': '智利',
+      },
+      {
+        'value': 'CO',
+        'label': '哥伦比亚',
+      },
+      {
+        'value': 'EC',
+        'label': '厄瓜多尔',
+      },
+      {
+        'value': 'FK',
+        'label': '福克兰群岛',
+      },
+      {
+        'value': 'GF',
+        'label': '法属圭亚那',
+      },
+      {
+        'value': 'GY',
+        'label': '圭亚那',
+      },
+      {
+        'value': 'PY',
+        'label': '巴拉圭',
+      },
+      {
+        'value': 'PE',
+        'label': '秘鲁',
+      },
+      {
+        'value': 'GS',
+        'label': '南乔治亚和南桑威奇群岛',
+      },
+      {
+        'value': 'SR',
+        'label': '苏里南',
+      },
+      {
+        'value': 'UY',
+        'label': '乌拉圭',
+      },
+      {
+        'value': 'VE',
+        'label': '委内瑞拉',
+      },
+    ],
+  },
+  {
+    'label': '东欧', 'options': [
+      {
+        'value': 'BY',
+        'label': '白俄罗斯',
+      },
+      {
+        'value': 'BG',
+        'label': '保加利亚',
+      },
+      {
+        'value': 'CZ',
+        'label': '捷克',
+      },
+      {
+        'value': 'HU',
+        'label': '匈牙利',
+      },
+      {
+        'value': 'MD',
+        'label': '摩尔多瓦',
+      },
+      {
+        'value': 'PL',
+        'label': '波兰',
+      },
+      {
+        'value': 'RO',
+        'label': '罗马尼亚',
+      },
+      {
+        'value': 'RU',
+        'label': '俄罗斯',
+      },
+      {
+        'value': 'SK',
+        'label': '斯洛伐克',
+      },
+      {
+        'value': 'UA',
+        'label': '乌克兰',
+      },
+      {
+        'value': 'XK',
+        'label': '科索沃',
+      },
+    ],
+  },
+  {
+    'label': '西欧', 'options': [
+      {
+        'value': 'AT',
+        'label': '奥地利',
+      },
+      {
+        'value': 'BE',
+        'label': '比利时',
+      },
+      {
+        'value': 'FR',
+        'label': '法国',
+      },
+      {
+        'value': 'DE',
+        'label': '德国',
+      },
+      {
+        'value': 'LI',
+        'label': '列支敦士登',
+      },
+      {
+        'value': 'LU',
+        'label': '卢森堡',
+      },
+      {
+        'value': 'MC',
+        'label': '摩纳哥',
+      },
+      {
+        'value': 'NL',
+        'label': '荷兰',
+      },
+      {
+        'value': 'CH',
+        'label': '瑞士',
+      },
+    ],
+  },
+  {
+    'label': '南欧', 'options': [
+      {
+        'value': 'AL',
+        'label': '阿尔巴尼亚',
+      },
+      {
+        'value': 'AD',
+        'label': '安道尔',
+      },
+      {
+        'value': 'BA',
+        'label': '波斯尼亚和黑塞哥维那',
+      },
+      {
+        'value': 'HR',
+        'label': '克罗地亚',
+      },
+      {
+        'value': 'CY',
+        'label': '塞浦路斯',
+      },
+      {
+        'value': 'GI',
+        'label': '直布罗陀',
+      },
+      {
+        'value': 'GR',
+        'label': '希腊',
+      },
+      {
+        'value': 'IT',
+        'label': '意大利',
+      },
+      {
+        'value': 'MK',
+        'label': '北马其顿',
+      },
+      {
+        'value': 'MT',
+        'label': '马耳他',
+      },
+      {
+        'value': 'ME',
+        'label': '黑山',
+      },
+      {
+        'value': 'PT',
+        'label': '葡萄牙',
+      },
+      {
+        'value': 'SM',
+        'label': '圣马力诺',
+      },
+      {
+        'value': 'RS',
+        'label': '塞尔维亚',
+      },
+      {
+        'value': 'SI',
+        'label': '斯洛文尼亚',
+      },
+      {
+        'value': 'ES',
+        'label': '西班牙',
+      },
+      {
+        'value': 'VA',
+        'label': '梵蒂冈',
+      },
+    ],
+  },
+  {
+    'label': '北欧', 'options': [
+      {
+        'value': 'AX',
+        'label': '奥兰群岛',
+      },
+      {
+        'value': 'DK',
+        'label': '丹麦',
+      },
+      {
+        'value': 'EE',
+        'label': '爱沙尼亚',
+      },
+      {
+        'value': 'FO',
+        'label': '法罗群岛',
+      },
+      {
+        'value': 'FI',
+        'label': '芬兰',
+      },
+      {
+        'value': 'GG',
+        'label': '根西岛',
+      },
+      {
+        'value': 'IS',
+        'label': '冰岛',
+      },
+      {
+        'value': 'IE',
+        'label': '爱尔兰',
+      },
+      {
+        'value': 'JE',
+        'label': '泽西岛',
+      },
+      {
+        'value': 'LV',
+        'label': '拉脱维亚',
+      },
+      {
+        'value': 'LT',
+        'label': '立陶宛',
+      },
+      {
+        'value': 'IM',
+        'label': '马恩岛',
+      },
+      {
+        'value': 'NO',
+        'label': '挪威',
+      },
+      {
+        'value': 'SJ',
+        'label': '斯瓦尔巴和扬马延',
+      },
+      {
+        'value': 'SE',
+        'label': '瑞典',
+      },
+      {
+        'value': 'GB',
+        'label': '英国',
+      },
+    ],
+  },
+  {
+    'label': '加勒比海地区', 'options': [
+      {
+        'value': 'AI',
+        'label': '安圭拉',
+      },
+      {
+        'value': 'AG',
+        'label': '安提瓜和巴布达',
+      },
+      {
+        'value': 'AW',
+        'label': '阿鲁巴',
+      },
+      {
+        'value': 'BS',
+        'label': '巴哈马',
+      },
+      {
+        'value': 'BB',
+        'label': '巴巴多斯',
+      },
+      {
+        'value': 'KY',
+        'label': '开曼群岛',
+      },
+      {
+        'value': 'CU',
+        'label': '古巴',
+      },
+      {
+        'value': 'DM',
+        'label': '多米尼克',
+      },
+      {
+        'value': 'DO',
+        'label': '多米尼加',
+      },
+      {
+        'value': 'GD',
+        'label': '格林纳达',
+      },
+      {
+        'value': 'GP',
+        'label': '瓜德罗普',
+      },
+      {
+        'value': 'HT',
+        'label': '海地',
+      },
+      {
+        'value': 'JM',
+        'label': '牙买加',
+      },
+      {
+        'value': 'MQ',
+        'label': '马提尼克',
+      },
+      {
+        'value': 'MS',
+        'label': '蒙特塞拉特',
+      },
+      {
+        'value': 'BQ',
+        'label': '荷属加勒比区',
+      },
+      {
+        'value': 'PR',
+        'label': '波多黎各',
+      },
+      {
+        'value': 'KN',
+        'label': '圣基茨和尼维斯',
+      },
+      {
+        'value': 'LC',
+        'label': '圣卢西亚',
+      },
+      {
+        'value': 'VC',
+        'label': '圣文森特和格林纳丁斯',
+      },
+      {
+        'value': 'BL',
+        'label': '圣巴泰勒米',
+      },
+      {
+        'value': 'MF',
+        'label': '法属圣马丁',
+      },
+      {
+        'value': 'TT',
+        'label': '特立尼达和多巴哥',
+      },
+      {
+        'value': 'TC',
+        'label': '特克斯和凯科斯群岛',
+      },
+      {
+        'value': 'VG',
+        'label': '英属维尔京群岛',
+      },
+      {
+        'value': 'VI',
+        'label': '美属维尔京群岛',
+      },
+      {
+        'value': 'CW',
+        'label': '库拉索',
+      },
+      {
+        'value': 'SX',
+        'label': '荷属圣马丁',
+      },
+    ],
+  },
+  {
+    'label': '澳大利亚和新西兰', 'options': [
+      {
+        'value': 'AU',
+        'label': '澳大利亚',
+      },
+      {
+        'value': 'CX',
+        'label': '圣诞岛',
+      },
+      {
+        'value': 'CC',
+        'label': '科科斯（基林）群岛',
+      },
+      {
+        'value': 'NZ',
+        'label': '新西兰',
+      },
+      {
+        'value': 'NF',
+        'label': '诺福克岛',
+      },
+    ],
+  },
+  {
+    'label': '美拉尼西亚', 'options': [
+      {
+        'value': 'FJ',
+        'label': '斐济',
+      },
+      {
+        'value': 'NC',
+        'label': '新喀里多尼亚',
+      },
+      {
+        'value': 'PG',
+        'label': '巴布亚新几内亚',
+      },
+      {
+        'value': 'SB',
+        'label': '所罗门群岛',
+      },
+      {
+        'value': 'VU',
+        'label': '瓦努阿图',
+      },
+    ],
+  },
+  {
+    'label': '密克罗尼西亚', 'options': [
+      {
+        'value': 'GU',
+        'label': '关岛',
+      },
+      {
+        'value': 'KI',
+        'label': '基里巴斯',
+      },
+      {
+        'value': 'MH',
+        'label': '马绍尔群岛',
+      },
+      {
+        'value': 'FM',
+        'label': '密克罗尼西亚',
+      },
+      {
+        'value': 'NR',
+        'label': '瑙鲁',
+      },
+      {
+        'value': 'MP',
+        'label': '北马里亚纳群岛',
+      },
+      {
+        'value': 'PW',
+        'label': '帕劳',
+      },
+    ],
+  },
+  {
+    'label': '波利尼西亚', 'options': [
+      {
+        'value': 'AS',
+        'label': '美属萨摩亚',
+      },
+      {
+        'value': 'CK',
+        'label': '库克群岛',
+      },
+      {
+        'value': 'PF',
+        'label': '法属波利尼西亚',
+      },
+      {
+        'value': 'NU',
+        'label': '纽埃',
+      },
+      {
+        'value': 'PN',
+        'label': '皮特凯恩群岛',
+      },
+      {
+        'value': 'WS',
+        'label': '萨摩亚',
+      },
+      {
+        'value': 'TK',
+        'label': '托克劳',
+      },
+      {
+        'value': 'TO',
+        'label': '汤加',
+      },
+      {
+        'value': 'TV',
+        'label': '图瓦卢',
+      },
+      {
+        'value': 'WF',
+        'label': '瓦利斯和富图纳',
+      },
+    ],
+  },
+  {
+    'label': '东部非洲', 'options': [
+      {
+        'value': 'IO',
+        'label': '英属印度洋领地',
+      },
+      {
+        'value': 'BI',
+        'label': '布隆迪',
+      },
+      {
+        'value': 'KM',
+        'label': '科摩罗',
+      },
+      {
+        'value': 'DJ',
+        'label': '吉布提',
+      },
+      {
+        'value': 'ER',
+        'label': '厄立特里亚',
+      },
+      {
+        'value': 'ET',
+        'label': '埃塞俄比亚',
+      },
+      {
+        'value': 'KE',
+        'label': '肯尼亚',
+      },
+      {
+        'value': 'MG',
+        'label': '马达加斯加',
+      },
+      {
+        'value': 'MW',
+        'label': '马拉维',
+      },
+      {
+        'value': 'MU',
+        'label': '毛里求斯',
+      },
+      {
+        'value': 'YT',
+        'label': '马约特',
+      },
+      {
+        'value': 'MZ',
+        'label': '莫桑比克',
+      },
+      {
+        'value': 'RE',
+        'label': '留尼汪',
+      },
+      {
+        'value': 'RW',
+        'label': '卢旺达',
+      },
+      {
+        'value': 'SC',
+        'label': '塞舌尔',
+      },
+      {
+        'value': 'SO',
+        'label': '索马里',
+      },
+      {
+        'value': 'TZ',
+        'label': '坦桑尼亚',
+      },
+      {
+        'value': 'UG',
+        'label': '乌干达',
+      },
+      {
+        'value': 'ZM',
+        'label': '赞比亚',
+      },
+      {
+        'value': 'ZW',
+        'label': '津巴布韦',
+      },
+    ],
+  },
+  {
+    'label': '西部非洲', 'options': [
+      {
+        'value': 'BJ',
+        'label': '贝宁',
+      },
+      {
+        'value': 'BF',
+        'label': '布基纳法索',
+      },
+      {
+        'value': 'CV',
+        'label': '佛得角',
+      },
+      {
+        'value': 'CI',
+        'label': '科特迪瓦',
+      },
+      {
+        'value': 'GM',
+        'label': '冈比亚',
+      },
+      {
+        'value': 'GH',
+        'label': '加纳',
+      },
+      {
+        'value': 'GN',
+        'label': '几内亚',
+      },
+      {
+        'value': 'GW',
+        'label': '几内亚比绍',
+      },
+      {
+        'value': 'LR',
+        'label': '利比里亚',
+      },
+      {
+        'value': 'ML',
+        'label': '马里',
+      },
+      {
+        'value': 'MR',
+        'label': '毛里塔尼亚',
+      },
+      {
+        'value': 'NE',
+        'label': '尼日尔',
+      },
+      {
+        'value': 'NG',
+        'label': '尼日利亚',
+      },
+      {
+        'value': 'SH',
+        'label': '圣赫勒拿',
+      },
+      {
+        'value': 'SN',
+        'label': '塞内加尔',
+      },
+      {
+        'value': 'SL',
+        'label': '塞拉利昂',
+      },
+      {
+        'value': 'TG',
+        'label': '多哥',
+      },
+    ],
+  },
+  {
+    'label': '南部非洲', 'options': [
+      {
+        'value': 'BW',
+        'label': '博茨瓦纳',
+      },
+      {
+        'value': 'TF',
+        'label': '法属南部领地',
+      },
+      {
+        'value': 'LS',
+        'label': '莱索托',
+      },
+      {
+        'value': 'NA',
+        'label': '纳米比亚',
+      },
+      {
+        'value': 'ZA',
+        'label': '南非',
+      },
+      {
+        'value': 'SZ',
+        'label': '斯威士兰',
+      },
+    ],
+  },
+  {
+    'label': '北部非洲', 'options': [
+      {
+        'value': 'DZ',
+        'label': '阿尔及利亚',
+      },
+      {
+        'value': 'EG',
+        'label': '埃及',
+      },
+      {
+        'value': 'LY',
+        'label': '利比亚',
+      },
+      {
+        'value': 'MA',
+        'label': '摩洛哥',
+      },
+      {
+        'value': 'SD',
+        'label': '苏丹',
+      },
+      {
+        'value': 'TN',
+        'label': '突尼斯',
+      },
+      {
+        'value': 'EH',
+        'label': '西撒哈拉',
+      },
+    ],
+  },
+  {
+    'label': '中部非洲', 'options': [
+      {
+        'value': 'AO',
+        'label': '安哥拉',
+      },
+      {
+        'value': 'CM',
+        'label': '喀麦隆',
+      },
+      {
+        'value': 'CF',
+        'label': '中非共和国',
+      },
+      {
+        'value': 'TD',
+        'label': '乍得',
+      },
+      {
+        'value': 'CG',
+        'label': '刚果（布）',
+      },
+      {
+        'value': 'CD',
+        'label': '刚果（金）',
+      },
+      {
+        'value': 'GQ',
+        'label': '赤道几内亚',
+      },
+      {
+        'value': 'GA',
+        'label': '加蓬',
+      },
+      {
+        'value': 'ST',
+        'label': '圣多美和普林西比',
+      },
+      {
+        'value': 'SS',
+        'label': '南苏丹',
+      },
+    ],
+  }];
+
+export const countriesGroupEnum = countriesGroup.reduce((acc, item) => {
+  item.options.forEach((option) => {
+    acc[option.value] = option.label;
+  });
+  return acc;
+});
