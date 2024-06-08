@@ -8,7 +8,7 @@ export async function deleteById(
   params: API.deleteByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultBoolean>(`/api/loadingConfig/deleteById`, {
+  return request<boolean>(`/api/loadingConfig/deleteById`, {
     method: 'POST',
     params: {
       ...params,
@@ -23,7 +23,7 @@ export async function getById(
   params: API.getByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultLoadingConfig>(`/api/loadingConfig/getById`, {
+  return request<API.LoadingConfig>(`/api/loadingConfig/getById`, {
     method: 'GET',
     params: {
       ...params,
@@ -38,7 +38,7 @@ export async function getByPath(
   params: API.getByPathParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultLoadingConfig>(`/api/loadingConfig/getByPath`, {
+  return request<API.LoadingConfig>(`/api/loadingConfig/getByPath`, {
     method: 'GET',
     params: {
       ...params,
@@ -53,7 +53,7 @@ export async function list(
   params: API.listParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultListLoadingConfig>(`/api/loadingConfig/list`, {
+  return request<API.LoadingConfig[]>(`/api/loadingConfig/list`, {
     method: 'GET',
     params: {
       ...params,
@@ -70,7 +70,7 @@ export async function page(
   params: API.pageParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultPageDTOLoadingConfig>(`/api/loadingConfig/page`, {
+  return request<API.PageDTOLoadingConfig>(`/api/loadingConfig/page`, {
     method: 'GET',
     params: {
       ...params,
@@ -83,7 +83,7 @@ export async function page(
 
 /** 保存落地页配置 POST /loadingConfig/save */
 export async function save(body: API.LoadingConfig, options?: { [key: string]: any }) {
-  return request<API.HttpResultLoadingConfig>(`/api/loadingConfig/save`, {
+  return request<API.LoadingConfig>(`/api/loadingConfig/save`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

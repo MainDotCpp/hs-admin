@@ -2,7 +2,8 @@ import api from '@/api';
 import UserEditModal from '@/pages/User/UserEditModal';
 import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import { PageContainer } from '@ant-design/pro-layout';
-import { Button, Popconfirm, Space, Tag, message } from 'antd';
+import { useRequest } from 'ahooks';
+import { Button, message, Popconfirm, Space, Tag } from 'antd';
 import { useRef } from 'react';
 
 export default function Page() {
@@ -10,6 +11,10 @@ export default function Page() {
   const getTableData = async (params: any) => {
     return api.user.page(params);
   };
+
+  const { data: deptList } = useRequest(api.dept.list, {
+    defaultParams: [{}],
+  });
   const columns: ProColumns<API.User>[] = [
     { dataIndex: 'id', title: 'ID', search: false, hidden: true },
     { dataIndex: 'nickname', title: '昵称', width: 100, search: false },
@@ -38,6 +43,27 @@ export default function Page() {
       ),
     },
     {
+      dataIndex: 'deptId',
+      title: '部门',
+      width: 100,
+      renderText: (text) => {
+        const dept = deptList?.find((item) => item.id === text);
+        return dept?.name;
+      },
+    },
+    {
+      dataIndex: 'dataPermission',
+      title: '数据权限',
+      width: 100,
+      search: false,
+      valueEnum: {
+        SELF: { text: '仅本人' },
+        DEPT: { text: '本部门' },
+        DEPT_AND_CHILD: { text: '本部门及子部门' },
+        ALL: { text: '全部' },
+      },
+    },
+    {
       dataIndex: 'id',
       title: '操作',
       valueType: 'option',
@@ -45,7 +71,11 @@ export default function Page() {
       width: 100,
       render: (text, record, _, action) => {
         return [
-          <UserEditModal id={record.id} key="edit">
+          <UserEditModal
+            id={record.id}
+            key="edit"
+            onFinished={() => actionRef.current?.reload()}
+          >
             <a>编辑</a>
           </UserEditModal>,
           <Popconfirm

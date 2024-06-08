@@ -4,7 +4,7 @@ import { request } from '@/utils/request';
 
 /** 登录 POST /auth/login */
 export async function login(body: API.LoginReqDTO, options?: { [key: string]: any }) {
-  return request<API.HttpResultString>(`/api/auth/login`, {
+  return request<string>(`/api/auth/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -16,7 +16,7 @@ export async function login(body: API.LoginReqDTO, options?: { [key: string]: an
 
 /** 登出 POST /auth/logout */
 export async function logout(options?: { [key: string]: any }) {
-  return request<API.HttpResultBoolean>(`/api/auth/logout`, {
+  return request<boolean>(`/api/auth/logout`, {
     method: 'POST',
     ...(options || {}),
   });

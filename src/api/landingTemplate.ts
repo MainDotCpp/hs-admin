@@ -8,7 +8,7 @@ export async function deleteById(
   params: API.deleteByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultBoolean>(`/api/landingTemplate/deleteById`, {
+  return request<boolean>(`/api/landingTemplate/deleteById`, {
     method: 'POST',
     params: {
       ...params,
@@ -23,7 +23,7 @@ export async function getById(
   params: API.getByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultLandingTemplate>(`/api/landingTemplate/getById`, {
+  return request<API.LandingTemplate>(`/api/landingTemplate/getById`, {
     method: 'GET',
     params: {
       ...params,
@@ -38,7 +38,7 @@ export async function list(
   params: API.listParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultListLandingTemplate>(`/api/landingTemplate/list`, {
+  return request<API.LandingTemplate[]>(`/api/landingTemplate/list`, {
     method: 'GET',
     params: {
       ...params,
@@ -55,7 +55,7 @@ export async function page(
   params: API.pageParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultPageDTOLandingTemplate>(`/api/landingTemplate/page`, {
+  return request<API.PageDTOLandingTemplate>(`/api/landingTemplate/page`, {
     method: 'GET',
     params: {
       ...params,
@@ -68,7 +68,7 @@ export async function page(
 
 /** 保存落地页模板 POST /landingTemplate/save */
 export async function save(body: API.LandingTemplate, options?: { [key: string]: any }) {
-  return request<API.HttpResultLandingTemplate>(`/api/landingTemplate/save`, {
+  return request<API.LandingTemplate>(`/api/landingTemplate/save`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

@@ -8,7 +8,7 @@ export async function deleteById(
   params: API.deleteByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultBoolean>(`/api/user/deleteById`, {
+  return request<boolean>(`/api/user/deleteById`, {
     method: 'POST',
     params: {
       ...params,
@@ -23,7 +23,7 @@ export async function getById(
   params: API.getByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultUserDto>(`/api/user/getById`, {
+  return request<API.UserDto>(`/api/user/getById`, {
     method: 'GET',
     params: {
       ...params,
@@ -34,7 +34,7 @@ export async function getById(
 
 /** 获取当前用户信息 GET /user/getUserinfo */
 export async function getUserinfo(options?: { [key: string]: any }) {
-  return request<API.HttpResultUserinfo>(`/api/user/getUserinfo`, {
+  return request<API.Userinfo>(`/api/user/getUserinfo`, {
     method: 'GET',
     ...(options || {}),
   });
@@ -46,7 +46,7 @@ export async function list(
   params: API.listParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultListUserDto>(`/api/user/list`, {
+  return request<API.UserDto[]>(`/api/user/list`, {
     method: 'GET',
     params: {
       ...params,
@@ -63,7 +63,7 @@ export async function page(
   params: API.pageParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultPageDTOUserDto>(`/api/user/page`, {
+  return request<API.PageDTOUserDto>(`/api/user/page`, {
     method: 'GET',
     params: {
       ...params,
@@ -76,7 +76,7 @@ export async function page(
 
 /** 保存用户 POST /user/save */
 export async function save(body: API.UserDto, options?: { [key: string]: any }) {
-  return request<API.HttpResultUserDto>(`/api/user/save`, {
+  return request<API.UserDto>(`/api/user/save`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ export async function save(body: API.UserDto, options?: { [key: string]: any }) 
 
 /** 设置用户角色 POST /user/setRoles */
 export async function setRoles(body: API.SetRoleDTO, options?: { [key: string]: any }) {
-  return request<API.HttpResultBoolean>(`/api/user/setRoles`, {
+  return request<boolean>(`/api/user/setRoles`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

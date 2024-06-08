@@ -25,7 +25,9 @@ export default function Page() {
       width: 100,
       render: (text, record, _, action) => {
         return [
-          access.{{ biz_all_upper }}__EDIT && <{{ biz_name_upper }}EditModal id={record.id} key="edit">
+          access.{{ biz_all_upper }}__EDIT && <{{ biz_name_upper }}EditModal id={record.id} key="edit"
+                                                                             onFinished={() => actionRef.current?.reload()}
+          >
             <a>编辑</a>
           </{{ biz_name_upper }}EditModal>,
           access.{{ biz_all_upper }}__DELETE && <Popconfirm

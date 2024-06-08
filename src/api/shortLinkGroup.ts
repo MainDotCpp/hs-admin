@@ -8,7 +8,7 @@ export async function deleteById(
   params: API.deleteByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultBoolean>(`/api/shortLinkGroup/deleteById`, {
+  return request<boolean>(`/api/shortLinkGroup/deleteById`, {
     method: 'POST',
     params: {
       ...params,
@@ -23,7 +23,7 @@ export async function getById(
   params: API.getByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultShortLinkGroup>(`/api/shortLinkGroup/getById`, {
+  return request<API.ShortLinkGroup>(`/api/shortLinkGroup/getById`, {
     method: 'GET',
     params: {
       ...params,
@@ -38,7 +38,7 @@ export async function list(
   params: API.listParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultListShortLinkGroup>(`/api/shortLinkGroup/list`, {
+  return request<API.ShortLinkGroup[]>(`/api/shortLinkGroup/list`, {
     method: 'GET',
     params: {
       ...params,
@@ -55,7 +55,7 @@ export async function page(
   params: API.pageParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultPageDTOShortLinkGroup>(`/api/shortLinkGroup/page`, {
+  return request<API.PageDTOShortLinkGroup>(`/api/shortLinkGroup/page`, {
     method: 'GET',
     params: {
       ...params,
@@ -68,7 +68,7 @@ export async function page(
 
 /** 保存短链接组 POST /shortLinkGroup/save */
 export async function save(body: API.ShortLinkGroup, options?: { [key: string]: any }) {
-  return request<API.HttpResultShortLinkGroup>(`/api/shortLinkGroup/save`, {
+  return request<API.ShortLinkGroup>(`/api/shortLinkGroup/save`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

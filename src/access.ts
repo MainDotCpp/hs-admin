@@ -1,9 +1,12 @@
-export default (initialState: {
-  userinfo?: API.Userinfo
-}) => {
+export default (initialState: { userinfo?: API.Userinfo }) => {
   let permissions: string[] = initialState.userinfo?.permissions || [];
   return {
     hasAdminRole: initialState.userinfo?.roles.includes('ADMIN'),
+    SUPER_ADMIN: initialState.userinfo?.roles.includes('SUPER_ADMIN'),
+    DATA__ALL: permissions.includes('DATA__ALL'),
+    DATA__SELF: permissions.includes('DATA__SELF'),
+    DATA__DEPT: permissions.includes('DATA__DEPT'),
+    DATA__DEPT_AND_CHILD: permissions.includes('DATA__DEPT_AND_CHILD'),
     SHORT_LINK__VIEW: permissions.includes('SHORT_LINK__VIEW'),
     SHORT_LINK__EDIT: permissions.includes('SHORT_LINK__EDIT'),
     SHORT_LINK__DELETE: permissions.includes('SHORT_LINK__DELETE'),

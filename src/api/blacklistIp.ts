@@ -8,7 +8,7 @@ export async function deleteById(
   params: API.deleteByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultBoolean>(`/api/blacklistIp/deleteById`, {
+  return request<boolean>(`/api/blacklistIp/deleteById`, {
     method: 'POST',
     params: {
       ...params,
@@ -23,7 +23,7 @@ export async function getById(
   params: API.getByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultBlacklistIp>(`/api/blacklistIp/getById`, {
+  return request<API.BlacklistIp>(`/api/blacklistIp/getById`, {
     method: 'GET',
     params: {
       ...params,
@@ -38,7 +38,7 @@ export async function list(
   params: API.listParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultListBlacklistIp>(`/api/blacklistIp/list`, {
+  return request<API.BlacklistIp[]>(`/api/blacklistIp/list`, {
     method: 'GET',
     params: {
       ...params,
@@ -55,7 +55,7 @@ export async function page(
   params: API.pageParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultPageDTOBlacklistIp>(`/api/blacklistIp/page`, {
+  return request<API.PageDTOBlacklistIp>(`/api/blacklistIp/page`, {
     method: 'GET',
     params: {
       ...params,
@@ -68,7 +68,7 @@ export async function page(
 
 /** 保存黑名单 ip POST /blacklistIp/save */
 export async function save(body: API.BlacklistIp, options?: { [key: string]: any }) {
-  return request<API.HttpResultBlacklistIp>(`/api/blacklistIp/save`, {
+  return request<API.BlacklistIp>(`/api/blacklistIp/save`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

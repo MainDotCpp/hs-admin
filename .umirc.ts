@@ -12,9 +12,9 @@ export default defineConfig({
   },
   proxy: {
     '/api': {
-      // 'target': 'http://localhost:8888/',
-      'target': 'https://console.d-l.ink/',
-      'changeOrigin': true,
+      target: 'http://localhost:8888/',
+      // 'target': 'https://console.d-l.ink/',
+      changeOrigin: true,
     },
   },
   routes: [
@@ -61,9 +61,27 @@ export default defineConfig({
       access: 'SETTING__VIEW',
       icon: 'SettingOutlined',
       routes: [
-        { path: '/system/user', name: '用户管理', icon: 'UserOutlined', access: 'USER__VIEW', component: './User' },
-        { path: '/system/role', name: '角色管理', icon: 'UserOutlined', access: 'ROLE__VIEW', component: './Role' },
-        { path: '/system/dept', name: '部门管理', icon: 'UserOutlined', access: 'ROLE__VIEW', component: './Dept' },
+        {
+          path: '/system/user',
+          name: '用户管理',
+          icon: 'UserOutlined',
+          access: 'USER__VIEW',
+          component: './User',
+        },
+        {
+          path: '/system/role',
+          name: '角色管理',
+          icon: 'UserOutlined',
+          access: 'ROLE__VIEW',
+          component: './Role',
+        },
+        {
+          path: '/system/dept',
+          name: '部门管理',
+          icon: 'UserOutlined',
+          access: 'ROLE__VIEW',
+          component: './Dept',
+        },
       ],
     },
     {
@@ -72,8 +90,6 @@ export default defineConfig({
       hideInMenu: true,
       component: './Login',
     },
-
   ],
   npmClient: 'pnpm',
 });
-

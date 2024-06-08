@@ -99,6 +99,24 @@ declare namespace API {
     total?: number;
   };
 
+  type CloakConfigUpdateDTO = {
+    id?: string;
+    name?: string;
+    allowRegion?: string;
+    useCloakProvider?: boolean;
+    cloakProvider?: 'SHENG_DUN';
+    cloakProviderApiUrl?: string;
+    cloakProviderApiSecret?: string;
+    previewSecret?: string;
+    enableRegionDetection?: boolean;
+    enableSpiderDetection?: boolean;
+    enableLanguageDetection?: boolean;
+    enableProxyDetection?: boolean;
+    enableUaDetection?: boolean;
+    enableBlacklistIpDetection?: boolean;
+    enableBlacklistIpCollection?: boolean;
+  };
+
   type CloakLog = {
     id?: number;
     /** 配置ID */
@@ -236,10 +254,37 @@ declare namespace API {
   };
 
   type deleteByIdParams = {
+    id: number;
+  };
+
+  type deleteByIdParams = {
     id: string;
   };
 
   type deleteByIdParams = {
+    id: number;
+  };
+
+  type Dept = {
+    /** ID */
+    id?: string;
+    /** 部门名称 */
+    name?: string;
+    /** 父部门ID */
+    parentId?: string;
+  };
+
+  type DeptQueryDTO = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: Dept[];
+    /** 总数 */
+    total?: number;
+  };
+
+  type getByIdParams = {
     id: number;
   };
 
@@ -322,6 +367,12 @@ declare namespace API {
     data?: CloakLog;
   };
 
+  type HttpResultDept = {
+    code?: number;
+    message?: string;
+    data?: Dept;
+  };
+
   type HttpResultLandingTemplate = {
     code?: number;
     message?: string;
@@ -338,6 +389,12 @@ declare namespace API {
     code?: number;
     message?: string;
     data?: CloakConfig[];
+  };
+
+  type HttpResultListDept = {
+    code?: number;
+    message?: string;
+    data?: Dept[];
   };
 
   type HttpResultListLandingTemplate = {
@@ -398,6 +455,12 @@ declare namespace API {
     code?: number;
     message?: string;
     data?: PageDTOCloakLog;
+  };
+
+  type HttpResultPageDTODept = {
+    code?: number;
+    message?: string;
+    data?: PageDTODept;
   };
 
   type HttpResultPageDTOLandingTemplate = {
@@ -472,6 +535,19 @@ declare namespace API {
     data?: string;
   };
 
+  type HttpResultTreeString = {
+    code?: number;
+    message?: string;
+    data?: {
+      name?: { empty?: boolean };
+      id?: string;
+      weight?: Record<string, any>;
+      parentId?: string;
+      config?: TreeNodeConfig;
+      empty?: boolean;
+    };
+  };
+
   type HttpResultUserDto = {
     code?: number;
     message?: string;
@@ -532,6 +608,10 @@ declare namespace API {
 
   type listParams = {
     queryDTO: LandingTemplateQueryDTO;
+  };
+
+  type listParams = {
+    queryDTO: DeptQueryDTO;
   };
 
   type listParams = {
@@ -606,6 +686,16 @@ declare namespace API {
     /** 页面大小 */
     pageSize?: number;
     data?: CloakLog[];
+    /** 总数 */
+    total?: number;
+  };
+
+  type PageDTODept = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: Dept[];
     /** 总数 */
     total?: number;
   };
@@ -709,6 +799,10 @@ declare namespace API {
   };
 
   type pageParams = {
+    queryDTO: DeptQueryDTO;
+  };
+
+  type pageParams = {
     queryDTO: CloakLogQueryDTO;
   };
 
@@ -791,6 +885,7 @@ declare namespace API {
     /** 总数 */
     total?: number;
     groupId?: number;
+    createdBy?: number;
   };
 
   type ShortLinkGroup = {
@@ -809,6 +904,15 @@ declare namespace API {
     total?: number;
   };
 
+  type TreeNodeConfig = {
+    idKey?: string;
+    parentIdKey?: string;
+    weightKey?: string;
+    nameKey?: string;
+    childrenKey?: string;
+    deep?: number;
+  };
+
   type UserDto = {
     id?: number;
     username?: string;
@@ -819,6 +923,8 @@ declare namespace API {
     updateTime?: number;
     roleIds?: number[];
     roleNames?: string[];
+    dataPermission?: 'ALL' | 'SELF' | 'DEPT' | 'DEPT_AND_CHILD';
+    deptId?: string;
   };
 
   type Userinfo = {
@@ -827,6 +933,7 @@ declare namespace API {
     nickname?: string;
     roles?: string[];
     permissions?: string[];
+    deptId?: string;
   };
 
   type UserQueryDTO = {
@@ -837,5 +944,7 @@ declare namespace API {
     data?: UserDto[];
     /** 总数 */
     total?: number;
+    dataPermission?: 'ALL' | 'SELF' | 'DEPT' | 'DEPT_AND_CHILD';
+    deptId?: string;
   };
 }

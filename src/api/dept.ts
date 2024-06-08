@@ -2,13 +2,13 @@
 /* eslint-disable */
 import { request } from '@/utils/request';
 
-/** 通过ID删除角色 POST /role/deleteById */
+/** 通过ID删除部门 POST /dept/deleteById */
 export async function deleteById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.deleteByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<boolean>(`/api/role/deleteById`, {
+  return request<boolean>(`/api/dept/deleteById`, {
     method: 'POST',
     params: {
       ...params,
@@ -17,13 +17,13 @@ export async function deleteById(
   });
 }
 
-/** 根据ID获取角色 GET /role/getById */
+/** 根据ID获取部门 GET /dept/getById */
 export async function getById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.getByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.Role>(`/api/role/getById`, {
+  return request<API.Dept>(`/api/dept/getById`, {
     method: 'GET',
     params: {
       ...params,
@@ -32,13 +32,28 @@ export async function getById(
   });
 }
 
-/** 角色列表 GET /role/list */
+/** 获取部门树 GET /dept/getDeptTree */
+export async function getDeptTree(options?: { [key: string]: any }) {
+  return request<{
+    name?: { empty?: boolean };
+    id?: string;
+    weight?: Record<string, any>;
+    parentId?: string;
+    config?: API.TreeNodeConfig;
+    empty?: boolean;
+  }>(`/api/dept/getDeptTree`, {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** 部门列表 GET /dept/list */
 export async function list(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.listParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.Role[]>(`/api/role/list`, {
+  return request<API.Dept[]>(`/api/dept/list`, {
     method: 'GET',
     params: {
       ...params,
@@ -49,13 +64,13 @@ export async function list(
   });
 }
 
-/** 分页查询角色 GET /role/page */
+/** 分页查询部门 GET /dept/page */
 export async function page(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.pageParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.PageDTORole>(`/api/role/page`, {
+  return request<API.PageDTODept>(`/api/dept/page`, {
     method: 'GET',
     params: {
       ...params,
@@ -66,9 +81,9 @@ export async function page(
   });
 }
 
-/** 保存角色 POST /role/save */
-export async function save(body: API.Role, options?: { [key: string]: any }) {
-  return request<API.Role>(`/api/role/save`, {
+/** 保存部门 POST /dept/save */
+export async function save(body: API.Dept, options?: { [key: string]: any }) {
+  return request<API.Dept>(`/api/dept/save`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

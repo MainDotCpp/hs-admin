@@ -7,6 +7,7 @@ import * as blacklistIp from './blacklistIp';
 import * as cloak from './cloak';
 import * as cloakConfig from './cloakConfig';
 import * as cloakLog from './cloakLog';
+import * as dept from './dept';
 import * as landingCloak from './landingCloak';
 import * as landingTemplate from './landingTemplate';
 import * as loadingConfig from './loadingConfig';
@@ -25,6 +26,7 @@ export default {
   loadingConfig,
   landingTemplate,
   landingCloak,
+  dept,
   cloakLog,
   cloakConfig,
   cloak,

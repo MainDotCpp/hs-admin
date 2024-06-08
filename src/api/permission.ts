@@ -8,7 +8,7 @@ export async function deleteById(
   params: API.deleteByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultBoolean>(`/api/permission/deleteById`, {
+  return request<boolean>(`/api/permission/deleteById`, {
     method: 'POST',
     params: {
       ...params,
@@ -23,7 +23,7 @@ export async function getById(
   params: API.getByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultPermission>(`/api/permission/getById`, {
+  return request<API.Permission>(`/api/permission/getById`, {
     method: 'GET',
     params: {
       ...params,
@@ -38,7 +38,7 @@ export async function list(
   params: API.listParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultListPermission>(`/api/permission/list`, {
+  return request<API.Permission[]>(`/api/permission/list`, {
     method: 'GET',
     params: {
       ...params,
@@ -55,7 +55,7 @@ export async function page(
   params: API.pageParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultPageDTOPermission>(`/api/permission/page`, {
+  return request<API.PageDTOPermission>(`/api/permission/page`, {
     method: 'GET',
     params: {
       ...params,
@@ -68,7 +68,7 @@ export async function page(
 
 /** 保存权限 POST /permission/save */
 export async function save(body: API.Permission, options?: { [key: string]: any }) {
-  return request<API.HttpResultPermission>(`/api/permission/save`, {
+  return request<API.Permission>(`/api/permission/save`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

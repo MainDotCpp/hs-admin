@@ -8,7 +8,7 @@ export async function deleteById(
   params: API.deleteByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultBoolean>(`/api/cloakLog/deleteById`, {
+  return request<boolean>(`/api/cloakLog/deleteById`, {
     method: 'POST',
     params: {
       ...params,
@@ -23,7 +23,7 @@ export async function getById(
   params: API.getByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultCloakLog>(`/api/cloakLog/getById`, {
+  return request<API.CloakLog>(`/api/cloakLog/getById`, {
     method: 'GET',
     params: {
       ...params,
@@ -38,7 +38,7 @@ export async function page(
   params: API.pageParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.HttpResultPageDTOCloakLog>(`/api/cloakLog/page`, {
+  return request<API.PageDTOCloakLog>(`/api/cloakLog/page`, {
     method: 'GET',
     params: {
       ...params,
@@ -51,7 +51,7 @@ export async function page(
 
 /** 保存访问记录 POST /cloakLog/save */
 export async function save(body: API.CloakLog, options?: { [key: string]: any }) {
-  return request<API.HttpResultCloakLog>(`/api/cloakLog/save`, {
+  return request<API.CloakLog>(`/api/cloakLog/save`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

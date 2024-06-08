@@ -5,11 +5,12 @@ generateService({
   requestLibPath: 'import {request} from "@/utils/request"',
   serversPath: './src',
   apiPrefix: '"/api"',
+  dataFields: ['data'],
   hook: {
     customFunctionName: (data) => {
-      let path = data.path
-      path = path.replaceAll(/\/{.*?}/g, '')
-      return path.split('/').at(-1)
+      let path = data.path;
+      path = path.replaceAll(/\/{.*?}/g, '');
+      return path.split('/').at(-1);
     },
   },
 });
