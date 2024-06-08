@@ -9,11 +9,11 @@ export default defineConfig({
   request: {},
   layout: {
     title: '海狮管理后台',
-
   },
   proxy: {
     '/api': {
-      'target': 'http://localhost:8888/',
+      // 'target': 'http://localhost:8888/',
+      'target': 'https://console.d-l.ink/',
       'changeOrigin': true,
     },
   },
@@ -63,6 +63,7 @@ export default defineConfig({
       routes: [
         { path: '/system/user', name: '用户管理', icon: 'UserOutlined', access: 'USER__VIEW', component: './User' },
         { path: '/system/role', name: '角色管理', icon: 'UserOutlined', access: 'ROLE__VIEW', component: './Role' },
+        { path: '/system/dept', name: '部门管理', icon: 'UserOutlined', access: 'ROLE__VIEW', component: './Dept' },
       ],
     },
     {
