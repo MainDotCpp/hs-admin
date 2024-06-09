@@ -56,6 +56,27 @@ export default defineConfig({
       component: './Demo',
     },
     {
+      name: '资源管理',
+      icon: 'ClockCircleOutlined',
+      path: '/resource',
+      routes: [
+        {
+          name: '服务器',
+          icon: 'ClockCircleOutlined',
+          path: '/resource/server',
+          access: 'SERVER__VIEW',
+          component: './Server',
+        },
+        {
+          name: '域名',
+          icon: 'ClockCircleOutlined',
+          path: '/resource/domain',
+          access: 'DOMAIN__VIEW',
+          component: './Domain',
+        },
+      ],
+    },
+    {
       path: '/system',
       name: '系统设置',
       access: 'SETTING__VIEW',

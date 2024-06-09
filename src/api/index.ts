@@ -8,11 +8,13 @@ import * as cloak from './cloak';
 import * as cloakConfig from './cloakConfig';
 import * as cloakLog from './cloakLog';
 import * as dept from './dept';
+import * as domain from './domain';
 import * as landingCloak from './landingCloak';
 import * as landingTemplate from './landingTemplate';
 import * as loadingConfig from './loadingConfig';
 import * as permission from './permission';
 import * as role from './role';
+import * as server from './server';
 import * as shortLinkEngine from './shortLinkEngine';
 import * as shortLinkGroup from './shortLinkGroup';
 import * as shortlink from './shortlink';
@@ -21,11 +23,13 @@ export default {
   user,
   shortlink,
   shortLinkGroup,
+  server,
   role,
   permission,
   loadingConfig,
   landingTemplate,
   landingCloak,
+  domain,
   dept,
   cloakLog,
   cloakConfig,

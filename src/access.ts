@@ -22,5 +22,11 @@ export default (initialState: { userinfo?: API.Userinfo }) => {
     ROLE__VIEW: permissions.includes('ROLE__VIEW'),
     ROLE__EDIT: permissions.includes('ROLE__EDIT'),
     ROLE__DELETE: permissions.includes('ROLE__DELETE'),
+    DOMAIN__VIEW: permissions.includes('DOMAIN__VIEW'),
+    DOMAIN__EDIT: permissions.includes('DOMAIN__EDIT'),
+    DOMAIN__DELETE: permissions.includes('DOMAIN__DELETE'),
+    SERVER__VIEW: permissions.includes('SERVER__VIEW'),
+    SERVER__EDIT: permissions.includes('SERVER__EDIT'),
+    SERVER__DELETE: permissions.includes('SERVER__DELETE'),
   };
 };

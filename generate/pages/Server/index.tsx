@@ -3,18 +3,17 @@ import { PageContainer } from '@ant-design/pro-layout';
 import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import api from '@/api';
 import { Button, message, Popconfirm } from 'antd';
-import {{
-  biz_name_upper
-}}EditModal from '@/pages/';
+import ServerEditModal from '@/pages/Server/ServerEditModal';
+
 import { useAccess } from '@@/plugin-access';
 
 export default function Page() {
   const access = useAccess();
   const actionRef = useRef<ActionType>();
   const getTableData = async (params: any) => {
-    return api.{{biz_name}}.page(params);
+    return api.server.page(params);
   };
-  const columns: ProColumns<API.{{biz_name_upper}}>[] = [
+  const columns: ProColumns<API.Server>[] = [
     { dataIndex: 'id', title: 'ID', search: false, hidden: true },
     { dataIndex: 'id', title: 'ID', width: 100, search: false },
     {
@@ -25,15 +24,15 @@ export default function Page() {
       width: 100,
       render: (text, record, _, action) => {
         return [
-          access.{{ biz_all_upper }}__EDIT && <{{ biz_name_upper }}EditModal id={record.id} key="edit"
+          access.SERVER__EDIT && <ServerEditModal id={record.id} key="edit"
                                                                              onFinished={() => actionRef.current?.reload()}
           >
             <a>编辑</a>
-          </{{ biz_name_upper }}EditModal>,
-          access.{{ biz_all_upper }}__DELETE && <Popconfirm
+          </ServerEditModal>,
+          access.SERVER__DELETE && <Popconfirm
             key="delete"
             title={`确定删除吗？`} onConfirm={async () => {
-            await api.{{biz_name}}.deleteById({ id: record.id });
+            await api.server.deleteById({ id: record.id });
             message.success('删除成功');
             action.reload();
           }}>
@@ -49,17 +48,17 @@ export default function Page() {
         rowKey="id"
         search={false}
         actionRef={actionRef}
-        toolbar={{
+        toolbar={ {
           actions: [
-            access.{{ biz_all_upper }}__EDIT &&
-            <{{ biz_name_upper }}EditModal key="create" onFinished={() => actionRef.current?.reload()}>
+            access.SERVER__EDIT &&
+            <ServerEditModal key="create" onFinished={() => actionRef.current?.reload()}>
               <Button type="primary">新建</Button>
-            </{{ biz_name_upper }}EditModal>,
+            </ServerEditModal>,
           ],
         }}
-        size='small';
-        scroll={{ x: 1000 }};
-        columns={columns};
+        size='small'
+        scroll={ { x: 1000 }}
+        columns={columns}
         request={getTableData}
       ></ProTable>;
     </PageContainer>
