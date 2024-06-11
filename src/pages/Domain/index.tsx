@@ -13,9 +13,50 @@ export default function Page() {
   const getTableData = async (params: any) => {
     return api.domain.page(params);
   };
+
+  /**
+   * 开启作为短链域名
+   * @param id 域名ID
+   */
+  const openProxyShortlink = async (id: number) => {
+    await api.domain.save({ id, proxyShortlink: true });
+    message.success('开启成功');
+    actionRef.current?.reload();
+  };
+
   const columns: ProColumns<API.Domain>[] = [
     { dataIndex: 'id', title: 'ID', search: false, hidden: true },
-    { dataIndex: 'id', title: 'ID', width: 100, search: false },
+    { dataIndex: 'serverName', title: '服务器', width: 100, search: false },
+    { dataIndex: 'domain', title: '域名', width: 100, search: false },
+
+    {
+      dataIndex: 'proxyShortlink',
+      title: '短链功能',
+      width: 100,
+      search: false,
+      render: (text, record) =>
+        text ? (
+          '✅'
+        ) : (
+          <a onClick={openProxyShortlink.bind(null, record.id)}>开启功能</a>
+        ),
+    },
+    {
+      dataIndex: 'status',
+      title: '状态',
+      width: 100,
+      search: false,
+      valueEnum: {
+        UNUSED: { text: '未使用', status: 'Default' },
+        USED: { text: '已使用', status: 'Success' },
+      },
+    },
+    {
+      dataIndex: 'ownerNickname',
+      title: '拥有人',
+      width: 100,
+      search: false,
+    },
     {
       dataIndex: 'id',
       title: '操作',
@@ -31,6 +72,15 @@ export default function Page() {
               onFinished={() => actionRef.current?.reload()}
             >
               <a>编辑</a>
+            </DomainEditModal>
+          ),
+          access.DOMAIN__EDIT && (
+            <DomainEditModal
+              id={record.id}
+              key="edit"
+              onFinished={() => actionRef.current?.reload()}
+            >
+              <a>配置</a>
             </DomainEditModal>
           ),
           access.DOMAIN__DELETE && (
@@ -73,7 +123,6 @@ export default function Page() {
         columns={columns}
         request={getTableData}
       ></ProTable>
-      ;
     </PageContainer>
   );
 }

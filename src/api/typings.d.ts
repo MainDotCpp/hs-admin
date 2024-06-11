@@ -87,6 +87,7 @@ declare namespace API {
     enableBlacklistIpDetection?: boolean;
     /** 是否启用黑名单IP收集 */
     enableBlacklistIpCollection?: boolean;
+    hidden?: boolean;
   };
 
   type CloakConfigQueryDTO = {
@@ -292,32 +293,16 @@ declare namespace API {
     total?: number;
   };
 
-  type Domain = {
-    id?: number;
-    /** 域名 */
-    domain?: string;
-    server?: Server;
-    owner?: User;
-    /** 状态 */
-    status?: 'UNUSED' | 'USED';
-  };
-
-  type DomainQueryDTO = {
-    /** 页码 */
-    current?: number;
-    /** 页面大小 */
-    pageSize?: number;
-    data?: Domain[];
-    /** 总数 */
-    total?: number;
-  };
-
-  type DomainUpdateDTO = {
+  type DomainDTO = {
     id?: number;
     domain?: string;
-    status?: 'UNUSED' | 'USED';
-    serverId?: number;
+    proxyShortlink?: boolean;
     ownerId?: number;
+    ownerNickname?: string;
+    serverId?: number;
+    serverIp?: string;
+    serverName?: string;
+    status?: 'UNUSED' | 'USED';
   };
 
   type getByIdParams = {
@@ -417,10 +402,10 @@ declare namespace API {
     data?: Dept;
   };
 
-  type HttpResultDomain = {
+  type HttpResultDomainDTO = {
     code?: number;
     message?: string;
-    data?: Domain;
+    data?: DomainDTO;
   };
 
   type HttpResultLandingTemplate = {
@@ -447,10 +432,10 @@ declare namespace API {
     data?: Dept[];
   };
 
-  type HttpResultListDomain = {
+  type HttpResultListDomainDTO = {
     code?: number;
     message?: string;
-    data?: Domain[];
+    data?: DomainDTO[];
   };
 
   type HttpResultListLandingTemplate = {
@@ -477,10 +462,10 @@ declare namespace API {
     data?: Role[];
   };
 
-  type HttpResultListServer = {
+  type HttpResultListServerDTO = {
     code?: number;
     message?: string;
-    data?: Server[];
+    data?: ServerDTO[];
   };
 
   type HttpResultListShortLinkGroup = {
@@ -525,10 +510,10 @@ declare namespace API {
     data?: PageDTODept;
   };
 
-  type HttpResultPageDTODomain = {
+  type HttpResultPageDTODomainDTO = {
     code?: number;
     message?: string;
-    data?: PageDTODomain;
+    data?: PageDTODomainDTO;
   };
 
   type HttpResultPageDTOLandingTemplate = {
@@ -555,10 +540,10 @@ declare namespace API {
     data?: PageDTORole;
   };
 
-  type HttpResultPageDTOServer = {
+  type HttpResultPageDTOServerDTO = {
     code?: number;
     message?: string;
-    data?: PageDTOServer;
+    data?: PageDTOServerDTO;
   };
 
   type HttpResultPageDTOShortLinkConfig = {
@@ -591,10 +576,10 @@ declare namespace API {
     data?: Role;
   };
 
-  type HttpResultServer = {
+  type HttpResultServerDTO = {
     code?: number;
     message?: string;
-    data?: Server;
+    data?: ServerDTO;
   };
 
   type HttpResultShortLinkConfig = {
@@ -675,7 +660,7 @@ declare namespace API {
   };
 
   type listParams = {
-    queryDTO: ServerQueryDTO;
+    queryDTO: ServerDTO;
   };
 
   type listParams = {
@@ -695,7 +680,7 @@ declare namespace API {
   };
 
   type listParams = {
-    queryDTO: DomainQueryDTO;
+    queryDTO: DomainDTO;
   };
 
   type listParams = {
@@ -788,12 +773,12 @@ declare namespace API {
     total?: number;
   };
 
-  type PageDTODomain = {
+  type PageDTODomainDTO = {
     /** 页码 */
     current?: number;
     /** 页面大小 */
     pageSize?: number;
-    data?: Domain[];
+    data?: DomainDTO[];
     /** 总数 */
     total?: number;
   };
@@ -838,12 +823,12 @@ declare namespace API {
     total?: number;
   };
 
-  type PageDTOServer = {
+  type PageDTOServerDTO = {
     /** 页码 */
     current?: number;
     /** 页面大小 */
     pageSize?: number;
-    data?: Server[];
+    data?: ServerDTO[];
     /** 总数 */
     total?: number;
   };
@@ -891,7 +876,9 @@ declare namespace API {
   };
 
   type pageParams = {
-    queryDTO: ServerQueryDTO;
+    queryDTO: ServerDTO;
+    current: number;
+    pageSize: number;
   };
 
   type pageParams = {
@@ -911,7 +898,9 @@ declare namespace API {
   };
 
   type pageParams = {
-    queryDTO: DomainQueryDTO;
+    queryDTO: DomainDTO;
+    current: number;
+    pageSize: number;
   };
 
   type pageParams = {
@@ -965,32 +954,10 @@ declare namespace API {
     total?: number;
   };
 
-  type Server = {
+  type ServerDTO = {
     id?: number;
-    /** 名称 */
-    name?: string;
-    /** IP */
     ip?: string;
-    /** 端口 */
-    port?: number;
-    /** 状态 */
-    status?: 'CONNECTED' | 'DISCONNECTED';
-  };
-
-  type ServerQueryDTO = {
-    /** 页码 */
-    current?: number;
-    /** 页面大小 */
-    pageSize?: number;
-    data?: Server[];
-    /** 总数 */
-    total?: number;
-  };
-
-  type ServerUpdateDTO = {
-    id?: number;
     name?: string;
-    ip?: string;
     port?: number;
     status?: 'CONNECTED' | 'DISCONNECTED';
   };
@@ -1058,29 +1025,6 @@ declare namespace API {
     nameKey?: string;
     childrenKey?: string;
     deep?: number;
-  };
-
-  type User = {
-    id?: number;
-    /** 用户名 */
-    username?: string;
-    /** 密码 */
-    password?: string;
-    /** 昵称 */
-    nickname?: string;
-    /** 状态 */
-    status?: number;
-    /** 部门ID */
-    deptId?: string;
-    /** 创建时间 */
-    createTime?: number;
-    /** 更新时间 */
-    updateTime?: number;
-    /** 角色 */
-    roles?: Role[];
-    dataPermission?: 'ALL' | 'SELF' | 'DEPT' | 'DEPT_AND_CHILD';
-    /** 访问令牌 */
-    accessToken?: string;
   };
 
   type UserDto = {

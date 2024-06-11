@@ -23,7 +23,7 @@ export async function getById(
   params: API.getByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.Domain>(`/api/domain/getById`, {
+  return request<API.DomainDTO>(`/api/domain/getById`, {
     method: 'GET',
     params: {
       ...params,
@@ -38,7 +38,7 @@ export async function list(
   params: API.listParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.Domain[]>(`/api/domain/list`, {
+  return request<API.DomainDTO[]>(`/api/domain/list`, {
     method: 'GET',
     params: {
       ...params,
@@ -55,7 +55,7 @@ export async function page(
   params: API.pageParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.PageDTODomain>(`/api/domain/page`, {
+  return request<API.PageDTODomainDTO>(`/api/domain/page`, {
     method: 'GET',
     params: {
       ...params,
@@ -67,8 +67,8 @@ export async function page(
 }
 
 /** 保存域名 POST /domain/save */
-export async function save(body: API.DomainUpdateDTO, options?: { [key: string]: any }) {
-  return request<API.Domain>(`/api/domain/save`, {
+export async function save(body: API.DomainDTO, options?: { [key: string]: any }) {
+  return request<API.DomainDTO>(`/api/domain/save`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

@@ -23,7 +23,7 @@ export async function getById(
   params: API.getByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.Server>(`/api/server/getById`, {
+  return request<API.ServerDTO>(`/api/server/getById`, {
     method: 'GET',
     params: {
       ...params,
@@ -38,7 +38,7 @@ export async function list(
   params: API.listParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.Server[]>(`/api/server/list`, {
+  return request<API.ServerDTO[]>(`/api/server/list`, {
     method: 'GET',
     params: {
       ...params,
@@ -55,7 +55,7 @@ export async function page(
   params: API.pageParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.PageDTOServer>(`/api/server/page`, {
+  return request<API.PageDTOServerDTO>(`/api/server/page`, {
     method: 'GET',
     params: {
       ...params,
@@ -67,8 +67,8 @@ export async function page(
 }
 
 /** 保存服务器 POST /server/save */
-export async function save(body: API.ServerUpdateDTO, options?: { [key: string]: any }) {
-  return request<API.Server>(`/api/server/save`, {
+export async function save(body: API.ServerDTO, options?: { [key: string]: any }) {
+  return request<API.ServerDTO>(`/api/server/save`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
