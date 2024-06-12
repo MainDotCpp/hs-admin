@@ -1,5 +1,6 @@
 import api from '@/api';
-import { ModalForm, ProFormText } from '@ant-design/pro-form';
+import { orderGroupStatus } from '@/enums/orderGroup';
+import { ModalForm, ProFormRadio, ProFormText } from '@ant-design/pro-form';
 import { message } from 'antd';
 import React from 'react';
 
@@ -17,7 +18,9 @@ const OrderGroupEditModal = (props: OrderGroupEditModalProps) => {
   };
 
   const getInitialValues = async () => {
-    let orderGroup = {};
+    let orderGroup: API.OrderGroupDTO = {
+      status: 'PENDING',
+    };
     if (props.id) {
       orderGroup = await api.orderGroup.getById({ id: props.id });
     }
@@ -36,6 +39,11 @@ const OrderGroupEditModal = (props: OrderGroupEditModalProps) => {
     >
       <ProFormText name="id" label="ID" hidden />
       <ProFormText name="name" label="名称" />
+      <ProFormRadio.Group
+        valueEnum={orderGroupStatus}
+        name="status"
+        label="状态"
+      />
     </ModalForm>
   );
 };

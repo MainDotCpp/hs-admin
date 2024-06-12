@@ -710,8 +710,8 @@ declare namespace API {
     data?: {
       name?: { empty?: boolean };
       id?: string;
-      config?: TreeNodeConfig;
       parentId?: string;
+      config?: TreeNodeConfig;
       weight?: Record<string, any>;
       empty?: boolean;
     };
@@ -887,6 +887,7 @@ declare namespace API {
     lastModifiedDate?: string;
     deptId?: string;
     name?: string;
+    status?: 'PENDING' | 'IN_PROGRESS' | 'COMPLETED';
   };
 
   type PageDTOBlacklistIp = {

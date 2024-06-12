@@ -17,7 +17,7 @@ const {{Biz}}EditModal = (props: {{Biz}}EditModalProps) => {
   };
 
   const getInitialValues = async () => {
-    let {{biz}} = {};
+    let {{biz}}: API.{{ Biz }}DTO = {};
     if (props.id) {
       {{biz}} = await api.{{biz}}.getById({ id: props.id });
     }

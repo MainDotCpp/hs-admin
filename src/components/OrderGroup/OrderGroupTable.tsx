@@ -5,6 +5,7 @@ import { useRef } from 'react';
 
 import OrderGroupEditModal from '@/components/OrderGroup/OrderGroupEditModal';
 import { auditorField } from '@/constants/auditor';
+import { orderGroupStatus } from '@/enums/orderGroup';
 import { useAccess } from '@@/plugin-access';
 import { Link } from '@umijs/max';
 
@@ -14,6 +15,12 @@ export default function OrderGroupTable() {
   const columns: ProColumns<API.OrderGroup>[] = [
     { dataIndex: 'id', title: 'ID', search: false, hidden: true },
     { dataIndex: 'name', title: '名称', width: 100, search: false },
+    {
+      dataIndex: 'status',
+      title: '状态',
+      width: 100,
+      valueEnum: orderGroupStatus,
+    },
     ...auditorField,
     {
       dataIndex: 'id',
