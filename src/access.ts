@@ -37,5 +37,8 @@ export default (initialState: { userinfo?: API.Userinfo }) => {
     WEBSITE__VIEW: permissions.includes('WEBSITE__VIEW'),
     WEBSITE__EDIT: permissions.includes('WEBSITE__EDIT'),
     WEBSITE__DELETE: permissions.includes('WEBSITE__DELETE'),
+    ORDER_GROUP__VIEW: permissions.includes('ORDER_GROUP__VIEW'),
+    ORDER_GROUP__EDIT: permissions.includes('ORDER_GROUP__EDIT'),
+    ORDER_GROUP__DELETE: permissions.includes('ORDER_GROUP__DELETE'),
   };
 };

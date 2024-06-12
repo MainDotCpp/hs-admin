@@ -14,6 +14,7 @@ import * as landingCloak from './landingCloak';
 import * as landingTemplate from './landingTemplate';
 import * as loadingConfig from './loadingConfig';
 import * as order from './order';
+import * as orderGroup from './orderGroup';
 import * as permission from './permission';
 import * as role from './role';
 import * as server from './server';
@@ -30,6 +31,7 @@ export default {
   server,
   role,
   permission,
+  orderGroup,
   order,
   loadingConfig,
   landingTemplate,

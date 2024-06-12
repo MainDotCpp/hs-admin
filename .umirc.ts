@@ -82,9 +82,16 @@ export default defineConfig({
           component: './Landing',
         },
         {
-          name: '工单',
+          name: '工单组',
           icon: 'ClockCircleOutlined',
-          path: '/resource/order',
+          path: '/resource/orderGroup',
+          access: 'ORDER_GROUP__VIEW',
+          component: './OrderGroup',
+        },
+        {
+          name: '工单',
+          hideInMenu: true,
+          path: '/resource/orderGroup/order',
           access: 'ORDER__VIEW',
           component: './Order',
         },

@@ -37,8 +37,8 @@ export async function getDeptTree(options?: { [key: string]: any }) {
   return request<{
     name?: { empty?: boolean };
     id?: string;
-    parentId?: string;
     config?: API.TreeNodeConfig;
+    parentId?: string;
     weight?: Record<string, any>;
     empty?: boolean;
   }>(`/api/dept/getDeptTree`, {

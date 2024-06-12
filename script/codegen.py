@@ -6,6 +6,11 @@ import re
 tasks = [
     {
         "package": "resource",
+        "biz": "order",
+        "comment": "工单",
+    },
+    {
+        "package": "resource",
         "biz": "orderGroup",
         "comment": "工单组",
     }
@@ -53,10 +58,11 @@ def render_all_templates(data):
             f.write(rendered)
 
 
-def reverse_replace(s, data):
+def reverse_replace(s, data, is_dir=False):
     for key in data:
-        s = s.replace("{{", "{ {")
-        s = s.replace("{" + key, "{ " + data[key])
+        if not is_dir:
+            s = s.replace("{{", "{ {")
+            s = s.replace("{" + key, "{ " + data[key])
         s = s.replace(data[key], "{{" + key + "}}")
     return s
 
@@ -67,13 +73,10 @@ def eject_template(data):
     :return:
     """
     for it in output_dir.rglob("*"):
-        if it.is_dir():
-            continue
         output_path = Path.relative_to(it, output_dir)
-
-        output_path = reverse_replace(str(output_path) + ".j2", data)
+        output_path = reverse_replace(str(output_path) + ".j2", data, True)
         output_path = work_dir / f"{template_dir}__{data.get('biz')}" / output_path
-        if "{{Biz}}" not in str(output_path):
+        if "{{Biz}}" not in str(output_path) or it.is_dir():
             continue
         print(output_path)
         output_path.parent.mkdir(parents=True, exist_ok=True)

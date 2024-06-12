@@ -279,6 +279,10 @@ declare namespace API {
   };
 
   type deleteByIdParams = {
+    id: number;
+  };
+
+  type deleteByIdParams = {
     id: string;
   };
 
@@ -315,6 +319,10 @@ declare namespace API {
     serverIp?: string;
     serverName?: string;
     status?: 'UNUSED' | 'USED';
+  };
+
+  type getByIdParams = {
+    id: number;
   };
 
   type getByIdParams = {
@@ -492,6 +500,12 @@ declare namespace API {
     data?: OrderDTO[];
   };
 
+  type HttpResultListOrderGroupDTO = {
+    code?: number;
+    message?: string;
+    data?: OrderGroupDTO[];
+  };
+
   type HttpResultListPermission = {
     code?: number;
     message?: string;
@@ -522,6 +536,12 @@ declare namespace API {
     data?: UserDto[];
   };
 
+  type HttpResultListUserIdAndNickNameDTO = {
+    code?: number;
+    message?: string;
+    data?: UserIdAndNickNameDTO[];
+  };
+
   type HttpResultListWebsiteDTO = {
     code?: number;
     message?: string;
@@ -538,6 +558,12 @@ declare namespace API {
     code?: number;
     message?: string;
     data?: OrderDTO;
+  };
+
+  type HttpResultOrderGroupDTO = {
+    code?: number;
+    message?: string;
+    data?: OrderGroupDTO;
   };
 
   type HttpResultPageDTOBlacklistIp = {
@@ -592,6 +618,12 @@ declare namespace API {
     code?: number;
     message?: string;
     data?: PageDTOOrderDTO;
+  };
+
+  type HttpResultPageDTOOrderGroupDTO = {
+    code?: number;
+    message?: string;
+    data?: PageDTOOrderGroupDTO;
   };
 
   type HttpResultPageDTOPermission = {
@@ -678,8 +710,8 @@ declare namespace API {
     data?: {
       name?: { empty?: boolean };
       id?: string;
-      parentId?: string;
       config?: TreeNodeConfig;
+      parentId?: string;
       weight?: Record<string, any>;
       empty?: boolean;
     };
@@ -769,6 +801,10 @@ declare namespace API {
   };
 
   type listParams = {
+    queryDTO: OrderGroupDTO;
+  };
+
+  type listParams = {
     queryDTO: OrderDTO;
   };
 
@@ -841,6 +877,16 @@ declare namespace API {
   type OrderDTO = {
     id?: number;
     link?: string;
+  };
+
+  type OrderGroupDTO = {
+    id?: number;
+    createdBy?: number;
+    createdDate?: string;
+    lastModifiedBy?: number;
+    lastModifiedDate?: string;
+    deptId?: string;
+    name?: string;
   };
 
   type PageDTOBlacklistIp = {
@@ -929,6 +975,16 @@ declare namespace API {
     /** 页面大小 */
     pageSize?: number;
     data?: OrderDTO[];
+    /** 总数 */
+    total?: number;
+  };
+
+  type PageDTOOrderGroupDTO = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: OrderGroupDTO[];
     /** 总数 */
     total?: number;
   };
@@ -1033,6 +1089,12 @@ declare namespace API {
 
   type pageParams = {
     queryDTO: PermissionQueryDTO;
+  };
+
+  type pageParams = {
+    queryDTO: OrderGroupDTO;
+    current: number;
+    pageSize: number;
   };
 
   type pageParams = {
@@ -1199,6 +1261,11 @@ declare namespace API {
     deptId?: string;
   };
 
+  type UserIdAndNickNameDTO = {
+    id?: number;
+    nickname?: string;
+  };
+
   type Userinfo = {
     id?: number;
     username?: string;
@@ -1233,5 +1300,6 @@ declare namespace API {
     landingDescription?: string;
     landingVersion?: number;
     orders?: OrderDTO[];
+    domainId?: number;
   };
 }

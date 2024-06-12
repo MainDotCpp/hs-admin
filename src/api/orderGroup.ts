@@ -2,13 +2,13 @@
 /* eslint-disable */
 import { request } from '@/utils/request';
 
-/** 通过ID删除用户 POST /user/deleteById */
+/** 通过ID删除工单组 POST /orderGroup/deleteById */
 export async function deleteById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.deleteByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<boolean>(`/api/user/deleteById`, {
+  return request<boolean>(`/api/orderGroup/deleteById`, {
     method: 'POST',
     params: {
       ...params,
@@ -17,13 +17,13 @@ export async function deleteById(
   });
 }
 
-/** 根据ID获取用户 GET /user/getById */
+/** 根据ID获取工单组 GET /orderGroup/getById */
 export async function getById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.getByIdParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.UserDto>(`/api/user/getById`, {
+  return request<API.OrderGroupDTO>(`/api/orderGroup/getById`, {
     method: 'GET',
     params: {
       ...params,
@@ -32,21 +32,13 @@ export async function getById(
   });
 }
 
-/** 获取当前用户信息 GET /user/getUserinfo */
-export async function getUserinfo(options?: { [key: string]: any }) {
-  return request<API.Userinfo>(`/api/user/getUserinfo`, {
-    method: 'GET',
-    ...(options || {}),
-  });
-}
-
-/** 用户列表 GET /user/list */
+/** 工单组列表 GET /orderGroup/list */
 export async function list(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.listParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.UserDto[]>(`/api/user/list`, {
+  return request<API.OrderGroupDTO[]>(`/api/orderGroup/list`, {
     method: 'GET',
     params: {
       ...params,
@@ -57,21 +49,13 @@ export async function list(
   });
 }
 
-/** 获取用户ID和昵称 GET /user/listUserIdAndNickName */
-export async function listUserIdAndNickName(options?: { [key: string]: any }) {
-  return request<API.UserIdAndNickNameDTO[]>(`/api/user/listUserIdAndNickName`, {
-    method: 'GET',
-    ...(options || {}),
-  });
-}
-
-/** 分页查询用户 GET /user/page */
+/** 分页查询工单组 GET /orderGroup/page */
 export async function page(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.pageParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.PageDTOUserDto>(`/api/user/page`, {
+  return request<API.PageDTOOrderGroupDTO>(`/api/orderGroup/page`, {
     method: 'GET',
     params: {
       ...params,
@@ -82,21 +66,9 @@ export async function page(
   });
 }
 
-/** 保存用户 POST /user/save */
-export async function save(body: API.UserDto, options?: { [key: string]: any }) {
-  return request<API.UserDto>(`/api/user/save`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: body,
-    ...(options || {}),
-  });
-}
-
-/** 设置用户角色 POST /user/setRoles */
-export async function setRoles(body: API.SetRoleDTO, options?: { [key: string]: any }) {
-  return request<boolean>(`/api/user/setRoles`, {
+/** 保存工单组 POST /orderGroup/save */
+export async function save(body: API.OrderGroupDTO, options?: { [key: string]: any }) {
+  return request<API.OrderGroupDTO>(`/api/orderGroup/save`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
