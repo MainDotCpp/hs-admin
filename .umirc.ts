@@ -74,6 +74,20 @@ export default defineConfig({
           access: 'DOMAIN__VIEW',
           component: './Domain',
         },
+        {
+          name: '落地页',
+          icon: 'ClockCircleOutlined',
+          path: '/resource/landing',
+          access: 'LANDING__VIEW',
+          component: './Landing',
+        },
+        {
+          name: '工单',
+          icon: 'ClockCircleOutlined',
+          path: '/resource/order',
+          access: 'ORDER__VIEW',
+          component: './Order',
+        },
       ],
     },
     {

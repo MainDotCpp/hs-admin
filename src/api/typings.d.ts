@@ -267,6 +267,18 @@ declare namespace API {
   };
 
   type deleteByIdParams = {
+    id: number;
+  };
+
+  type deleteByIdParams = {
+    id: number;
+  };
+
+  type deleteByIdParams = {
+    id: number;
+  };
+
+  type deleteByIdParams = {
     id: string;
   };
 
@@ -303,6 +315,18 @@ declare namespace API {
     serverIp?: string;
     serverName?: string;
     status?: 'UNUSED' | 'USED';
+  };
+
+  type getByIdParams = {
+    id: number;
+  };
+
+  type getByIdParams = {
+    id: number;
+  };
+
+  type getByIdParams = {
+    id: number;
   };
 
   type getByIdParams = {
@@ -408,6 +432,12 @@ declare namespace API {
     data?: DomainDTO;
   };
 
+  type HttpResultLandingDTO = {
+    code?: number;
+    message?: string;
+    data?: LandingDTO;
+  };
+
   type HttpResultLandingTemplate = {
     code?: number;
     message?: string;
@@ -438,6 +468,12 @@ declare namespace API {
     data?: DomainDTO[];
   };
 
+  type HttpResultListLandingDTO = {
+    code?: number;
+    message?: string;
+    data?: LandingDTO[];
+  };
+
   type HttpResultListLandingTemplate = {
     code?: number;
     message?: string;
@@ -448,6 +484,12 @@ declare namespace API {
     code?: number;
     message?: string;
     data?: LoadingConfig[];
+  };
+
+  type HttpResultListOrderDTO = {
+    code?: number;
+    message?: string;
+    data?: OrderDTO[];
   };
 
   type HttpResultListPermission = {
@@ -480,10 +522,22 @@ declare namespace API {
     data?: UserDto[];
   };
 
+  type HttpResultListWebsiteDTO = {
+    code?: number;
+    message?: string;
+    data?: WebsiteDTO[];
+  };
+
   type HttpResultLoadingConfig = {
     code?: number;
     message?: string;
     data?: LoadingConfig;
+  };
+
+  type HttpResultOrderDTO = {
+    code?: number;
+    message?: string;
+    data?: OrderDTO;
   };
 
   type HttpResultPageDTOBlacklistIp = {
@@ -516,6 +570,12 @@ declare namespace API {
     data?: PageDTODomainDTO;
   };
 
+  type HttpResultPageDTOLandingDTO = {
+    code?: number;
+    message?: string;
+    data?: PageDTOLandingDTO;
+  };
+
   type HttpResultPageDTOLandingTemplate = {
     code?: number;
     message?: string;
@@ -526,6 +586,12 @@ declare namespace API {
     code?: number;
     message?: string;
     data?: PageDTOLoadingConfig;
+  };
+
+  type HttpResultPageDTOOrderDTO = {
+    code?: number;
+    message?: string;
+    data?: PageDTOOrderDTO;
   };
 
   type HttpResultPageDTOPermission = {
@@ -562,6 +628,12 @@ declare namespace API {
     code?: number;
     message?: string;
     data?: PageDTOUserDto;
+  };
+
+  type HttpResultPageDTOWebsiteDTO = {
+    code?: number;
+    message?: string;
+    data?: PageDTOWebsiteDTO;
   };
 
   type HttpResultPermission = {
@@ -625,12 +697,33 @@ declare namespace API {
     data?: Userinfo;
   };
 
+  type HttpResultWebsiteDTO = {
+    code?: number;
+    message?: string;
+    data?: WebsiteDTO;
+  };
+
   type LandingCloakCheckDTO = {
     /** 斗篷ID */
     cloakKey?: string;
     /** 落地页ID */
     landingId?: number;
     clientInfo?: CloakCheckDTO;
+  };
+
+  type LandingDTO = {
+    id?: number;
+    createdBy?: number;
+    createdDate?: string;
+    lastModifiedBy?: number;
+    lastModifiedDate?: string;
+    deptId?: string;
+    uuid?: string;
+    name?: string;
+    cover?: string;
+    description?: string;
+    version?: number;
+    isPublic?: boolean;
   };
 
   type LandingTemplate = {
@@ -649,6 +742,10 @@ declare namespace API {
     data?: LandingTemplate[];
     /** 总数 */
     total?: number;
+  };
+
+  type listParams = {
+    queryDTO: WebsiteDTO;
   };
 
   type listParams = {
@@ -672,11 +769,19 @@ declare namespace API {
   };
 
   type listParams = {
+    queryDTO: OrderDTO;
+  };
+
+  type listParams = {
     queryDTO: LoadingConfigQueryDTO;
   };
 
   type listParams = {
     queryDTO: LandingTemplateQueryDTO;
+  };
+
+  type listParams = {
+    queryDTO: LandingDTO;
   };
 
   type listParams = {
@@ -733,6 +838,11 @@ declare namespace API {
     preview: boolean;
   };
 
+  type OrderDTO = {
+    id?: number;
+    link?: string;
+  };
+
   type PageDTOBlacklistIp = {
     /** 页码 */
     current?: number;
@@ -783,6 +893,16 @@ declare namespace API {
     total?: number;
   };
 
+  type PageDTOLandingDTO = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: LandingDTO[];
+    /** 总数 */
+    total?: number;
+  };
+
   type PageDTOLandingTemplate = {
     /** 页码 */
     current?: number;
@@ -799,6 +919,16 @@ declare namespace API {
     /** 页面大小 */
     pageSize?: number;
     data?: LoadingConfig[];
+    /** 总数 */
+    total?: number;
+  };
+
+  type PageDTOOrderDTO = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: OrderDTO[];
     /** 总数 */
     total?: number;
   };
@@ -863,6 +993,22 @@ declare namespace API {
     total?: number;
   };
 
+  type PageDTOWebsiteDTO = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: WebsiteDTO[];
+    /** 总数 */
+    total?: number;
+  };
+
+  type pageParams = {
+    queryDTO: WebsiteDTO;
+    current: number;
+    pageSize: number;
+  };
+
   type pageParams = {
     queryDTO: UserQueryDTO;
   };
@@ -890,11 +1036,23 @@ declare namespace API {
   };
 
   type pageParams = {
+    queryDTO: OrderDTO;
+    current: number;
+    pageSize: number;
+  };
+
+  type pageParams = {
     queryDTO: LoadingConfigQueryDTO;
   };
 
   type pageParams = {
     queryDTO: LandingTemplateQueryDTO;
+  };
+
+  type pageParams = {
+    queryDTO: LandingDTO;
+    current: number;
+    pageSize: number;
   };
 
   type pageParams = {
@@ -1060,5 +1218,20 @@ declare namespace API {
     total?: number;
     dataPermission?: 'ALL' | 'SELF' | 'DEPT' | 'DEPT_AND_CHILD';
     deptId?: string;
+  };
+
+  type WebsiteDTO = {
+    id?: number;
+    path?: string;
+    type?: 'LANDING' | 'LINK';
+    cloakConfigId?: string;
+    cloakConfigName?: string;
+    landingId?: number;
+    landingUuid?: string;
+    landingName?: string;
+    landingCover?: string;
+    landingDescription?: string;
+    landingVersion?: number;
+    orders?: OrderDTO[];
   };
 }

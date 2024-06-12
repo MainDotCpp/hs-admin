@@ -3,7 +3,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import api from '@/api';
 import { Button, message, Popconfirm } from 'antd';
-import DomainEditModal from '@/pages/Domain/DomainEditModal';
+import LandingEditModal from '@/pages/Landing/LandingEditModal';
 
 import { useAccess } from '@@/plugin-access';
 
@@ -11,9 +11,9 @@ export default function Page() {
   const access = useAccess();
   const actionRef = useRef<ActionType>();
   const getTableData = async (params: any) => {
-    return api.domain.page(params);
+    return api.landing.page(params);
   };
-  const columns: ProColumns<API.Domain>[] = [
+  const columns: ProColumns<API.Landing>[] = [
     { dataIndex: 'id', title: 'ID', search: false, hidden: true },
     { dataIndex: 'id', title: 'ID', width: 100, search: false },
     {
@@ -24,15 +24,15 @@ export default function Page() {
       width: 100,
       render: (text, record, _, action) => {
         return [
-          access.DOMAIN__EDIT && <DomainEditModal id={record.id} key="edit"
+          access.LANDING__EDIT && <LandingEditModal id={record.id} key="edit"
                                                                              onFinished={() => actionRef.current?.reload()}
           >
             <a>编辑</a>
-          </DomainEditModal>,
-          access.DOMAIN__DELETE && <Popconfirm
+          </LandingEditModal>,
+          access.LANDING__DELETE && <Popconfirm
             key="delete"
             title={`确定删除吗？`} onConfirm={async () => {
-            await api.domain.deleteById({ id: record.id });
+            await api.landing.deleteById({ id: record.id });
             message.success('删除成功');
             action.reload();
           }}>
@@ -50,17 +50,17 @@ export default function Page() {
         actionRef={actionRef}
         toolbar={ {
           actions: [
-            access.DOMAIN__EDIT &&
-            <DomainEditModal key="create" onFinished={() => actionRef.current?.reload()}>
+            access.LANDING__EDIT &&
+            <LandingEditModal key="create" onFinished={() => actionRef.current?.reload()}>
               <Button type="primary">新建</Button>
-            </DomainEditModal>,
+            </LandingEditModal>,
           ],
         }}
         size='small'
         scroll={ { x: 1000 }}
         columns={columns}
         request={getTableData}
-      ></ProTable>;
+      ></ProTable>
     </PageContainer>
   );
 }

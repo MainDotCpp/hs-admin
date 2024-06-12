@@ -3,7 +3,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import api from '@/api';
 import { Button, message, Popconfirm } from 'antd';
-import ServerEditModal from '@/pages/Server/ServerEditModal';
+import OrderEditModal from '@/pages/Order/OrderEditModal';
 
 import { useAccess } from '@@/plugin-access';
 
@@ -11,9 +11,9 @@ export default function Page() {
   const access = useAccess();
   const actionRef = useRef<ActionType>();
   const getTableData = async (params: any) => {
-    return api.server.page(params);
+    return api.order.page(params);
   };
-  const columns: ProColumns<API.Server>[] = [
+  const columns: ProColumns<API.Order>[] = [
     { dataIndex: 'id', title: 'ID', search: false, hidden: true },
     { dataIndex: 'id', title: 'ID', width: 100, search: false },
     {
@@ -24,15 +24,15 @@ export default function Page() {
       width: 100,
       render: (text, record, _, action) => {
         return [
-          access.SERVER__EDIT && <ServerEditModal id={record.id} key="edit"
+          access.ORDER__EDIT && <OrderEditModal id={record.id} key="edit"
                                                                              onFinished={() => actionRef.current?.reload()}
           >
             <a>编辑</a>
-          </ServerEditModal>,
-          access.SERVER__DELETE && <Popconfirm
+          </OrderEditModal>,
+          access.ORDER__DELETE && <Popconfirm
             key="delete"
             title={`确定删除吗？`} onConfirm={async () => {
-            await api.server.deleteById({ id: record.id });
+            await api.order.deleteById({ id: record.id });
             message.success('删除成功');
             action.reload();
           }}>
@@ -50,17 +50,17 @@ export default function Page() {
         actionRef={actionRef}
         toolbar={ {
           actions: [
-            access.SERVER__EDIT &&
-            <ServerEditModal key="create" onFinished={() => actionRef.current?.reload()}>
+            access.ORDER__EDIT &&
+            <OrderEditModal key="create" onFinished={() => actionRef.current?.reload()}>
               <Button type="primary">新建</Button>
-            </ServerEditModal>,
+            </OrderEditModal>,
           ],
         }}
         size='small'
         scroll={ { x: 1000 }}
         columns={columns}
         request={getTableData}
-      ></ProTable>;
+      ></ProTable>
     </PageContainer>
   );
 }

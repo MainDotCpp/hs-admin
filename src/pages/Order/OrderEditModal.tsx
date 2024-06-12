@@ -3,22 +3,22 @@ import React from 'react';
 import api from '@/api';
 import { message } from 'antd';
 
-type ServerEditModalProps = {
+type OrderEditModalProps = {
   id?: number;
   children?: React.ReactNode;
   onFinished?: () => void;
 }
-const ServerEditModal = (props: ServerEditModalProps) => {
+const OrderEditModal = (props: OrderEditModalProps) => {
 
   const onFinish = async (formData: any) => {
-    await api.server.save(formData);
+    await api.order.save(formData);
     message.success('保存成功');
     props.onFinished?.();
     return true;
   };
 
   const getInitialValues = async () => {
-    return props.id ? await api.server.getById({ id: props.id }) : {};
+    return props.id ? await api.order.getById({ id: props.id }) : {};
   };
   return <ModalForm
     modalProps={ {
@@ -33,4 +33,4 @@ const ServerEditModal = (props: ServerEditModalProps) => {
   </ModalForm>;
 };
 
-export default ServerEditModal;
+export default OrderEditModal;

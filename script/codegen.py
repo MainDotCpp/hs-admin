@@ -1,23 +1,18 @@
 # -*- coding: utf-8 -*-
+from pathlib import Path
 import jinja2
 import re
-from pathlib import Path
 
 tasks = [
     {
         "package": "resource",
-        "biz": "server",
-        "comment": "服务器",
-    },
-    {
-        "package": "resource",
-        "biz": "domain",
-        "comment": "域名",
-    },
+        "biz": "orderGroup",
+        "comment": "工单组",
+    }
 ]
 # 更改当前工作目录
 work_dir = Path(__file__).parent.parent
-output_dir = work_dir.joinpath("generate")
+output_dir = work_dir.joinpath("src")
 template_dir = work_dir.joinpath("script/templates")
 
 
@@ -26,7 +21,7 @@ def first_upper(s):
 
 
 def covert_to_camel(s):
-    return "".join([first_upper(x) for x in s.split("_")])
+    return re.sub(r'_(\w)', lambda x: x.group(1).upper(), s)
 
 
 # 驼峰转常亮命名
@@ -39,9 +34,6 @@ def render_all_templates(data):
     将模板目录下的所有模板渲染到输出目录
     :return:
     """
-    data["Biz"] = data["biz"].capitalize()
-    data["BIZ"] = data["biz"].upper()
-    data["B_I_Z"] = covert_to_const(data["biz"])
     for template_path in Path.rglob(template_dir, "*.j2"):
         print(f"Rendering {template_path}...")
         out_path = output_dir / Path.relative_to(template_path, template_dir)
@@ -61,6 +53,45 @@ def render_all_templates(data):
             f.write(rendered)
 
 
+def reverse_replace(s, data):
+    for key in data:
+        s = s.replace("{{", "{ {")
+        s = s.replace("{" + key, "{ " + data[key])
+        s = s.replace(data[key], "{{" + key + "}}")
+    return s
+
+
+def eject_template(data):
+    """
+    将生成目录的文件提取到模板目录, 并替换模板变量
+    :return:
+    """
+    for it in output_dir.rglob("*"):
+        if it.is_dir():
+            continue
+        output_path = Path.relative_to(it, output_dir)
+
+        output_path = reverse_replace(str(output_path) + ".j2", data)
+        output_path = work_dir / f"{template_dir}__{data.get('biz')}" / output_path
+        if "{{Biz}}" not in str(output_path):
+            continue
+        print(output_path)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(it, "r", encoding="utf-8") as f:
+            content = f.read()
+            content = reverse_replace(content, data)
+            with open(output_path, "w", encoding="utf-8") as f:
+                f.write(content)
+
+
+def convert_dict(data):
+    data["Biz"] = first_upper(data["biz"])
+    data["BIZ"] = data["biz"].upper()
+    data["B_I_Z"] = covert_to_const(data["biz"])
+
+
 if __name__ == '__main__':
     for task in tasks:
+        convert_dict(task)
         render_all_templates(task)
+        # eject_template(task)

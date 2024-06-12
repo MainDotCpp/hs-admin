@@ -5,6 +5,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import { Button, Popconfirm, message } from 'antd';
 import { useRef } from 'react';
 
+import WebsiteTable from '@/components/WebsiteTable';
 import { useAccess } from '@@/plugin-access';
 
 export default function Page() {
@@ -102,10 +103,13 @@ export default function Page() {
   ];
   return (
     <PageContainer>
-      <ProTable
+      <ProTable<API.DomainDTO>
         rowKey="id"
         search={false}
         actionRef={actionRef}
+        expandable={{
+          expandedRowRender: (record) => <WebsiteTable domain={record} />,
+        }}
         toolbar={{
           actions: [
             access.DOMAIN__EDIT && (

@@ -28,5 +28,14 @@ export default (initialState: { userinfo?: API.Userinfo }) => {
     SERVER__VIEW: permissions.includes('SERVER__VIEW'),
     SERVER__EDIT: permissions.includes('SERVER__EDIT'),
     SERVER__DELETE: permissions.includes('SERVER__DELETE'),
+    LANDING__VIEW: permissions.includes('LANDING__VIEW'),
+    LANDING__EDIT: permissions.includes('LANDING__EDIT'),
+    LANDING__DELETE: permissions.includes('LANDING__DELETE'),
+    ORDER__VIEW: permissions.includes('ORDER__VIEW'),
+    ORDER__EDIT: permissions.includes('ORDER__EDIT'),
+    ORDER__DELETE: permissions.includes('ORDER__DELETE'),
+    WEBSITE__VIEW: permissions.includes('WEBSITE__VIEW'),
+    WEBSITE__EDIT: permissions.includes('WEBSITE__EDIT'),
+    WEBSITE__DELETE: permissions.includes('WEBSITE__DELETE'),
   };
 };

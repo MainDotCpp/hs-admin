@@ -3,22 +3,22 @@ import React from 'react';
 import api from '@/api';
 import { message } from 'antd';
 
-type DomainEditModalProps = {
+type LandingEditModalProps = {
   id?: number;
   children?: React.ReactNode;
   onFinished?: () => void;
 }
-const DomainEditModal = (props: DomainEditModalProps) => {
+const LandingEditModal = (props: LandingEditModalProps) => {
 
   const onFinish = async (formData: any) => {
-    await api.domain.save(formData);
+    await api.landing.save(formData);
     message.success('保存成功');
     props.onFinished?.();
     return true;
   };
 
   const getInitialValues = async () => {
-    return props.id ? await api.domain.getById({ id: props.id }) : {};
+    return props.id ? await api.landing.getById({ id: props.id }) : {};
   };
   return <ModalForm
     modalProps={ {
@@ -33,4 +33,4 @@ const DomainEditModal = (props: DomainEditModalProps) => {
   </ModalForm>;
 };
 
-export default DomainEditModal;
+export default LandingEditModal;

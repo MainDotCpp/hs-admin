@@ -73,7 +73,6 @@ export default function Page() {
         columns={columns}
         request={getTableData}
       ></ProTable>
-      ;
     </PageContainer>
   );
 }
