@@ -1,5 +1,10 @@
 import api from '@/api';
-import { ModalForm, ProFormItem, ProFormText } from '@ant-design/pro-form';
+import {
+  ModalForm,
+  ProFormItem,
+  ProFormSelect,
+  ProFormText,
+} from '@ant-design/pro-form';
 import { Input, Segmented, message } from 'antd';
 import React from 'react';
 
@@ -25,7 +30,8 @@ const WebsiteEditModal = (props: WebsiteEditModalProps) => {
     };
     if (props.id) {
       website = await api.website.getById({ id: props.id });
-      website.path = website.path.slice(1);
+      if (website.path?.length > 0) website.path = website.path.slice(1);
+      website.orders = website.orders.map((it) => it.id);
     }
     return website;
   };
@@ -53,6 +59,24 @@ const WebsiteEditModal = (props: WebsiteEditModalProps) => {
           ]}
         />
       </ProFormItem>
+      <ProFormSelect
+        name="cloakConfigId"
+        label="拦截配置"
+        request={api.cloakConfig.list}
+        fieldProps={{
+          fieldNames: { label: 'name', value: 'id' },
+        }}
+      />
+      <ProFormSelect
+        name="orders"
+        mode="multiple"
+        label="工单"
+        request={api.order.list}
+        transform={(value) => ({ orders: value.map((id) => ({ id })) })}
+        fieldProps={{
+          fieldNames: { label: 'businessName', value: 'id' },
+        }}
+      />
     </ModalForm>
   );
 };

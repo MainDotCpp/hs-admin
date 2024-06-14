@@ -1,10 +1,11 @@
 import api from '@/api';
 import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
-import { Button, Popconfirm, message } from 'antd';
+import { Button, Popconfirm, Space, Tag, message } from 'antd';
 import { useRef } from 'react';
 
 import WebsiteEditModal from '@/components/WebsiteTable/WebsiteEditModal';
 import { useAccess } from '@@/plugin-access';
+import { useQuery } from 'react-query';
 
 export default function WebsiteTable({ domain }: { domain: API.DomainDTO }) {
   const access = useAccess();
@@ -12,6 +13,10 @@ export default function WebsiteTable({ domain }: { domain: API.DomainDTO }) {
   const getTableData = async (params: any) => {
     return api.website.page({ ...params, domainId: domain.id });
   };
+
+  const { data: cloakConfigList } = useQuery('cloakConfigList', async () =>
+    api.cloakConfig.list({}),
+  );
   const columns: ProColumns<API.Website>[] = [
     { dataIndex: 'id', title: 'ID', search: false, hidden: true },
     {
@@ -39,11 +44,26 @@ export default function WebsiteTable({ domain }: { domain: API.DomainDTO }) {
       },
     },
     {
+      dataIndex: 'orders',
+      title: '工单',
+      width: 100,
+      search: false,
+      render: (_, record) => {
+        return (
+          <Space>
+            {record.orders.map((order) => (
+              <Tag>{order.businessName}</Tag>
+            ))}
+          </Space>
+        );
+      },
+    },
+    {
       dataIndex: 'cloakConfigName',
       title: '拦截配置',
       width: 100,
       search: false,
-      render: (text, record) => record.cloakConfigId || '❎ 未开启',
+      render: (text, record) => record.cloakConfigName || '❎ 未开启',
     },
     {
       dataIndex: 'id',

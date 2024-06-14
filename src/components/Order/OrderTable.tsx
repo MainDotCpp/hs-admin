@@ -17,6 +17,13 @@ export default function OrderTable(props: OrderTableProps) {
   const columns: ProColumns<API.Order>[] = [
     { dataIndex: 'id', title: 'ID', search: false, hidden: true },
     { dataIndex: 'link', title: '链接', width: 100, search: false },
+    {
+      dataIndex: 'operatorNickname',
+      title: '运营昵称',
+      width: 100,
+      search: false,
+    },
+    { dataIndex: 'businessName', title: '业务名称', width: 100, search: false },
     ...auditorField,
     {
       dataIndex: 'id',

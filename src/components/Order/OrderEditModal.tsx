@@ -39,6 +39,10 @@ const OrderEditModal = (props: OrderEditModalProps) => {
     >
       <ProFormText name="id" label="ID" hidden />
       <ProFormText name="orderGroupId" label="groupId" />
+      <ProFormText name="businessId" label="业务id" />
+      <ProFormText name="businessName" label="业务名称" />
+      <ProFormText name="operatorId" label="运营id" />
+      <ProFormText name="operatorNickname" label="运营昵称" />
       <ProFormText name="link" label="链接" />
     </ModalForm>
   );
