@@ -77,3 +77,15 @@ export async function save(body: API.LandingDTO, options?: { [key: string]: any 
     ...(options || {}),
   });
 }
+
+/** 通过URL保存落地页 POST /landing/saveByUrl */
+export async function saveByUrl(body: API.SaveByUrlDTO, options?: { [key: string]: any }) {
+  return request<boolean>(`/api/landing/saveByUrl`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}

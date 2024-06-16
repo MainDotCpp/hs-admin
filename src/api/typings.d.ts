@@ -2,10 +2,6 @@ declare namespace API {
   type BlacklistIp = {
     id?: number;
     ip: {
-      hostAddress?: string;
-      address?: string[];
-      hostName?: string;
-      linkLocalAddress?: boolean;
       multicastAddress?: boolean;
       anyLocalAddress?: boolean;
       loopbackAddress?: boolean;
@@ -16,6 +12,10 @@ declare namespace API {
       mcsiteLocal?: boolean;
       mcorgLocal?: boolean;
       canonicalHostName?: string;
+      hostAddress?: string;
+      address?: string[];
+      hostName?: string;
+      linkLocalAddress?: boolean;
     };
   };
 
@@ -708,19 +708,31 @@ declare namespace API {
     code?: number;
     message?: string;
     data?: {
-      name?: { empty?: boolean };
       id?: string;
       parentId?: string;
       config?: TreeNodeConfig;
       weight?: Record<string, any>;
+      name?: { empty?: boolean };
       empty?: boolean;
     };
+  };
+
+  type HttpResultUser = {
+    code?: number;
+    message?: string;
+    data?: User;
   };
 
   type HttpResultUserDto = {
     code?: number;
     message?: string;
     data?: UserDto;
+  };
+
+  type HttpResultUserIdAndNickNameDTO = {
+    code?: number;
+    message?: string;
+    data?: UserIdAndNickNameDTO;
   };
 
   type HttpResultUserinfo = {
@@ -867,6 +879,7 @@ declare namespace API {
   type LoginReqDTO = {
     username?: string;
     password?: string;
+    autoLogin?: boolean;
   };
 
   type lParams = {
@@ -877,6 +890,7 @@ declare namespace API {
   type OrderDTO = {
     id?: number;
     link?: string;
+    businessName?: string;
   };
 
   type OrderGroupDTO = {
@@ -1175,6 +1189,10 @@ declare namespace API {
     total?: number;
   };
 
+  type SaveByUrlDTO = {
+    url?: string;
+  };
+
   type ServerDTO = {
     id?: number;
     ip?: string;
@@ -1246,6 +1264,29 @@ declare namespace API {
     nameKey?: string;
     childrenKey?: string;
     deep?: number;
+  };
+
+  type User = {
+    id?: number;
+    /** 用户名 */
+    username?: string;
+    /** 密码 */
+    password?: string;
+    /** 昵称 */
+    nickname?: string;
+    /** 状态 */
+    status?: number;
+    /** 部门ID */
+    deptId?: string;
+    /** 创建时间 */
+    createTime?: number;
+    /** 更新时间 */
+    updateTime?: number;
+    /** 角色 */
+    roles?: Role[];
+    dataPermission?: 'ALL' | 'SELF' | 'DEPT' | 'DEPT_AND_CHILD';
+    /** 访问令牌 */
+    accessToken?: string;
   };
 
   type UserDto = {

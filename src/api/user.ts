@@ -17,6 +17,22 @@ export async function deleteById(
   });
 }
 
+/** 此处后端没有提供注释 GET /user/demo01 */
+export async function demo01(options?: { [key: string]: any }) {
+  return request<API.User>(`/api/user/demo01`, {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** 此处后端没有提供注释 GET /user/demo02 */
+export async function demo02(options?: { [key: string]: any }) {
+  return request<API.UserIdAndNickNameDTO>(`/api/user/demo02`, {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
 /** 根据ID获取用户 GET /user/getById */
 export async function getById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)

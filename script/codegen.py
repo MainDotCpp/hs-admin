@@ -6,13 +6,8 @@ import re
 tasks = [
     {
         "package": "resource",
-        "biz": "order",
-        "comment": "工单",
-    },
-    {
-        "package": "resource",
-        "biz": "orderGroup",
-        "comment": "工单组",
+        "biz": "landing",
+        "comment": "落地页",
     }
 ]
 # 更改当前工作目录
