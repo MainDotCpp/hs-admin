@@ -80,8 +80,9 @@ const Wrapper = styled.div`
 
 type LandingCardProps = {
   landing: API.LandingDTO;
+  onSelect?: (id: number) => void;
 };
-const LandingCard = ({ landing }: LandingCardProps) => {
+const LandingCard = ({ landing, onSelect }: LandingCardProps) => {
   const {
     data: landingList,
     isLoading: fetchListLoading,
@@ -90,6 +91,16 @@ const LandingCard = ({ landing }: LandingCardProps) => {
   return (
     <Wrapper>
       <div className="action">
+        {onSelect && (
+          <Button
+            type="link"
+            onClick={() => {
+              onSelect(landing.id);
+            }}
+          >
+            选择
+          </Button>
+        )}
         <Button
           type="link"
           onClick={() => {

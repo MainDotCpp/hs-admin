@@ -1,6 +1,8 @@
 import api from '@/api';
+import LandingSelectModal from '@/components/Landing/LandingSelectModal';
 import {
   ModalForm,
+  ProFormDependency,
   ProFormItem,
   ProFormSelect,
   ProFormText,
@@ -51,7 +53,7 @@ const WebsiteEditModal = (props: WebsiteEditModalProps) => {
       <ProFormItem name="path" label="路径">
         <Input addonBefore="/" placeholder="留空为根路径" />
       </ProFormItem>
-      <ProFormItem name="type" label="使用场景">
+      <ProFormItem name="type" label="使用场景" rules={[{ required: true }]}>
         <Segmented
           options={[
             { value: 'LINK', label: '跳转' },
@@ -59,6 +61,22 @@ const WebsiteEditModal = (props: WebsiteEditModalProps) => {
           ]}
         />
       </ProFormItem>
+      <ProFormDependency name={['type']}>
+        {({ type }) => {
+          if (type === 'LANDING') {
+            return (
+              <ProFormItem
+                name="landingId"
+                label="落地页"
+                rules={[{ required: true }]}
+              >
+                <LandingSelectModal />
+              </ProFormItem>
+            );
+          }
+          return null;
+        }}
+      </ProFormDependency>
       <ProFormSelect
         name="cloakConfigId"
         label="拦截配置"
@@ -67,6 +85,7 @@ const WebsiteEditModal = (props: WebsiteEditModalProps) => {
           fieldNames: { label: 'name', value: 'id' },
         }}
       />
+
       <ProFormSelect
         name="orders"
         mode="multiple"

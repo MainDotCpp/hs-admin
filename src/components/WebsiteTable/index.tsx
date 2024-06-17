@@ -4,6 +4,7 @@ import { Button, Popconfirm, Space, Tag, message } from 'antd';
 import { useRef } from 'react';
 
 import WebsiteEditModal from '@/components/WebsiteTable/WebsiteEditModal';
+import { useLandingListQuery } from '@/querys/landingQuery';
 import { useAccess } from '@@/plugin-access';
 import { useQuery } from 'react-query';
 
@@ -17,6 +18,8 @@ export default function WebsiteTable({ domain }: { domain: API.DomainDTO }) {
   const { data: cloakConfigList } = useQuery('cloakConfigList', async () =>
     api.cloakConfig.list({}),
   );
+
+  const { data: landingList } = useLandingListQuery();
   const columns: ProColumns<API.Website>[] = [
     { dataIndex: 'id', title: 'ID', search: false, hidden: true },
     {
@@ -38,6 +41,13 @@ export default function WebsiteTable({ domain }: { domain: API.DomainDTO }) {
       title: '类型',
       width: 100,
       search: false,
+      render: (_, record) => {
+        return record.type === 'LINK' ? (
+          <Tag color="geekblue">跳转</Tag>
+        ) : (
+          <Tag color="success">落地页({record.landingName})</Tag>
+        );
+      },
       valueEnum: {
         LINK: { text: '跳转', status: 'Default' },
         LANDING: { text: '落地页', status: 'Success' },

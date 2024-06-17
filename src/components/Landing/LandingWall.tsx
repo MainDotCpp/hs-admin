@@ -8,7 +8,11 @@ const Wrapper = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
 `;
-const LandingWall = () => {
+type LandingWallProps = {
+  mode?: 'select';
+  onSelect?: (id: number) => void;
+};
+const LandingWall = (props: LandingWallProps) => {
   const {
     data: landingList,
     isLoading: fetchListLoading,
@@ -21,7 +25,15 @@ const LandingWall = () => {
   return (
     <Wrapper>
       {landingList?.map((landing) => (
-        <LandingCard landing={landing} />
+        <LandingCard
+          landing={landing}
+          onSelect={
+            props.mode === 'select' &&
+            ((id) => {
+              props.onSelect?.(id);
+            })
+          }
+        />
       ))}
     </Wrapper>
   );
