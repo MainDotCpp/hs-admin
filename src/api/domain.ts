@@ -17,6 +17,36 @@ export async function deleteById(
   });
 }
 
+/** 部署域名 POST /domain/deploy */
+export async function deploy(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.deployParams,
+  options?: { [key: string]: any },
+) {
+  return request<string>(`/api/domain/deploy`, {
+    method: 'POST',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** 获取AGENT域名配置文件 GET /domain/getAgentConfig */
+export async function getAgentConfig(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.getAgentConfigParams,
+  options?: { [key: string]: any },
+) {
+  return request<API.DomainAgentConfig>(`/api/domain/getAgentConfig`, {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
 /** 根据ID获取域名 GET /domain/getById */
 export async function getById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)

@@ -93,6 +93,7 @@ export default function WebsiteTable({ domain }: { domain: API.DomainDTO }) {
               <a>编辑</a>
             </WebsiteEditModal>
           ),
+
           access.WEBSITE__DELETE && (
             <Popconfirm
               key="delete"

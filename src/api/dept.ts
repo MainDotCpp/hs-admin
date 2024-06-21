@@ -35,11 +35,11 @@ export async function getById(
 /** 获取部门树 GET /dept/getDeptTree */
 export async function getDeptTree(options?: { [key: string]: any }) {
   return request<{
+    name?: { empty?: boolean };
     id?: string;
     parentId?: string;
     config?: API.TreeNodeConfig;
     weight?: Record<string, any>;
-    name?: { empty?: boolean };
     empty?: boolean;
   }>(`/api/dept/getDeptTree`, {
     method: 'GET',

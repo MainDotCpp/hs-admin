@@ -84,6 +84,16 @@ export default function Page() {
               <a>配置</a>
             </DomainEditModal>
           ),
+          <a
+            key="depoly"
+            onClick={async () => {
+              message.success('部署中，请稍后');
+              await api.domain.deploy({ id: record.id });
+              message.success('部署成功');
+            }}
+          >
+            部署
+          </a>,
           access.DOMAIN__DELETE && (
             <Popconfirm
               key="delete"

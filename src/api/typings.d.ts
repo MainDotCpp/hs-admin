@@ -2,6 +2,10 @@ declare namespace API {
   type BlacklistIp = {
     id?: number;
     ip: {
+      hostAddress?: string;
+      address?: string[];
+      hostName?: string;
+      linkLocalAddress?: boolean;
       multicastAddress?: boolean;
       anyLocalAddress?: boolean;
       loopbackAddress?: boolean;
@@ -12,10 +16,6 @@ declare namespace API {
       mcsiteLocal?: boolean;
       mcorgLocal?: boolean;
       canonicalHostName?: string;
-      hostAddress?: string;
-      address?: string[];
-      hostName?: string;
-      linkLocalAddress?: boolean;
     };
   };
 
@@ -290,6 +290,10 @@ declare namespace API {
     id: number;
   };
 
+  type deployParams = {
+    id: number;
+  };
+
   type Dept = {
     /** ID */
     id?: string;
@@ -309,6 +313,13 @@ declare namespace API {
     total?: number;
   };
 
+  type DomainAgentConfig = {
+    id?: number;
+    domain?: string;
+    server?: ServerDTO;
+    websites?: WebsiteDTO[];
+  };
+
   type DomainDTO = {
     id?: number;
     domain?: string;
@@ -319,6 +330,10 @@ declare namespace API {
     serverIp?: string;
     serverName?: string;
     status?: 'UNUSED' | 'USED';
+  };
+
+  type getAgentConfigParams = {
+    id: number;
   };
 
   type getByIdParams = {
@@ -708,11 +723,11 @@ declare namespace API {
     code?: number;
     message?: string;
     data?: {
+      name?: { empty?: boolean };
       id?: string;
       parentId?: string;
       config?: TreeNodeConfig;
       weight?: Record<string, any>;
-      name?: { empty?: boolean };
       empty?: boolean;
     };
   };

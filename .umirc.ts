@@ -12,8 +12,8 @@ export default defineConfig({
   },
   proxy: {
     '/api': {
-      target: 'http://localhost:8888/',
-      // 'target': 'https://console.d-l.ink/',
+      // target: 'http://localhost:8888/',
+      target: 'https://console.d-l.ink/',
       changeOrigin: true,
     },
   },
