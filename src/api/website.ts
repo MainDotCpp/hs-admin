@@ -5,7 +5,7 @@ import { request } from '@/utils/request';
 /** 通过ID删除网站 POST /website/deleteById */
 export async function deleteById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.deleteByIdParams,
+  params: API.deleteParams,
   options?: { [key: string]: any },
 ) {
   return request<boolean>(`/api/website/deleteById`, {
@@ -20,7 +20,7 @@ export async function deleteById(
 /** 根据ID获取网站 GET /website/getById */
 export async function getById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.getByIdParams,
+  params: API.getParams,
   options?: { [key: string]: any },
 ) {
   return request<API.WebsiteDTO>(`/api/website/getById`, {

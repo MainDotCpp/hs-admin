@@ -5,7 +5,7 @@ import { request } from '@/utils/request';
 /** 通过ID删除用户 POST /user/deleteById */
 export async function deleteById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.deleteByIdParams,
+  params: API.delete1Params,
   options?: { [key: string]: any },
 ) {
   return request<boolean>(`/api/user/deleteById`, {
@@ -36,7 +36,7 @@ export async function demo02(options?: { [key: string]: any }) {
 /** 根据ID获取用户 GET /user/getById */
 export async function getById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.getByIdParams,
+  params: API.get1Params,
   options?: { [key: string]: any },
 ) {
   return request<API.UserDto>(`/api/user/getById`, {
@@ -59,7 +59,7 @@ export async function getUserinfo(options?: { [key: string]: any }) {
 /** 用户列表 GET /user/list */
 export async function list(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.listParams,
+  params: API.list1Params,
   options?: { [key: string]: any },
 ) {
   return request<API.UserDto[]>(`/api/user/list`, {
@@ -84,7 +84,7 @@ export async function listUserIdAndNickName(options?: { [key: string]: any }) {
 /** 分页查询用户 GET /user/page */
 export async function page(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.pageParams,
+  params: API.page1Params,
   options?: { [key: string]: any },
 ) {
   return request<API.PageDTOUserDto>(`/api/user/page`, {

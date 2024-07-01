@@ -1,5 +1,4 @@
 import { defineConfig } from '@umijs/max';
-import * as process from 'process';
 
 export default defineConfig({
   antd: {},
@@ -12,8 +11,8 @@ export default defineConfig({
   },
   proxy: {
     '/api': {
-      // target: 'http://localhost:8888/',
-      target: 'https://console.d-l.ink/',
+      target: 'http://localhost:8888/',
+      // target: 'https://console.d-l.ink/',
       changeOrigin: true,
     },
   },
@@ -43,40 +42,20 @@ export default defineConfig({
       component: './CloakLog',
     },
     {
-      name: '落地页',
-      icon: 'ClockCircleOutlined',
-      path: '/loading',
-      component: './LoadingConfig',
-    },
-    {
-      name: '测试 ',
-      icon: 'LinkOutlined',
-      hideInMenu: process.env.NODE_ENV === 'production',
-      path: '/demo',
-      component: './Demo',
+      name: '网站',
+      icon: 'AppstoreOutlined',
+      path: '/site',
+      access: 'DOMAIN__VIEW',
+      component: './Domain',
     },
     {
       name: '资源管理',
-      icon: 'ClockCircleOutlined',
+      icon: 'DatabaseOutlined',
       path: '/resource',
       routes: [
         {
-          name: '服务器',
-          icon: 'ClockCircleOutlined',
-          path: '/resource/server',
-          access: 'SERVER__VIEW',
-          component: './Server',
-        },
-        {
-          name: '域名',
-          icon: 'ClockCircleOutlined',
-          path: '/resource/domain',
-          access: 'DOMAIN__VIEW',
-          component: './Domain',
-        },
-        {
-          name: '落地页',
-          icon: 'ClockCircleOutlined',
+          name: '网站库',
+          icon: 'HddOutlined',
           path: '/resource/landing',
           access: 'LANDING__VIEW',
           component: './Landing',
@@ -94,6 +73,13 @@ export default defineConfig({
           path: '/resource/orderGroup/order',
           access: 'ORDER__VIEW',
           component: './Order',
+        },
+        {
+          name: '服务器',
+          icon: 'ClockCircleOutlined',
+          path: '/resource/server',
+          access: 'SERVER__VIEW',
+          component: './Server',
         },
       ],
     },

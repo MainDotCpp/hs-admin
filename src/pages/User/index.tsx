@@ -15,6 +15,7 @@ export default function Page() {
   const { data: deptList } = useRequest(api.dept.list, {
     defaultParams: [{}],
   });
+
   const columns: ProColumns<API.User>[] = [
     { dataIndex: 'id', title: 'ID', search: false, hidden: true },
     { dataIndex: 'nickname', title: '昵称', width: 100, search: false },

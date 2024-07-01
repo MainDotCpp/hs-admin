@@ -5,7 +5,7 @@ import { request } from '@/utils/request';
 /** 通过ID删除工单 POST /order/deleteById */
 export async function deleteById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.deleteByIdParams,
+  params: API.delete9Params,
   options?: { [key: string]: any },
 ) {
   return request<boolean>(`/api/order/deleteById`, {
@@ -20,7 +20,7 @@ export async function deleteById(
 /** 根据ID获取工单 GET /order/getById */
 export async function getById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.getByIdParams,
+  params: API.get9Params,
   options?: { [key: string]: any },
 ) {
   return request<API.OrderDTO>(`/api/order/getById`, {
@@ -35,7 +35,7 @@ export async function getById(
 /** 工单列表 GET /order/list */
 export async function list(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.listParams,
+  params: API.list8Params,
   options?: { [key: string]: any },
 ) {
   return request<API.OrderDTO[]>(`/api/order/list`, {
@@ -52,7 +52,7 @@ export async function list(
 /** 分页查询工单 GET /order/page */
 export async function page(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.pageParams,
+  params: API.page9Params,
   options?: { [key: string]: any },
 ) {
   return request<API.PageDTOOrderDTO>(`/api/order/page`, {

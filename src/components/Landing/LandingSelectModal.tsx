@@ -24,7 +24,12 @@ const LandingSelectModal = (props: LandingSelectModalProps) => {
     );
   }
   return (
-    <Modal width={'80%'} open={true} onCancel={setOpen.bind(null, false)}>
+    <Modal
+      width={'80%'}
+      open={true}
+      onCancel={setOpen.bind(null, false)}
+      footer={false}
+    >
       <LandingWall
         mode="select"
         onSelect={(v) => {

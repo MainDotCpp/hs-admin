@@ -18,14 +18,16 @@ import * as orderGroup from './orderGroup';
 import * as permission from './permission';
 import * as role from './role';
 import * as server from './server';
+import * as shortlink from './shortlink';
 import * as shortLinkEngine from './shortLinkEngine';
 import * as shortLinkGroup from './shortLinkGroup';
-import * as shortlink from './shortlink';
+import * as systemConfig from './systemConfig';
 import * as user from './user';
 import * as website from './website';
 export default {
   website,
   user,
+  systemConfig,
   shortlink,
   shortLinkGroup,
   server,

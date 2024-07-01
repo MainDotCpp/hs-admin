@@ -29,7 +29,7 @@ declare namespace API {
     total?: number;
   };
 
-  type checkParams = {
+  type check1Params = {
     key: string;
   };
 
@@ -222,71 +222,75 @@ declare namespace API {
     scene?: 'SHORT_LINK' | 'LANDING_PAGE' | 'API';
   };
 
-  type deleteByIdParams = {
+  type delete10Params = {
     id: number;
   };
 
-  type deleteByIdParams = {
+  type delete11Params = {
     id: number;
   };
 
-  type deleteByIdParams = {
+  type delete12Params = {
     id: number;
   };
 
-  type deleteByIdParams = {
+  type delete13Params = {
     id: number;
   };
 
-  type deleteByIdParams = {
+  type delete14Params = {
     id: number;
   };
 
-  type deleteByIdParams = {
-    id: number;
-  };
-
-  type deleteByIdParams = {
-    id: number;
-  };
-
-  type deleteByIdParams = {
-    id: number;
-  };
-
-  type deleteByIdParams = {
-    id: number;
-  };
-
-  type deleteByIdParams = {
-    id: number;
-  };
-
-  type deleteByIdParams = {
-    id: number;
-  };
-
-  type deleteByIdParams = {
-    id: number;
-  };
-
-  type deleteByIdParams = {
-    id: number;
-  };
-
-  type deleteByIdParams = {
-    id: number;
-  };
-
-  type deleteByIdParams = {
-    id: number;
-  };
-
-  type deleteByIdParams = {
+  type delete15Params = {
     id: string;
   };
 
+  type delete16Params = {
+    id: number;
+  };
+
+  type delete1Params = {
+    id: number;
+  };
+
+  type delete2Params = {
+    id: number;
+  };
+
+  type delete3Params = {
+    id: number;
+  };
+
+  type delete4Params = {
+    id: number;
+  };
+
+  type delete5Params = {
+    id: number;
+  };
+
+  type delete6Params = {
+    id: number;
+  };
+
+  type delete7Params = {
+    id: number;
+  };
+
+  type delete8Params = {
+    id: number;
+  };
+
+  type delete9Params = {
+    id: number;
+  };
+
   type deleteByIdParams = {
+    id: number;
+  };
+
+  type deleteParams = {
     id: number;
   };
 
@@ -323,7 +327,6 @@ declare namespace API {
   type DomainDTO = {
     id?: number;
     domain?: string;
-    proxyShortlink?: boolean;
     ownerId?: number;
     ownerNickname?: string;
     serverId?: number;
@@ -332,85 +335,89 @@ declare namespace API {
     status?: 'UNUSED' | 'USED';
   };
 
+  type get10Params = {
+    id: number;
+  };
+
+  type get11Params = {
+    id: number;
+  };
+
+  type get12Params = {
+    id: number;
+  };
+
+  type get13Params = {
+    id: number;
+  };
+
+  type get14Params = {
+    id: number;
+  };
+
+  type get15Params = {
+    id: number;
+  };
+
+  type get16Params = {
+    id: string;
+  };
+
+  type get17Params = {
+    id: number;
+  };
+
+  type get1Params = {
+    id: number;
+  };
+
+  type get2Params = {
+    id: number;
+  };
+
+  type get3Params = {
+    id: number;
+  };
+
+  type get4Params = {
+    id: number;
+  };
+
+  type get5Params = {
+    id: number;
+  };
+
+  type get6Params = {
+    id: number;
+  };
+
+  type get7Params = {
+    id: number;
+  };
+
+  type get8Params = {
+    id: number;
+  };
+
+  type get9Params = {
+    id: number;
+  };
+
   type getAgentConfigParams = {
     id: number;
   };
 
-  type getByIdParams = {
-    id: number;
-  };
-
-  type getByIdParams = {
-    id: number;
-  };
-
-  type getByIdParams = {
-    id: number;
-  };
-
-  type getByIdParams = {
-    id: number;
-  };
-
-  type getByIdParams = {
-    id: number;
-  };
-
-  type getByIdParams = {
-    id: number;
-  };
-
-  type getByIdParams = {
-    id: number;
-  };
-
-  type getByIdParams = {
-    id: number;
-  };
-
-  type getByIdParams = {
-    id: number;
-  };
-
-  type getByIdParams = {
-    id: number;
-  };
-
-  type getByIdParams = {
-    id: number;
-  };
-
-  type getByIdParams = {
-    id: number;
-  };
-
-  type getByIdParams = {
-    id: number;
-  };
-
-  type getByIdParams = {
-    id: number;
-  };
-
-  type getByIdParams = {
-    id: number;
-  };
-
-  type getByIdParams = {
-    id: string;
-  };
-
-  type getByIdParams = {
-    id: number;
+  type getByKey1Params = {
+    domain: string;
+    path: string;
   };
 
   type getByKeyParams = {
     key: string;
   };
 
-  type getByPathParams = {
-    domain: string;
-    path: string;
+  type getParams = {
+    id: number;
   };
 
   type HttpResultBlacklistIp = {
@@ -545,6 +552,12 @@ declare namespace API {
     data?: ShortLinkGroup[];
   };
 
+  type HttpResultListSystemConfigDTO = {
+    code?: number;
+    message?: string;
+    data?: SystemConfigDTO[];
+  };
+
   type HttpResultListUserDto = {
     code?: number;
     message?: string;
@@ -671,6 +684,12 @@ declare namespace API {
     data?: PageDTOShortLinkGroup;
   };
 
+  type HttpResultPageDTOSystemConfigDTO = {
+    code?: number;
+    message?: string;
+    data?: PageDTOSystemConfigDTO;
+  };
+
   type HttpResultPageDTOUserDto = {
     code?: number;
     message?: string;
@@ -717,6 +736,12 @@ declare namespace API {
     code?: number;
     message?: string;
     data?: string;
+  };
+
+  type HttpResultSystemConfigDTO = {
+    code?: number;
+    message?: string;
+    data?: SystemConfigDTO;
   };
 
   type HttpResultTreeString = {
@@ -803,64 +828,68 @@ declare namespace API {
     total?: number;
   };
 
-  type listParams = {
-    queryDTO: WebsiteDTO;
+  type list10Params = {
+    queryDTO: LandingTemplateQueryDTO;
   };
 
-  type listParams = {
+  type list11Params = {
+    queryDTO: LandingDTO;
+  };
+
+  type list12Params = {
+    queryDTO: DomainDTO;
+  };
+
+  type list13Params = {
+    queryDTO: DeptQueryDTO;
+  };
+
+  type list14Params = {
+    queryDTO: CloakConfigQueryDTO;
+  };
+
+  type list15Params = {
+    queryDTO: BlacklistIpQueryDTO;
+  };
+
+  type list1Params = {
     queryDTO: UserQueryDTO;
   };
 
-  type listParams = {
+  type list2Params = {
+    queryDTO: SystemConfigDTO;
+  };
+
+  type list3Params = {
     queryDTO: ShortLinkGroupQueryDTO;
   };
 
-  type listParams = {
+  type list4Params = {
     queryDTO: ServerDTO;
   };
 
-  type listParams = {
+  type list5Params = {
     queryDTO: RoleQueryDTO;
   };
 
-  type listParams = {
+  type list6Params = {
     queryDTO: PermissionQueryDTO;
   };
 
-  type listParams = {
+  type list7Params = {
     queryDTO: OrderGroupDTO;
   };
 
-  type listParams = {
+  type list8Params = {
     queryDTO: OrderDTO;
   };
 
-  type listParams = {
+  type list9Params = {
     queryDTO: LoadingConfigQueryDTO;
   };
 
   type listParams = {
-    queryDTO: LandingTemplateQueryDTO;
-  };
-
-  type listParams = {
-    queryDTO: LandingDTO;
-  };
-
-  type listParams = {
-    queryDTO: DomainDTO;
-  };
-
-  type listParams = {
-    queryDTO: DeptQueryDTO;
-  };
-
-  type listParams = {
-    queryDTO: CloakConfigQueryDTO;
-  };
-
-  type listParams = {
-    queryDTO: BlacklistIpQueryDTO;
+    queryDTO: WebsiteDTO;
   };
 
   type LoadingConfig = {
@@ -897,11 +926,6 @@ declare namespace API {
     autoLogin?: boolean;
   };
 
-  type lParams = {
-    key: string;
-    preview: boolean;
-  };
-
   type OrderDTO = {
     id?: number;
     link?: string;
@@ -917,6 +941,86 @@ declare namespace API {
     deptId?: string;
     name?: string;
     status?: 'PENDING' | 'IN_PROGRESS' | 'COMPLETED';
+  };
+
+  type page10Params = {
+    queryDTO: LoadingConfigQueryDTO;
+  };
+
+  type page11Params = {
+    queryDTO: LandingTemplateQueryDTO;
+  };
+
+  type page12Params = {
+    queryDTO: LandingDTO;
+    current: number;
+    pageSize: number;
+  };
+
+  type page13Params = {
+    queryDTO: DomainDTO;
+    current: number;
+    pageSize: number;
+  };
+
+  type page14Params = {
+    queryDTO: DeptQueryDTO;
+  };
+
+  type page15Params = {
+    queryDTO: CloakLogQueryDTO;
+  };
+
+  type page16Params = {
+    queryDTO: CloakConfigQueryDTO;
+  };
+
+  type page17Params = {
+    queryDTO: BlacklistIpQueryDTO;
+  };
+
+  type page1Params = {
+    queryDTO: UserQueryDTO;
+  };
+
+  type page2Params = {
+    queryDTO: SystemConfigDTO;
+    current: number;
+    pageSize: number;
+  };
+
+  type page3Params = {
+    pageDTO: ShortLinkConfigQueryDTO;
+  };
+
+  type page4Params = {
+    queryDTO: ShortLinkGroupQueryDTO;
+  };
+
+  type page5Params = {
+    queryDTO: ServerDTO;
+    current: number;
+    pageSize: number;
+  };
+
+  type page6Params = {
+    queryDTO: RoleQueryDTO;
+  };
+
+  type page7Params = {
+    queryDTO: PermissionQueryDTO;
+  };
+
+  type page8Params = {
+    queryDTO: OrderGroupDTO;
+    current: number;
+    pageSize: number;
+  };
+
+  type page9Params = {
+    queryDTO: OrderDTO;
+    current: number;
+    pageSize: number;
   };
 
   type PageDTOBlacklistIp = {
@@ -1069,6 +1173,16 @@ declare namespace API {
     total?: number;
   };
 
+  type PageDTOSystemConfigDTO = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: SystemConfigDTO[];
+    /** 总数 */
+    total?: number;
+  };
+
   type PageDTOUserDto = {
     /** 页码 */
     current?: number;
@@ -1095,80 +1209,6 @@ declare namespace API {
     pageSize: number;
   };
 
-  type pageParams = {
-    queryDTO: UserQueryDTO;
-  };
-
-  type pageParams = {
-    pageDTO: ShortLinkConfigQueryDTO;
-  };
-
-  type pageParams = {
-    queryDTO: ShortLinkGroupQueryDTO;
-  };
-
-  type pageParams = {
-    queryDTO: ServerDTO;
-    current: number;
-    pageSize: number;
-  };
-
-  type pageParams = {
-    queryDTO: RoleQueryDTO;
-  };
-
-  type pageParams = {
-    queryDTO: PermissionQueryDTO;
-  };
-
-  type pageParams = {
-    queryDTO: OrderGroupDTO;
-    current: number;
-    pageSize: number;
-  };
-
-  type pageParams = {
-    queryDTO: OrderDTO;
-    current: number;
-    pageSize: number;
-  };
-
-  type pageParams = {
-    queryDTO: LoadingConfigQueryDTO;
-  };
-
-  type pageParams = {
-    queryDTO: LandingTemplateQueryDTO;
-  };
-
-  type pageParams = {
-    queryDTO: LandingDTO;
-    current: number;
-    pageSize: number;
-  };
-
-  type pageParams = {
-    queryDTO: DomainDTO;
-    current: number;
-    pageSize: number;
-  };
-
-  type pageParams = {
-    queryDTO: DeptQueryDTO;
-  };
-
-  type pageParams = {
-    queryDTO: CloakLogQueryDTO;
-  };
-
-  type pageParams = {
-    queryDTO: CloakConfigQueryDTO;
-  };
-
-  type pageParams = {
-    queryDTO: BlacklistIpQueryDTO;
-  };
-
   type Permission = {
     id?: number;
     name?: string;
@@ -1183,6 +1223,15 @@ declare namespace API {
     data?: Permission[];
     /** 总数 */
     total?: number;
+  };
+
+  type receiveParams = {
+    id: number;
+  };
+
+  type redirectParams = {
+    key: string;
+    preview: boolean;
   };
 
   type Role = {
@@ -1204,7 +1253,11 @@ declare namespace API {
     total?: number;
   };
 
-  type SaveByUrlDTO = {
+  type SaveLandingByUrlDTO = {
+    name?: string;
+    cover?: string;
+    description?: string;
+    isPublic?: boolean;
     url?: string;
   };
 
@@ -1228,6 +1281,7 @@ declare namespace API {
     lastModifiedBy?: number;
     lastModifiedDate?: string;
     deptId?: string;
+    owner?: User;
     /** 配置KEY */
     key?: string;
     /** 斗蓬ID */
@@ -1270,6 +1324,10 @@ declare namespace API {
     data?: ShortLinkGroup[];
     /** 总数 */
     total?: number;
+  };
+
+  type SystemConfigDTO = {
+    id?: number;
   };
 
   type TreeNodeConfig = {

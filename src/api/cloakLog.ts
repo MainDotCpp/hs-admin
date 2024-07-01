@@ -20,7 +20,7 @@ export async function deleteById(
 /** 根据ID获取访问记录 GET /cloakLog/getById */
 export async function getById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.getByIdParams,
+  params: API.get15Params,
   options?: { [key: string]: any },
 ) {
   return request<API.CloakLog>(`/api/cloakLog/getById`, {
@@ -35,7 +35,7 @@ export async function getById(
 /** 分页查询访问记录 GET /cloakLog/page */
 export async function page(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.pageParams,
+  params: API.page15Params,
   options?: { [key: string]: any },
 ) {
   return request<API.PageDTOCloakLog>(`/api/cloakLog/page`, {

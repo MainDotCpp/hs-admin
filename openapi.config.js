@@ -13,5 +13,8 @@ generateService({
       path = path.replaceAll(/\/{.*?}/g, '');
       return path.split('/').at(-1);
     },
+    customTypeName: (data) => {
+      return data.operationId;
+    },
   },
 });
