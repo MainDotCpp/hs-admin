@@ -18,7 +18,6 @@ const Wrapper = styled.div`
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: all 0.3s;
-    scale: 1.05;
   }
 
   .action {
@@ -32,25 +31,31 @@ const Wrapper = styled.div`
     justify-content: center;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.12);
+    background-color: rgba(255, 255, 255, 0.8);
     opacity: 0;
 
     &:hover {
       opacity: 1;
+      backdrop-filter: blur(4px);
       transition: all 0.3s;
     }
   }
 
   .footer {
+    position: absolute;
+    bottom: 0;
     display: grid;
     flex-grow: 0;
     grid-template-columns: 1fr;
     align-items: center;
+    width: 100%;
     padding: 10px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
 
     .title {
       overflow: hidden;
-      color: #333;
       font-weight: 500;
       font-size: 16px;
       white-space: nowrap;
@@ -66,15 +71,15 @@ const Wrapper = styled.div`
     border: none;
     border-radius: 10px;
 
-    // 隐藏滚动条
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
     &::-webkit-scrollbar {
       display: none;
     }
-  }
-
-  .cover iframe {
-    width: 100%;
   }
 `;
 
@@ -95,7 +100,7 @@ const LandingCard = ({ landing, onSelect }: LandingCardProps) => {
           <Button
             type="link"
             onClick={() => {
-              onSelect(landing.id);
+              onSelect(landing.id!!);
             }}
           >
             选择
@@ -130,7 +135,12 @@ const LandingCard = ({ landing, onSelect }: LandingCardProps) => {
           </Button>
         </Popconfirm>
       </div>
-      <div className="cover"></div>
+      <div className="cover">
+        <img
+          src={`https://console.d-l.ink/preview/${landing.uuid}.jpg`}
+          alt=""
+        />
+      </div>
       <div className="footer">
         <div className="title">{landing.name}</div>
       </div>

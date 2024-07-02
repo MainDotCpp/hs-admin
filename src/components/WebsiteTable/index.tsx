@@ -104,7 +104,9 @@ export default function WebsiteTable({ domain }: { domain: API.DomainDTO }) {
                 action.reload();
               }}
             >
-              <a key="delete">删除</a>
+              <a key="delete" style={{ color: 'red' }}>
+                删除
+              </a>
             </Popconfirm>
           ),
         ];
@@ -120,14 +122,13 @@ export default function WebsiteTable({ domain }: { domain: API.DomainDTO }) {
         actions: [
           access.WEBSITE__EDIT && (
             <WebsiteEditModal
-              domainId={domain.id}
+              domainId={domain.id!!}
               onFinished={() => actionRef.current?.reload()}
             >
-              <Button type="primary">创建站点</Button>
+              <Button type="primary">添加站点</Button>
             </WebsiteEditModal>
           ),
         ],
-        settings: [],
       }}
       size="small"
       scroll={{ x: 1000 }}

@@ -82,18 +82,6 @@ export default function Page() {
     { dataIndex: 'domain', title: '域名', width: 100, search: false },
 
     {
-      dataIndex: 'proxyShortlink',
-      title: '短链功能',
-      width: 100,
-      search: false,
-      render: (text, record) =>
-        text ? (
-          '✅'
-        ) : (
-          <a onClick={openProxyShortlink.bind(null, record.id!!)}>开启功能</a>
-        ),
-    },
-    {
       dataIndex: 'status',
       title: '状态',
       width: 100,
@@ -155,7 +143,9 @@ export default function Page() {
                 action?.reload();
               }}
             >
-              <a key="delete">删除</a>
+              <a key="delete" style={{ color: 'red' }}>
+                删除
+              </a>
             </Popconfirm>
           ),
         ];

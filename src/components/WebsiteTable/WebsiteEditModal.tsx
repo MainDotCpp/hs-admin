@@ -18,7 +18,7 @@ type WebsiteEditModalProps = {
 };
 const WebsiteEditModal = (props: WebsiteEditModalProps) => {
   const onFinish = async (formData: any) => {
-    formData.path = `/${formData.path}`;
+    formData.path = formData.path ? `/${formData.path}` : '/';
     await api.website.save(formData);
     message.success('保存成功');
     props.onFinished?.();
