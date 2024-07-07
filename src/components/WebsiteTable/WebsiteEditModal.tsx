@@ -6,6 +6,7 @@ import {
   ProFormItem,
   ProFormSelect,
   ProFormText,
+  ProFormTextArea,
 } from '@ant-design/pro-form';
 import { Input, Segmented, message } from 'antd';
 import React from 'react';
@@ -65,18 +66,33 @@ const WebsiteEditModal = (props: WebsiteEditModalProps) => {
         {({ type }) => {
           if (type === 'LANDING') {
             return (
-              <ProFormItem
-                name="landingId"
-                label="落地页"
-                rules={[{ required: true }]}
-              >
-                <LandingSelectModal />
-              </ProFormItem>
+              <>
+                <ProFormItem
+                  name="landingId"
+                  label="落地页"
+                  rules={[{ required: true }]}
+                >
+                  <LandingSelectModal />
+                </ProFormItem>
+                <ProFormTextArea
+                  label="跟踪代码"
+                  name="extraScript"
+                ></ProFormTextArea>
+              </>
             );
           }
           return null;
         }}
       </ProFormDependency>
+      <ProFormText
+        name="targetLink"
+        label="跳转链接"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      ></ProFormText>
       <ProFormSelect
         name="cloakConfigId"
         label="拦截配置"
@@ -86,18 +102,22 @@ const WebsiteEditModal = (props: WebsiteEditModalProps) => {
         }}
       />
 
-      <ProFormSelect
-        name="orders"
-        mode="multiple"
-        label="工单"
-        request={api.order.list}
-        transform={(value) => ({ orders: value.map((id) => ({ id })) })}
-        fieldProps={{
-          fieldNames: { label: 'businessName', value: 'id' },
-        }}
-      />
+      {/*<ProFormSelect*/}
+      {/*  name="orders"*/}
+      {/*  mode="multiple"*/}
+      {/*  label="工单"*/}
+      {/*  request={api.order.list}*/}
+      {/*  transform={(value) => ({ orders: value.map((id) => ({ id })) })}*/}
+      {/*  fieldProps={{*/}
+      {/*    fieldNames: { label: 'businessName', value: 'id' },*/}
+      {/*  }}*/}
+      {/*/>*/}
     </ModalForm>
   );
 };
 
 export default WebsiteEditModal;
+
+
+// https://s0.wp.com/mshots/v1/https%3A%2F%2Fcloudworkers.company%2Fhk?w=720&h=960
+// https://s0.wp.com/mshots/v1/https%3A%2F%2Fcloudworkers.company%2Fhk?w=720&h=960

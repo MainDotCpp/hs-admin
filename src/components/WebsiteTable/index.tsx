@@ -1,8 +1,10 @@
 import api from '@/api';
 import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
-import { Button, Popconfirm, Space, Tag, message } from 'antd';
+import { Button, Popconfirm, Tag, message } from 'antd';
 import { useRef } from 'react';
 
+import CloakLogTable from '@/components/CloakLog/CloakLogTable';
+import YModal from '@/components/Modal';
 import WebsiteEditModal from '@/components/WebsiteTable/WebsiteEditModal';
 import { useLandingListQuery } from '@/querys/landingQuery';
 import { useAccess } from '@@/plugin-access';
@@ -20,7 +22,7 @@ export default function WebsiteTable({ domain }: { domain: API.DomainDTO }) {
   );
 
   const { data: landingList } = useLandingListQuery();
-  const columns: ProColumns<API.Website>[] = [
+  const columns: ProColumns<API.WebsiteDTO>[] = [
     { dataIndex: 'id', title: 'ID', search: false, hidden: true },
     {
       dataIndex: 'path',
@@ -54,20 +56,33 @@ export default function WebsiteTable({ domain }: { domain: API.DomainDTO }) {
       },
     },
     {
-      dataIndex: 'orders',
-      title: '工单',
+      dataIndex: 'targetLink',
+      title: '跳转链接',
       width: 100,
       search: false,
-      render: (_, record) => {
+      render: (text, record) => {
         return (
-          <Space>
-            {record.orders.map((order) => (
-              <Tag>{order.businessName}</Tag>
-            ))}
-          </Space>
+          <a href={record.targetLink} target="_blank">
+            {record.targetLink}
+          </a>
         );
       },
     },
+    // {
+    //   dataIndex: 'orders',
+    //   title: '工单',
+    //   width: 100,
+    //   search: false,
+    //   render: (_, record) => {
+    //     return (
+    //       <Space>
+    //         {record.orders.map((order) => (
+    //           <Tag>{order.businessName}</Tag>
+    //         ))}
+    //       </Space>
+    //     );
+    //   },
+    // },
     {
       dataIndex: 'cloakConfigName',
       title: '拦截配置',
@@ -83,6 +98,14 @@ export default function WebsiteTable({ domain }: { domain: API.DomainDTO }) {
       width: 100,
       render: (text, record, _, action) => {
         return [
+          <YModal
+            trigger={<a>查看记录</a>}
+            width={'80vw'}
+            footer={false}
+            destroyOnClose
+          >
+            {() => <CloakLogTable relatedId={record.id} scene={'WEBSITE'} />}
+          </YModal>,
           access.WEBSITE__EDIT && (
             <WebsiteEditModal
               domainId={domain.id}

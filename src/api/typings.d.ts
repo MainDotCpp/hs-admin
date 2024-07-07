@@ -1281,7 +1281,6 @@ declare namespace API {
     lastModifiedBy?: number;
     lastModifiedDate?: string;
     deptId?: string;
-    owner?: User;
     /** 配置KEY */
     key?: string;
     /** 斗蓬ID */
@@ -1416,5 +1415,6 @@ declare namespace API {
     landingVersion?: number;
     orders?: OrderDTO[];
     domainId?: number;
+    targetLink?: string;
   };
 }
