@@ -1,5 +1,4 @@
 import api from '@/api';
-import DomainEditModal from '@/pages/Domain/DomainEditModal';
 import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import { PageContainer } from '@ant-design/pro-layout';
 import { Button, List, Popconfirm, Space, message } from 'antd';
@@ -105,24 +104,6 @@ export default function Page() {
       width: 100,
       render: (_text, record, _, action) => {
         return [
-          access.DOMAIN__EDIT && (
-            <DomainEditModal
-              id={record.id}
-              key="edit"
-              onFinished={() => actionRef.current?.reload()}
-            >
-              <a>编辑</a>
-            </DomainEditModal>
-          ),
-          access.DOMAIN__EDIT && (
-            <DomainEditModal
-              id={record.id}
-              key="edit"
-              onFinished={() => actionRef.current?.reload()}
-            >
-              <a>配置</a>
-            </DomainEditModal>
-          ),
           <a
             key="depoly"
             onClick={async () => {
@@ -171,18 +152,6 @@ export default function Page() {
         actionRef={actionRef}
         expandable={{
           expandedRowRender: (record) => <WebsiteTable domain={record} />,
-        }}
-        toolbar={{
-          actions: [
-            access.DOMAIN__EDIT && (
-              <DomainEditModal
-                key="create"
-                onFinished={() => actionRef.current?.reload()}
-              >
-                <Button type="primary">新建</Button>
-              </DomainEditModal>
-            ),
-          ],
         }}
         size="small"
         scroll={{ x: 1000 }}

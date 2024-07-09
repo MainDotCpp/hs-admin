@@ -18,10 +18,35 @@ type WebsiteEditModalProps = {
   onFinished?: () => void;
 };
 const WebsiteEditModal = (props: WebsiteEditModalProps) => {
+  const [messageApi, contextHolder] = message.useMessage();
   const onFinish = async (formData: any) => {
     formData.path = formData.path ? `/${formData.path}` : '/';
     await api.website.save(formData);
-    message.success('保存成功');
+    messageApi.success(
+      <span>
+        保存成功,需要重新部署才能生效{' '}
+        <a
+          onClick={async () => {
+            messageApi.open({
+              key: 'deploy',
+              type: 'loading',
+              content: '正在部署',
+              duration: 0,
+            });
+            await api.domain.deploy({ id: props.domainId });
+            messageApi.open({
+              key: 'deploy',
+              type: 'success',
+              content: '部署成功',
+              duration: 3,
+            });
+          }}
+        >
+          立即部署
+        </a>
+      </span>,
+      5,
+    );
     props.onFinished?.();
     return true;
   };
@@ -39,85 +64,85 @@ const WebsiteEditModal = (props: WebsiteEditModalProps) => {
     return website;
   };
   return (
-    <ModalForm
-      title={props.id ? '编辑网站' : '新增网站'}
-      modalProps={{
-        destroyOnClose: true,
-      }}
-      request={getInitialValues}
-      params={{ id: props.id }}
-      trigger={props.children}
-      onFinish={onFinish}
-    >
-      <ProFormText name="id" label="ID" hidden />
-      <ProFormText name="domainId" label="域名ID" hidden />
-      <ProFormItem name="path" label="路径">
-        <Input addonBefore="/" placeholder="留空为根路径" />
-      </ProFormItem>
-      <ProFormItem name="type" label="使用场景" rules={[{ required: true }]}>
-        <Segmented
-          options={[
-            { value: 'LINK', label: '跳转' },
-            { value: 'LANDING', label: '落地页' },
+    <>
+      {contextHolder}
+      <ModalForm
+        title={props.id ? '编辑网站' : '新增网站'}
+        modalProps={{
+          destroyOnClose: true,
+        }}
+        request={getInitialValues}
+        params={{ id: props.id }}
+        trigger={props.children}
+        onFinish={onFinish}
+      >
+        <ProFormText name="id" label="ID" hidden />
+        <ProFormText name="domainId" label="域名ID" hidden />
+        <ProFormItem name="path" label="路径">
+          <Input addonBefore="/" placeholder="留空为根路径" />
+        </ProFormItem>
+        <ProFormItem name="type" label="使用场景" rules={[{ required: true }]}>
+          <Segmented
+            options={[
+              { value: 'LINK', label: '跳转' },
+              { value: 'LANDING', label: '落地页' },
+            ]}
+          />
+        </ProFormItem>
+        <ProFormDependency name={['type']}>
+          {({ type }) => {
+            if (type === 'LANDING') {
+              return (
+                <>
+                  <ProFormItem
+                    name="landingId"
+                    label="落地页"
+                    rules={[{ required: true }]}
+                  >
+                    <LandingSelectModal />
+                  </ProFormItem>
+                  <ProFormTextArea
+                    label="跟踪代码"
+                    name="extraScript"
+                  ></ProFormTextArea>
+                </>
+              );
+            }
+            return null;
+          }}
+        </ProFormDependency>
+        <ProFormText
+          name="targetLink"
+          label="跳转链接"
+          rules={[
+            {
+              required: true,
+            },
           ]}
+        ></ProFormText>
+        <ProFormSelect
+          name="cloakConfigId"
+          label="拦截配置"
+          request={api.cloakConfig.list}
+          rules={[{ required: true }]}
+          fieldProps={{
+            fieldNames: { label: 'name', value: 'id' },
+          }}
         />
-      </ProFormItem>
-      <ProFormDependency name={['type']}>
-        {({ type }) => {
-          if (type === 'LANDING') {
-            return (
-              <>
-                <ProFormItem
-                  name="landingId"
-                  label="落地页"
-                  rules={[{ required: true }]}
-                >
-                  <LandingSelectModal />
-                </ProFormItem>
-                <ProFormTextArea
-                  label="跟踪代码"
-                  name="extraScript"
-                ></ProFormTextArea>
-              </>
-            );
-          }
-          return null;
-        }}
-      </ProFormDependency>
-      <ProFormText
-        name="targetLink"
-        label="跳转链接"
-        rules={[
-          {
-            required: true,
-          },
-        ]}
-      ></ProFormText>
-      <ProFormSelect
-        name="cloakConfigId"
-        label="拦截配置"
-        request={api.cloakConfig.list}
-        fieldProps={{
-          fieldNames: { label: 'name', value: 'id' },
-        }}
-      />
 
-      {/*<ProFormSelect*/}
-      {/*  name="orders"*/}
-      {/*  mode="multiple"*/}
-      {/*  label="工单"*/}
-      {/*  request={api.order.list}*/}
-      {/*  transform={(value) => ({ orders: value.map((id) => ({ id })) })}*/}
-      {/*  fieldProps={{*/}
-      {/*    fieldNames: { label: 'businessName', value: 'id' },*/}
-      {/*  }}*/}
-      {/*/>*/}
-    </ModalForm>
+        {/*<ProFormSelect*/}
+        {/*  name="orders"*/}
+        {/*  mode="multiple"*/}
+        {/*  label="工单"*/}
+        {/*  request={api.order.list}*/}
+        {/*  transform={(value) => ({ orders: value.map((id) => ({ id })) })}*/}
+        {/*  fieldProps={{*/}
+        {/*    fieldNames: { label: 'businessName', value: 'id' },*/}
+        {/*  }}*/}
+        {/*/>*/}
+      </ModalForm>
+    </>
   );
 };
 
 export default WebsiteEditModal;
-
-
-// https://s0.wp.com/mshots/v1/https%3A%2F%2Fcloudworkers.company%2Fhk?w=720&h=960
-// https://s0.wp.com/mshots/v1/https%3A%2F%2Fcloudworkers.company%2Fhk?w=720&h=960
