@@ -1,5 +1,5 @@
 import api from '@/api';
-import { ModalForm, ProFormText } from '@ant-design/pro-form';
+import { ModalForm, ProFormRadio, ProFormText } from '@ant-design/pro-form';
 import { message } from 'antd';
 import React from 'react';
 
@@ -45,6 +45,15 @@ const ServerEditModal = (props: ServerEditModalProps) => {
           },
         ]}
       />
+      <ProFormRadio.Group
+        label="状态"
+        name="status"
+        valueEnum={{
+          CONNECTED: '连接',
+          DISCONNECTED: '断开连接',
+        }}
+      ></ProFormRadio.Group>
+      <ProFormText label="服务地址" name="address"></ProFormText>
     </ModalForm>
   );
 };
