@@ -18,6 +18,12 @@ export default defineConfig({
   },
   routes: [
     {
+      path: '/login',
+      layout: false,
+      hideInMenu: true,
+      component: './Login',
+    },
+    {
       path: '/',
       redirect: '/shortlink',
     },
@@ -111,12 +117,6 @@ export default defineConfig({
           component: './Dept',
         },
       ],
-    },
-    {
-      path: '/login',
-      layout: false,
-      hideInMenu: true,
-      component: './Login',
     },
   ],
   npmClient: 'pnpm',
