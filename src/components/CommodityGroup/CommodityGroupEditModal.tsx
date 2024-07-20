@@ -26,15 +26,20 @@ const CommodityGroupEditModal = (props: CommodityGroupEditModalProps) => {
   return (
     <ModalForm
       title={props.id ? '编辑商品组' : '新建商品组'}
-      modalProps={ {
+      modalProps={{
         destroyOnClose: true,
       }}
       request={getInitialValues}
-      params={ { id: props.id }}
+      params={{ id: props.id }}
       trigger={props.children}
       onFinish={onFinish}
     >
       <ProFormText name="id" label="ID" hidden />
+      <ProFormText
+        name="groupName"
+        label="分组名"
+        rules={[{ required: true }]}
+      />
     </ModalForm>
   );
 };

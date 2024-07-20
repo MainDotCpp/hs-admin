@@ -3,15 +3,22 @@ import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import { Button, Popconfirm, message } from 'antd';
 import { useRef } from 'react';
 
-import {{pascalCase name}}EditModal from '@/components/{{pascalCase name}}/{{pascalCase name}}EditModal';
+import CommodityItemEditModal from '@/components/CommodityItem/CommodityItemEditModal';
 import { useAccess } from '@@/plugin-access';
 
-export default function {{pascalCase name}}Table() {
+export default function CommodityItemTable(props: { commodityId: number }) {
   const access = useAccess();
   const actionRef = useRef<ActionType>();
-  const columns: ProColumns<API.{{pascalCase name}}>[] = [
+  const columns: ProColumns<API.CommodityItem>[] = [
     { dataIndex: 'id', title: 'ID', search: false, hidden: true },
-    { dataIndex: 'id', title: 'ID', width: 100, search: false },
+    { dataIndex: 'content', title: '内容', width: 100, search: false },
+    {
+      dataIndex: 'payed',
+      title: '是否售出',
+      width: 100,
+      search: false,
+      renderText: (text) => (text ? '✅' : '❎'),
+    },
     {
       dataIndex: 'id',
       title: '操作',
@@ -20,21 +27,21 @@ export default function {{pascalCase name}}Table() {
       width: 100,
       render: (text, record, _, action) => {
         return [
-          access.{{B_I_Z}}__EDIT && (
-            <{{pascalCase name}}EditModal
+          access.COMMODITY_ITEM__EDIT && (
+            <CommodityItemEditModal
               id={record.id}
               key="edit"
               onFinished={() => actionRef.current?.reload()}
             >
               <a>编辑</a>
-            </{{pascalCase name}}EditModal>
+            </CommodityItemEditModal>
           ),
-          access.{{B_I_Z}}__DELETE && (
+          access.COMMODITY_ITEM__DELETE && (
             <Popconfirm
               key="delete"
               title={`确定删除吗？`}
               onConfirm={async () => {
-                await api.{{camelCase name}}.deleteById({ id: record.id });
+                await api.commodityItem.deleteById({ id: record.id });
                 message.success('删除成功');
                 action.reload();
               }}
@@ -47,26 +54,27 @@ export default function {{pascalCase name}}Table() {
     },
   ];
   return (
-    <ProTable<API.{{pascalCase name}}>
+    <ProTable<API.CommodityItem>
       rowKey="id"
       search={false}
       actionRef={actionRef}
-      toolbar={ {
+      toolbar={{
         actions: [
-          access.{{B_I_Z}}__EDIT && (
-            <{{pascalCase name}}EditModal
+          access.COMMODITY_ITEM__EDIT && (
+            <CommodityItemEditModal
               key="create"
               onFinished={() => actionRef.current?.reload()}
             >
-              <Button type="primary">新建{{ comment }}</Button>
-            </{{pascalCase name}}EditModal>
+              <Button type="primary">新建库存</Button>
+            </CommodityItemEditModal>
           ),
         ],
       }}
       size="small"
-      scroll={ { x: 1000 }}
+      scroll={{ x: 1000 }}
       columns={columns}
-      request={api.{{camelCase name}}.page}
+      params={{ commodityId: props.commodityId }}
+      request={api.commodityItem.page}
     ></ProTable>
   );
 }

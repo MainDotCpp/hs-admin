@@ -3,13 +3,13 @@ import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import { Button, Popconfirm, message } from 'antd';
 import { useRef } from 'react';
 
-import CommodityGroupEditModal from '@/components/CommodityGroup/CommodityGroupEditModal';
+import {{pascalCase name}}EditModal from '@/components/{{pascalCase name}}/{{pascalCase name}}EditModal';
 import { useAccess } from '@@/plugin-access';
 
-export default function CommodityGroupTable() {
+export default function {{pascalCase name}}Table() {
   const access = useAccess();
   const actionRef = useRef<ActionType>();
-  const columns: ProColumns<API.CommodityGroup>[] = [
+  const columns: ProColumns<API.{{pascalCase name}}>[] = [
     { dataIndex: 'id', title: 'ID', search: false, hidden: true },
     { dataIndex: 'id', title: 'ID', width: 100, search: false },
     {
@@ -20,21 +20,21 @@ export default function CommodityGroupTable() {
       width: 100,
       render: (text, record, _, action) => {
         return [
-          access.__EDIT && (
-            <CommodityGroupEditModal
+          access.{{constantCase name}}__EDIT && (
+            <{{pascalCase name}}EditModal
               id={record.id}
               key="edit"
               onFinished={() => actionRef.current?.reload()}
             >
               <a>编辑</a>
-            </CommodityGroupEditModal>
+            </{{pascalCase name}}EditModal>
           ),
-          access.__DELETE && (
+          access.{{constantCase name}}__DELETE && (
             <Popconfirm
               key="delete"
               title={`确定删除吗？`}
               onConfirm={async () => {
-                await api.commodityGroup.deleteById({ id: record.id });
+                await api.{{camelCase name}}.deleteById({ id: record.id });
                 message.success('删除成功');
                 action.reload();
               }}
@@ -47,26 +47,26 @@ export default function CommodityGroupTable() {
     },
   ];
   return (
-    <ProTable<API.CommodityGroup>
+    <ProTable<API.{{pascalCase name}}>
       rowKey="id"
       search={false}
       actionRef={actionRef}
       toolbar={ {
         actions: [
-          access.__EDIT && (
-            <CommodityGroupEditModal
+          access.{{constantCase name}}__EDIT && (
+            <{{pascalCase name}}EditModal
               key="create"
               onFinished={() => actionRef.current?.reload()}
             >
-              <Button type="primary">新建商品组</Button>
-            </CommodityGroupEditModal>
+              <Button type="primary">新建{{ comment }}</Button>
+            </{{pascalCase name}}EditModal>
           ),
         ],
       }}
       size="small"
       scroll={ { x: 1000 }}
       columns={columns}
-      request={api.commodityGroup.page}
+      request={api.{{camelCase name}}.page}
     ></ProTable>
   );
 }

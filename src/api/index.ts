@@ -7,6 +7,10 @@ import * as blacklistIp from './blacklistIp';
 import * as cloak from './cloak';
 import * as cloakConfig from './cloakConfig';
 import * as cloakLog from './cloakLog';
+import * as commodity from './commodity';
+import * as commodityGroup from './commodityGroup';
+import * as commodityItem from './commodityItem';
+import * as commodityOrder from './commodityOrder';
 import * as dept from './dept';
 import * as domain from './domain';
 import * as landing from './landing';
@@ -18,9 +22,10 @@ import * as orderGroup from './orderGroup';
 import * as permission from './permission';
 import * as role from './role';
 import * as server from './server';
-import * as shortlink from './shortlink';
 import * as shortLinkEngine from './shortLinkEngine';
 import * as shortLinkGroup from './shortLinkGroup';
+import * as shortlink from './shortlink';
+import * as sysOrder from './sysOrder';
 import * as systemConfig from './systemConfig';
 import * as user from './user';
 import * as website from './website';
@@ -28,6 +33,7 @@ export default {
   website,
   user,
   systemConfig,
+  sysOrder,
   shortlink,
   shortLinkGroup,
   server,
@@ -41,6 +47,10 @@ export default {
   landingCloak,
   domain,
   dept,
+  commodityOrder,
+  commodityItem,
+  commodityGroup,
+  commodity,
   cloakLog,
   cloakConfig,
   cloak,

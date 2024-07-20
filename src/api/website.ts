@@ -2,6 +2,18 @@
 /* eslint-disable */
 import { request } from '@/utils/request';
 
+/** 检查站点斗篷 POST /website/check */
+export async function check(body: API.WebsiteCloakCheckDTO, options?: { [key: string]: any }) {
+  return request<API.CloakCheckResult>(`/api/website/check`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
 /** 通过ID删除网站 POST /website/deleteById */
 export async function deleteById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)

@@ -5,7 +5,7 @@ import { request } from '@/utils/request';
 /** 通过ID删除黑名单 ip POST /blacklistIp/deleteById */
 export async function deleteById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.delete16Params,
+  params: API.delete21Params,
   options?: { [key: string]: any },
 ) {
   return request<boolean>(`/api/blacklistIp/deleteById`, {
@@ -20,7 +20,7 @@ export async function deleteById(
 /** 根据ID获取黑名单 ip GET /blacklistIp/getById */
 export async function getById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.get17Params,
+  params: API.get22Params,
   options?: { [key: string]: any },
 ) {
   return request<API.BlacklistIp>(`/api/blacklistIp/getById`, {
@@ -35,7 +35,7 @@ export async function getById(
 /** 黑名单 ip列表 GET /blacklistIp/list */
 export async function list(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.list15Params,
+  params: API.list20Params,
   options?: { [key: string]: any },
 ) {
   return request<API.BlacklistIp[]>(`/api/blacklistIp/list`, {
@@ -52,7 +52,7 @@ export async function list(
 /** 分页查询黑名单 ip GET /blacklistIp/page */
 export async function page(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.page17Params,
+  params: API.page22Params,
   options?: { [key: string]: any },
 ) {
   return request<API.PageDTOBlacklistIp>(`/api/blacklistIp/page`, {

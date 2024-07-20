@@ -4,6 +4,11 @@ export default function Plopfile(plop) {
     prompts: [
       {
         type: 'input',
+        name: 'package',
+        message: '包名',
+      },
+      {
+        type: 'input',
         name: 'name',
         message: '业务名',
       },
@@ -23,15 +28,15 @@ export default function Plopfile(plop) {
       },
       {
         type: 'modify',
-        pattern: /};\n};/gm,
+        pattern: /return {(.*?)};/gms,
         templateFile: '_templates/permission.js.hbs',
         path: 'src/access.ts',
       },
       {
         type: 'modify',
-        pattern: /};\n};/gm,
+        pattern: /\/\/ ROUTES START(.*?)\/\/ ROUTES END/gms,
         templateFile: '_templates/router.js.hbs',
-        path: 'umirc.ts',
+        path: '.umirc.ts',
       },
     ],
   });

@@ -5,7 +5,7 @@ import { request } from '@/utils/request';
 /** 删除短链接配置 POST /shortlink/deleteById */
 export async function deleteById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.delete3Params,
+  params: API.delete4Params,
   options?: { [key: string]: any },
 ) {
   return request<boolean>(`/api/shortlink/deleteById`, {
@@ -20,7 +20,7 @@ export async function deleteById(
 /** 根据ID获取短链接配置 GET /shortlink/getById */
 export async function getById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.get3Params,
+  params: API.get4Params,
   options?: { [key: string]: any },
 ) {
   return request<API.ShortLinkConfig>(`/api/shortlink/getById`, {
@@ -50,7 +50,7 @@ export async function getByKey(
 /** 分页查询短链接配置 GET /shortlink/page */
 export async function page(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.page3Params,
+  params: API.page4Params,
   options?: { [key: string]: any },
 ) {
   return request<API.PageDTOShortLinkConfig>(`/api/shortlink/page`, {
