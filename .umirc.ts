@@ -17,7 +17,7 @@ export default defineConfig({
     },
   },
   routes: [
-      // ROUTES START(
+    // ROUTES START(
     {
       path: '/login',
       layout: false,
@@ -54,6 +54,13 @@ export default defineConfig({
       path: '/site',
       access: 'DOMAIN__VIEW',
       component: './Domain',
+    },
+    {
+      name: '在线商店',
+      icon: 'ShopOutlined',
+      path: '/store',
+      access: 'COMMODITY__VIEW',
+      component: './Commodity',
     },
     {
       name: '资源管理',
@@ -126,27 +133,7 @@ export default defineConfig({
         },
       ],
     },
-    {
-      name: '商品组',
-      icon: 'ClockCircleOutlined',
-      path: '/store/commodityGroup',
-      access: 'COMMODITY_GROUP__VIEW',
-      component: './CommodityGroup',
-    },
-    {
-      name: '商品',
-      icon: 'ClockCircleOutlined',
-      path: '/store/commodity',
-      access: 'COMMODITY__VIEW',
-      component: './Commodity',
-    },
-    {
-      name: '库存',
-      icon: 'ClockCircleOutlined',
-      path: '/store/commodityItem',
-      access: 'COMMODITY_ITEM__VIEW',
-      component: './CommodityItem',
-    },
+
     // ROUTES END
   ],
   npmClient: 'pnpm',

@@ -39,7 +39,7 @@ export default function CommodityTable() {
       width: 100,
       render: (text, record, _, action) => {
         return [
-          <YModal trigger={<a>查看</a>} key="view">
+          <YModal trigger={<a>查看</a>} key="view" width={1000} footer={false}>
             <CommodityItemTable commodityId={record.id} />
           </YModal>,
           access.COMMODITY__EDIT && (
@@ -61,7 +61,9 @@ export default function CommodityTable() {
                 action.reload();
               }}
             >
-              <a key="delete">删除</a>
+              <a key="delete" className="text-red-500">
+                删除
+              </a>
             </Popconfirm>
           ),
         ];

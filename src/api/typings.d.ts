@@ -243,12 +243,13 @@ declare namespace API {
 
   type CommodityDTO = {
     id?: number;
-    commodityGroupGroupName?: string;
     name?: string;
     description?: string;
     cover?: string;
     price?: number;
     stock?: number;
+    groupId?: number;
+    groupName?: string;
   };
 
   type CommodityGroupDTO = {
@@ -265,6 +266,10 @@ declare namespace API {
 
   type CommodityItemDTO = {
     id?: number;
+    content?: string;
+    payed?: boolean;
+    commodityId?: number;
+    commodityName?: string;
   };
 
   type CommodityOrderDTO = {

@@ -2,6 +2,18 @@
 /* eslint-disable */
 import { request } from '@/utils/request';
 
+/** 批量保存商品库存 POST /commodityItem/batchSave */
+export async function batchSave(body: API.CommodityItemDTO[], options?: { [key: string]: any }) {
+  return request<boolean>(`/api/commodityItem/batchSave`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
 /** 通过ID删除商品库存 POST /commodityItem/deleteById */
 export async function deleteById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)

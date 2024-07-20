@@ -15,7 +15,7 @@ export default function CommodityItemTable(props: { commodityId: number }) {
     {
       dataIndex: 'payed',
       title: '是否售出',
-      width: 100,
+      width: 50,
       search: false,
       renderText: (text) => (text ? '✅' : '❎'),
     },
@@ -24,12 +24,13 @@ export default function CommodityItemTable(props: { commodityId: number }) {
       title: '操作',
       valueType: 'option',
       fixed: 'right',
-      width: 100,
+      width: 50,
       render: (text, record, _, action) => {
         return [
           access.COMMODITY_ITEM__EDIT && (
             <CommodityItemEditModal
               id={record.id}
+              commodityId={props.commodityId}
               key="edit"
               onFinished={() => actionRef.current?.reload()}
             >
@@ -46,7 +47,9 @@ export default function CommodityItemTable(props: { commodityId: number }) {
                 action.reload();
               }}
             >
-              <a key="delete">删除</a>
+              <a key="delete" className="text-red-500">
+                删除
+              </a>
             </Popconfirm>
           ),
         ];
@@ -57,12 +60,14 @@ export default function CommodityItemTable(props: { commodityId: number }) {
     <ProTable<API.CommodityItem>
       rowKey="id"
       search={false}
+      ghost
       actionRef={actionRef}
       toolbar={{
         actions: [
           access.COMMODITY_ITEM__EDIT && (
             <CommodityItemEditModal
               key="create"
+              commodityId={props.commodityId}
               onFinished={() => actionRef.current?.reload()}
             >
               <Button type="primary">新建库存</Button>
@@ -71,7 +76,6 @@ export default function CommodityItemTable(props: { commodityId: number }) {
         ],
       }}
       size="small"
-      scroll={{ x: 1000 }}
       columns={columns}
       params={{ commodityId: props.commodityId }}
       request={api.commodityItem.page}

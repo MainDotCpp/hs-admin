@@ -39,7 +39,9 @@ export default function SysOrderTable() {
                 action.reload();
               }}
             >
-              <a key="delete">删除</a>
+              <a key="delete" className="text-red-500">
+                删除
+              </a>
             </Popconfirm>
           ),
         ];
@@ -51,7 +53,7 @@ export default function SysOrderTable() {
       rowKey="id"
       search={false}
       actionRef={actionRef}
-      toolbar={ {
+      toolbar={{
         actions: [
           access.SYS_ORDER__EDIT && (
             <SysOrderEditModal
@@ -64,7 +66,7 @@ export default function SysOrderTable() {
         ],
       }}
       size="small"
-      scroll={ { x: 1000 }}
+      scroll={{ x: 1000 }}
       columns={columns}
       request={api.sysOrder.page}
     ></ProTable>

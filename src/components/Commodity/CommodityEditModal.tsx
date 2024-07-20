@@ -40,22 +40,26 @@ const CommodityEditModal = (props: CommodityEditModalProps) => {
         name="groupId"
         label="分组"
         request={api.commodityGroup.list}
+        rules={[{ required: true }]}
         fieldProps={{ fieldNames: { label: 'groupName', value: 'id' } }}
       />
-      <ProFormText name="name" label="商品名" />
+      <ProFormText name="name" label="商品名" rules={[{ required: true }]} />
       <ProFormText name="description" label="商品描述" />
       <ProFormSelect
         name="cover"
+        rules={[{ required: true }]}
         label="图标"
         valueEnum={{
-          TK: '图标1',
-          TK2: '图标2',
+          TK: '抖音',
+          FACEBOOK: 'Facebook',
+          GOOGLE: '谷歌',
         }}
       />
       <ProFormText
         name="price"
         label="价格"
         transform={(v) => ({ price: v * 100 })}
+        rules={[{ required: true }]}
       />
     </ModalForm>
   );
