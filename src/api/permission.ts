@@ -5,7 +5,7 @@ import { request } from '@/utils/request';
 /** 通过ID删除权限 POST /permission/deleteById */
 export async function deleteById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.delete7Params,
+  params: API.delete8Params,
   options?: { [key: string]: any },
 ) {
   return request<boolean>(`/api/permission/deleteById`, {
@@ -20,7 +20,7 @@ export async function deleteById(
 /** 根据ID获取权限 GET /permission/getById */
 export async function getById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.get7Params,
+  params: API.get8Params,
   options?: { [key: string]: any },
 ) {
   return request<API.Permission>(`/api/permission/getById`, {
@@ -35,7 +35,7 @@ export async function getById(
 /** 权限列表 GET /permission/list */
 export async function list(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.list6Params,
+  params: API.list7Params,
   options?: { [key: string]: any },
 ) {
   return request<API.Permission[]>(`/api/permission/list`, {
@@ -52,7 +52,7 @@ export async function list(
 /** 分页查询权限 GET /permission/page */
 export async function page(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.page7Params,
+  params: API.page8Params,
   options?: { [key: string]: any },
 ) {
   return request<API.PageDTOPermission>(`/api/permission/page`, {

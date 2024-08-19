@@ -5,7 +5,7 @@ import { request } from '@/utils/request';
 /** 通过ID删除落地页配置 POST /loadingConfig/deleteById */
 export async function deleteById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.delete10Params,
+  params: API.delete11Params,
   options?: { [key: string]: any },
 ) {
   return request<boolean>(`/api/loadingConfig/deleteById`, {
@@ -20,7 +20,7 @@ export async function deleteById(
 /** 根据ID获取落地页配置 GET /loadingConfig/getById */
 export async function getById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.get10Params,
+  params: API.get11Params,
   options?: { [key: string]: any },
 ) {
   return request<API.LoadingConfig>(`/api/loadingConfig/getById`, {
@@ -50,7 +50,7 @@ export async function getByPath(
 /** 落地页配置列表 GET /loadingConfig/list */
 export async function list(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.list9Params,
+  params: API.list10Params,
   options?: { [key: string]: any },
 ) {
   return request<API.LoadingConfig[]>(`/api/loadingConfig/list`, {
@@ -67,7 +67,7 @@ export async function list(
 /** 分页查询落地页配置 GET /loadingConfig/page */
 export async function page(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.page10Params,
+  params: API.page11Params,
   options?: { [key: string]: any },
 ) {
   return request<API.PageDTOLoadingConfig>(`/api/loadingConfig/page`, {

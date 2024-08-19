@@ -1,9 +1,19 @@
 declare namespace API {
+  type AlipayTradePrecreateResponse = {
+    httpBody?: string;
+    code?: string;
+    msg?: string;
+    subCode?: string;
+    subMsg?: string;
+    outTradeNo?: string;
+    qrCode?: string;
+  };
+
   type BlacklistIp = {
     id?: number;
     ip: {
       hostAddress?: string;
-      address?: string[];
+      address?: string;
       hostName?: string;
       linkLocalAddress?: boolean;
       multicastAddress?: boolean;
@@ -29,7 +39,7 @@ declare namespace API {
     total?: number;
   };
 
-  type check1Params = {
+  type check2Params = {
     key: string;
   };
 
@@ -189,7 +199,7 @@ declare namespace API {
     relatedId?: number;
     /** 访问 URL */
     accessUrl?: string;
-    scene?: 'SHORT_LINK' | 'LANDING_PAGE' | 'API';
+    scene?: 'SHORT_LINK' | 'LANDING_PAGE' | 'WEBSITE' | 'API';
   };
 
   type CloakLogQueryDTO = {
@@ -219,7 +229,66 @@ declare namespace API {
       | 'FORBID_BY_THIRD_CLOAK'
       | 'FORBID_BY_BLACKLIST_IP';
     relatedId: number;
-    scene?: 'SHORT_LINK' | 'LANDING_PAGE' | 'API';
+    scene?: 'SHORT_LINK' | 'LANDING_PAGE' | 'WEBSITE' | 'API';
+  };
+
+  type CommodityDto = {
+    id?: number;
+    name?: string;
+    description?: string;
+    cover?: string;
+    price?: number;
+    stock?: number;
+  };
+
+  type CommodityDTO = {
+    id?: number;
+    name?: string;
+    description?: string;
+    cover?: string;
+    price?: number;
+    stock?: number;
+    groupId?: number;
+    groupName?: string;
+  };
+
+  type CommodityGroupDTO = {
+    id?: number;
+    groupName?: string;
+    commodities?: CommodityDto[];
+  };
+
+  type CommodityItemDto = {
+    id?: number;
+    content?: string;
+    payed?: boolean;
+  };
+
+  type CommodityItemDTO = {
+    id?: number;
+    content?: string;
+    payed?: boolean;
+    commodityId?: number;
+    commodityName?: string;
+  };
+
+  type CommodityOrderDTO = {
+    id?: number;
+    commodityId?: number;
+    commodityName?: string;
+    email?: string;
+    password?: string;
+    count?: number;
+    status?: number;
+    sysOrderId?: number;
+    createTime?: string;
+    commodityItems?: CommodityItemDto[];
+  };
+
+  type CreateCommodityOrderResponse = {
+    qrCode?: string;
+    orderNo?: string;
+    totalAmount?: number;
   };
 
   type delete10Params = {
@@ -243,14 +312,34 @@ declare namespace API {
   };
 
   type delete15Params = {
-    id: string;
+    id: number;
   };
 
   type delete16Params = {
     id: number;
   };
 
+  type delete17Params = {
+    id: number;
+  };
+
+  type delete18Params = {
+    id: number;
+  };
+
+  type delete19Params = {
+    id: number;
+  };
+
   type delete1Params = {
+    id: number;
+  };
+
+  type delete20Params = {
+    id: string;
+  };
+
+  type delete21Params = {
     id: number;
   };
 
@@ -360,14 +449,34 @@ declare namespace API {
   };
 
   type get16Params = {
-    id: string;
+    id: number;
   };
 
   type get17Params = {
     id: number;
   };
 
+  type get18Params = {
+    id: number;
+  };
+
+  type get19Params = {
+    id: number;
+  };
+
   type get1Params = {
+    id: number;
+  };
+
+  type get20Params = {
+    id: number;
+  };
+
+  type get21Params = {
+    id: string;
+  };
+
+  type get22Params = {
     id: number;
   };
 
@@ -450,6 +559,36 @@ declare namespace API {
     data?: CloakLog;
   };
 
+  type HttpResultCommodityDTO = {
+    code?: number;
+    message?: string;
+    data?: CommodityDTO;
+  };
+
+  type HttpResultCommodityGroupDTO = {
+    code?: number;
+    message?: string;
+    data?: CommodityGroupDTO;
+  };
+
+  type HttpResultCommodityItemDTO = {
+    code?: number;
+    message?: string;
+    data?: CommodityItemDTO;
+  };
+
+  type HttpResultCommodityOrderDTO = {
+    code?: number;
+    message?: string;
+    data?: CommodityOrderDTO;
+  };
+
+  type HttpResultCreateCommodityOrderResponse = {
+    code?: number;
+    message?: string;
+    data?: CreateCommodityOrderResponse;
+  };
+
   type HttpResultDept = {
     code?: number;
     message?: string;
@@ -484,6 +623,30 @@ declare namespace API {
     code?: number;
     message?: string;
     data?: CloakConfig[];
+  };
+
+  type HttpResultListCommodityDTO = {
+    code?: number;
+    message?: string;
+    data?: CommodityDTO[];
+  };
+
+  type HttpResultListCommodityGroupDTO = {
+    code?: number;
+    message?: string;
+    data?: CommodityGroupDTO[];
+  };
+
+  type HttpResultListCommodityItemDTO = {
+    code?: number;
+    message?: string;
+    data?: CommodityItemDTO[];
+  };
+
+  type HttpResultListCommodityOrderDTO = {
+    code?: number;
+    message?: string;
+    data?: CommodityOrderDTO[];
   };
 
   type HttpResultListDept = {
@@ -552,6 +715,12 @@ declare namespace API {
     data?: ShortLinkGroup[];
   };
 
+  type HttpResultListSysOrderDTO = {
+    code?: number;
+    message?: string;
+    data?: SysOrderDTO[];
+  };
+
   type HttpResultListSystemConfigDTO = {
     code?: number;
     message?: string;
@@ -610,6 +779,30 @@ declare namespace API {
     code?: number;
     message?: string;
     data?: PageDTOCloakLog;
+  };
+
+  type HttpResultPageDTOCommodityDTO = {
+    code?: number;
+    message?: string;
+    data?: PageDTOCommodityDTO;
+  };
+
+  type HttpResultPageDTOCommodityGroupDTO = {
+    code?: number;
+    message?: string;
+    data?: PageDTOCommodityGroupDTO;
+  };
+
+  type HttpResultPageDTOCommodityItemDTO = {
+    code?: number;
+    message?: string;
+    data?: PageDTOCommodityItemDTO;
+  };
+
+  type HttpResultPageDTOCommodityOrderDTO = {
+    code?: number;
+    message?: string;
+    data?: PageDTOCommodityOrderDTO;
   };
 
   type HttpResultPageDTODept = {
@@ -684,6 +877,12 @@ declare namespace API {
     data?: PageDTOShortLinkGroup;
   };
 
+  type HttpResultPageDTOSysOrderDTO = {
+    code?: number;
+    message?: string;
+    data?: PageDTOSysOrderDTO;
+  };
+
   type HttpResultPageDTOSystemConfigDTO = {
     code?: number;
     message?: string;
@@ -736,6 +935,12 @@ declare namespace API {
     code?: number;
     message?: string;
     data?: string;
+  };
+
+  type HttpResultSysOrderDTO = {
+    code?: number;
+    message?: string;
+    data?: SysOrderDTO;
   };
 
   type HttpResultSystemConfigDTO = {
@@ -829,31 +1034,51 @@ declare namespace API {
   };
 
   type list10Params = {
-    queryDTO: LandingTemplateQueryDTO;
+    queryDTO: LoadingConfigQueryDTO;
   };
 
   type list11Params = {
-    queryDTO: LandingDTO;
+    queryDTO: LandingTemplateQueryDTO;
   };
 
   type list12Params = {
-    queryDTO: DomainDTO;
+    queryDTO: LandingDTO;
   };
 
   type list13Params = {
-    queryDTO: DeptQueryDTO;
+    queryDTO: DomainDTO;
   };
 
   type list14Params = {
-    queryDTO: CloakConfigQueryDTO;
+    queryDTO: DeptQueryDTO;
   };
 
   type list15Params = {
-    queryDTO: BlacklistIpQueryDTO;
+    queryDTO: CommodityOrderDTO;
+  };
+
+  type list16Params = {
+    queryDTO: CommodityItemDTO;
+  };
+
+  type list17Params = {
+    queryDTO: CommodityGroupDTO;
+  };
+
+  type list18Params = {
+    queryDTO: CommodityDTO;
+  };
+
+  type list19Params = {
+    queryDTO: CloakConfigQueryDTO;
   };
 
   type list1Params = {
     queryDTO: UserQueryDTO;
+  };
+
+  type list20Params = {
+    queryDTO: BlacklistIpQueryDTO;
   };
 
   type list2Params = {
@@ -861,31 +1086,31 @@ declare namespace API {
   };
 
   type list3Params = {
-    queryDTO: ShortLinkGroupQueryDTO;
+    queryDTO: SysOrderDTO;
   };
 
   type list4Params = {
-    queryDTO: ServerDTO;
+    queryDTO: ShortLinkGroupQueryDTO;
   };
 
   type list5Params = {
-    queryDTO: RoleQueryDTO;
+    queryDTO: ServerDTO;
   };
 
   type list6Params = {
-    queryDTO: PermissionQueryDTO;
+    queryDTO: RoleQueryDTO;
   };
 
   type list7Params = {
-    queryDTO: OrderGroupDTO;
+    queryDTO: PermissionQueryDTO;
   };
 
   type list8Params = {
-    queryDTO: OrderDTO;
+    queryDTO: OrderGroupDTO;
   };
 
   type list9Params = {
-    queryDTO: LoadingConfigQueryDTO;
+    queryDTO: OrderDTO;
   };
 
   type listParams = {
@@ -944,43 +1169,73 @@ declare namespace API {
   };
 
   type page10Params = {
-    queryDTO: LoadingConfigQueryDTO;
+    queryDTO: OrderDTO;
+    current: number;
+    pageSize: number;
   };
 
   type page11Params = {
-    queryDTO: LandingTemplateQueryDTO;
+    queryDTO: LoadingConfigQueryDTO;
   };
 
   type page12Params = {
+    queryDTO: LandingTemplateQueryDTO;
+  };
+
+  type page13Params = {
     queryDTO: LandingDTO;
     current: number;
     pageSize: number;
   };
 
-  type page13Params = {
+  type page14Params = {
     queryDTO: DomainDTO;
     current: number;
     pageSize: number;
   };
 
-  type page14Params = {
+  type page15Params = {
     queryDTO: DeptQueryDTO;
   };
 
-  type page15Params = {
-    queryDTO: CloakLogQueryDTO;
-  };
-
   type page16Params = {
-    queryDTO: CloakConfigQueryDTO;
+    queryDTO: CommodityOrderDTO;
+    current: number;
+    pageSize: number;
   };
 
   type page17Params = {
-    queryDTO: BlacklistIpQueryDTO;
+    queryDTO: CommodityItemDTO;
+    current: number;
+    pageSize: number;
+  };
+
+  type page18Params = {
+    queryDTO: CommodityGroupDTO;
+    current: number;
+    pageSize: number;
+  };
+
+  type page19Params = {
+    queryDTO: CommodityDTO;
+    current: number;
+    pageSize: number;
   };
 
   type page1Params = {
     queryDTO: UserQueryDTO;
+  };
+
+  type page20Params = {
+    queryDTO: CloakLogQueryDTO;
+  };
+
+  type page21Params = {
+    queryDTO: CloakConfigQueryDTO;
+  };
+
+  type page22Params = {
+    queryDTO: BlacklistIpQueryDTO;
   };
 
   type page2Params = {
@@ -990,35 +1245,35 @@ declare namespace API {
   };
 
   type page3Params = {
-    pageDTO: ShortLinkConfigQueryDTO;
+    queryDTO: SysOrderDTO;
+    current: number;
+    pageSize: number;
   };
 
   type page4Params = {
-    queryDTO: ShortLinkGroupQueryDTO;
+    pageDTO: ShortLinkConfigQueryDTO;
   };
 
   type page5Params = {
+    queryDTO: ShortLinkGroupQueryDTO;
+  };
+
+  type page6Params = {
     queryDTO: ServerDTO;
     current: number;
     pageSize: number;
   };
 
-  type page6Params = {
+  type page7Params = {
     queryDTO: RoleQueryDTO;
   };
 
-  type page7Params = {
+  type page8Params = {
     queryDTO: PermissionQueryDTO;
   };
 
-  type page8Params = {
-    queryDTO: OrderGroupDTO;
-    current: number;
-    pageSize: number;
-  };
-
   type page9Params = {
-    queryDTO: OrderDTO;
+    queryDTO: OrderGroupDTO;
     current: number;
     pageSize: number;
   };
@@ -1049,6 +1304,46 @@ declare namespace API {
     /** 页面大小 */
     pageSize?: number;
     data?: CloakLog[];
+    /** 总数 */
+    total?: number;
+  };
+
+  type PageDTOCommodityDTO = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: CommodityDTO[];
+    /** 总数 */
+    total?: number;
+  };
+
+  type PageDTOCommodityGroupDTO = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: CommodityGroupDTO[];
+    /** 总数 */
+    total?: number;
+  };
+
+  type PageDTOCommodityItemDTO = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: CommodityItemDTO[];
+    /** 总数 */
+    total?: number;
+  };
+
+  type PageDTOCommodityOrderDTO = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: CommodityOrderDTO[];
     /** 总数 */
     total?: number;
   };
@@ -1173,6 +1468,16 @@ declare namespace API {
     total?: number;
   };
 
+  type PageDTOSysOrderDTO = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: SysOrderDTO[];
+    /** 总数 */
+    total?: number;
+  };
+
   type PageDTOSystemConfigDTO = {
     /** 页码 */
     current?: number;
@@ -1209,6 +1514,26 @@ declare namespace API {
     pageSize: number;
   };
 
+  type payCallback2Params = {
+    notifyDTO: Record<string, any>;
+  };
+
+  type payCallback3Params = {
+    notifyDTO: Record<string, any>;
+  };
+
+  type payCallback4Params = {
+    notifyDTO: Record<string, any>;
+  };
+
+  type payCallback5Params = {
+    notifyDTO: Record<string, any>;
+  };
+
+  type payCallbackParams = {
+    notifyDTO: Record<string, any>;
+  };
+
   type Permission = {
     id?: number;
     name?: string;
@@ -1223,6 +1548,10 @@ declare namespace API {
     data?: Permission[];
     /** 总数 */
     total?: number;
+  };
+
+  type queryPayStatusParams = {
+    orderNo: string;
   };
 
   type receiveParams = {
@@ -1267,6 +1596,11 @@ declare namespace API {
     name?: string;
     port?: number;
     status?: 'CONNECTED' | 'DISCONNECTED';
+    address?: string;
+  };
+
+  type setBlacklistIpParams = {
+    blacklistIp: string;
   };
 
   type SetRoleDTO = {
@@ -1323,6 +1657,20 @@ declare namespace API {
     data?: ShortLinkGroup[];
     /** 总数 */
     total?: number;
+  };
+
+  type SysOrderDTO = {
+    id?: number;
+    description?: string;
+    orderType?: 'STORE';
+    status?: 'UNPAID' | 'PAID' | 'CANCELLED' | 'REFUNDED';
+    payAmount?: number;
+    createTime?: string;
+    payTime?: string;
+    orderNo?: string;
+    totalAmount?: number;
+    alipayTradePrecreateResponse?: AlipayTradePrecreateResponse;
+    subject?: string;
   };
 
   type SystemConfigDTO = {
@@ -1401,6 +1749,14 @@ declare namespace API {
     deptId?: string;
   };
 
+  type WebsiteCloakCheckDTO = {
+    /** 斗篷ID */
+    cloakKey?: string;
+    /** 站点ID */
+    websiteId?: number;
+    clientInfo?: CloakCheckDTO;
+  };
+
   type WebsiteDTO = {
     id?: number;
     path?: string;
@@ -1416,5 +1772,6 @@ declare namespace API {
     orders?: OrderDTO[];
     domainId?: number;
     targetLink?: string;
+    extraScript?: string;
   };
 }
