@@ -3,6 +3,7 @@ import { countriesEnum } from '@/constants/countries';
 import CloakConfigEditModal from '@/pages/CloakConfig/CloakConfigEditModal';
 import { useAccess } from '@@/plugin-access';
 import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
+import { ModalForm, ProFormTextArea } from '@ant-design/pro-form';
 import { PageContainer } from '@ant-design/pro-layout';
 import { Button, Popconfirm, Tag, message } from 'antd';
 import { useRef } from 'react';
@@ -149,6 +150,24 @@ export default function Page() {
         actionRef={actionRef}
         toolbar={{
           actions: [
+            <ModalForm
+              trigger={<Button type={'dashed'}>配置黑名单</Button>}
+              title="配置黑名单"
+              key="set-black-list"
+              request={async () => {
+                let data = await api.blacklistIp.getBlacklistIp({});
+                return { data };
+              }}
+              onFinish={async (formData) => {
+                await api.blacklistIp.setBlacklistIp({
+                  blacklistIp: formData.data,
+                });
+                message.success('保存成功');
+                return true;
+              }}
+            >
+              <ProFormTextArea name={'data'} label="黑名单" />
+            </ModalForm>,
             access.CLOAK__EDIT && (
               <CloakConfigEditModal
                 key="create"
