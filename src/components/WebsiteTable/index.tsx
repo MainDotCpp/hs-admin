@@ -127,7 +127,7 @@ export default function WebsiteTable({ domain }: { domain: API.DomainDTO }) {
                 action.reload();
               }}
             >
-              <a key="delete" style={{ color: 'red' }}>
+              <a key="delete" className="text-red-500" style={{ color: 'red' }}>
                 删除
               </a>
             </Popconfirm>

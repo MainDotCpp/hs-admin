@@ -54,7 +54,9 @@ export default function OrderGroupTable() {
                 action.reload();
               }}
             >
-              <a key="delete">删除</a>
+              <a key="delete" className="text-red-500">
+                删除
+              </a>
             </Popconfirm>
           ),
         ];

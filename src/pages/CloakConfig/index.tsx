@@ -1,11 +1,11 @@
-import React, { useRef } from 'react';
-import { PageContainer } from '@ant-design/pro-layout';
-import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import api from '@/api';
-import { Button, message, Popconfirm, Tag } from 'antd';
+import { countriesEnum } from '@/constants/countries';
 import CloakConfigEditModal from '@/pages/CloakConfig/CloakConfigEditModal';
 import { useAccess } from '@@/plugin-access';
-import { countriesEnum } from '@/constants/countries';
+import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
+import { PageContainer } from '@ant-design/pro-layout';
+import { Button, Popconfirm, Tag, message } from 'antd';
+import { useRef } from 'react';
 
 export default function Page() {
   const access = useAccess();
@@ -15,8 +15,22 @@ export default function Page() {
   };
 
   const columns: ProColumns<API.CloakConfig>[] = [
-    { dataIndex: 'id', title: 'ID', search: false, hidden: true, width: 100, ellipsis: true },
-    { dataIndex: 'name', title: '配置名称', width: 100, search: false, width: 100, ellipsis: true },
+    {
+      dataIndex: 'id',
+      title: 'ID',
+      search: false,
+      hidden: true,
+      width: 100,
+      ellipsis: true,
+    },
+    {
+      dataIndex: 'name',
+      title: '配置名称',
+      width: 100,
+      search: false,
+      width: 100,
+      ellipsis: true,
+    },
     {
       dataIndex: 'allowRegion',
       title: '地区检测',
@@ -24,11 +38,15 @@ export default function Page() {
       width: 100,
       align: 'center',
       ellipsis: true,
-      renderText: (text, record) => <>
-        {record.enableRegionDetection ? text?.split(',').map(code => {
-          return <Tag>{countriesEnum[code]}</Tag>;
-        }) : '✖'}
-      </>,
+      renderText: (text, record) => (
+        <>
+          {record.enableRegionDetection
+            ? text?.split(',').map((code) => {
+                return <Tag>{countriesEnum[code]}</Tag>;
+              })
+            : '✖'}
+        </>
+      ),
     },
     {
       dataIndex: 'enableSpiderDetection',
@@ -37,9 +55,7 @@ export default function Page() {
       width: 50,
       align: 'center',
       ellipsis: true,
-      render: (_, record) => <>
-        {record.enableSpiderDetection ? '✅' : '✖'}
-      </>,
+      render: (_, record) => <>{record.enableSpiderDetection ? '✅' : '✖'}</>,
     },
     {
       dataIndex: 'enableLanguageDetection',
@@ -48,9 +64,7 @@ export default function Page() {
       width: 50,
       align: 'center',
       ellipsis: true,
-      render: (_, record) => <>
-        {record.enableLanguageDetection ? '✅' : '✖'}
-      </>,
+      render: (_, record) => <>{record.enableLanguageDetection ? '✅' : '✖'}</>,
     },
     {
       dataIndex: 'enableProxyDetection',
@@ -59,9 +73,7 @@ export default function Page() {
       width: 50,
       align: 'center',
       ellipsis: true,
-      render: (_, record) => <>
-        {record.enableProxyDetection ? '✅' : '✖'}
-      </>,
+      render: (_, record) => <>{record.enableProxyDetection ? '✅' : '✖'}</>,
     },
     {
       dataIndex: 'enableUaDetection',
@@ -70,9 +82,7 @@ export default function Page() {
       width: 50,
       align: 'center',
       ellipsis: true,
-      render: (_, record) => <>
-        {record.enableUaDetection ? '✅' : '✖'}
-      </>,
+      render: (_, record) => <>{record.enableUaDetection ? '✅' : '✖'}</>,
     },
     {
       dataIndex: 'useCloakProvider',
@@ -81,10 +91,15 @@ export default function Page() {
       align: 'center',
       search: false,
       ellipsis: true,
-      renderText: (text) => text ? '✔' : '✖',
+      renderText: (text) => (text ? '✔' : '✖'),
     },
     {
-      dataIndex: 'cloakProvider', title: '第三方 CLOAK', width: 100, search: false, width: 100, ellipsis: true,
+      dataIndex: 'cloakProvider',
+      title: '第三方 CLOAK',
+      width: 100,
+      search: false,
+      width: 100,
+      ellipsis: true,
       align: 'center',
       valueEnum: {
         SHENG_DUN: '圣盾',
@@ -99,18 +114,30 @@ export default function Page() {
       width: 100,
       render: (text, record, _, action) => {
         return [
-          access.CLOAK__EDIT && <CloakConfigEditModal id={record.id} key="edit" onFinished={action?.reload}>
-            <a>编辑</a>
-          </CloakConfigEditModal>,
-          access.CLOAK__DELETE && <Popconfirm
-            key="delete"
-            title={`确定删除吗？`} onConfirm={async () => {
-            await api.cloakConfig.deleteById({ id: record.id });
-            message.success('删除成功');
-            action.reload();
-          }}>
-            <a key="delete">删除</a>
-          </Popconfirm>,
+          access.CLOAK__EDIT && (
+            <CloakConfigEditModal
+              id={record.id}
+              key="edit"
+              onFinished={action?.reload}
+            >
+              <a>编辑</a>
+            </CloakConfigEditModal>
+          ),
+          access.CLOAK__DELETE && (
+            <Popconfirm
+              key="delete"
+              title={`确定删除吗？`}
+              onConfirm={async () => {
+                await api.cloakConfig.deleteById({ id: record.id });
+                message.success('删除成功');
+                action.reload();
+              }}
+            >
+              <a key="delete" className="text-red-500">
+                删除
+              </a>
+            </Popconfirm>
+          ),
         ];
       },
     },
@@ -122,9 +149,14 @@ export default function Page() {
         actionRef={actionRef}
         toolbar={{
           actions: [
-            access.CLOAK__EDIT && <CloakConfigEditModal key="create" onFinished={() => actionRef.current?.reload()}>
-              <Button type="primary">新建</Button>
-            </CloakConfigEditModal>,
+            access.CLOAK__EDIT && (
+              <CloakConfigEditModal
+                key="create"
+                onFinished={() => actionRef.current?.reload()}
+              >
+                <Button type="primary">新建</Button>
+              </CloakConfigEditModal>
+            ),
           ],
         }}
         size="small"

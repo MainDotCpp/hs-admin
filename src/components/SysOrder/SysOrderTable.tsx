@@ -3,13 +3,13 @@ import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import { Button, Popconfirm, message } from 'antd';
 import { useRef } from 'react';
 
-import LandingEditModal from '@/components/Landing/LandingEditModal';
+import SysOrderEditModal from '@/components/SysOrder/SysOrderEditModal';
 import { useAccess } from '@@/plugin-access';
 
-export default function LandingTable() {
+export default function SysOrderTable() {
   const access = useAccess();
   const actionRef = useRef<ActionType>();
-  const columns: ProColumns<API.Landing>[] = [
+  const columns: ProColumns<API.SysOrder>[] = [
     { dataIndex: 'id', title: 'ID', search: false, hidden: true },
     { dataIndex: 'id', title: 'ID', width: 100, search: false },
     {
@@ -20,21 +20,21 @@ export default function LandingTable() {
       width: 100,
       render: (text, record, _, action) => {
         return [
-          access.LANDING__EDIT && (
-            <LandingEditModal
+          access.SYS_ORDER__EDIT && (
+            <SysOrderEditModal
               id={record.id}
               key="edit"
               onFinished={() => actionRef.current?.reload()}
             >
               <a>编辑</a>
-            </LandingEditModal>
+            </SysOrderEditModal>
           ),
-          access.LANDING__DELETE && (
+          access.SYS_ORDER__DELETE && (
             <Popconfirm
               key="delete"
               title={`确定删除吗？`}
               onConfirm={async () => {
-                await api.landing.deleteById({ id: record.id });
+                await api.sysOrder.deleteById({ id: record.id });
                 message.success('删除成功');
                 action.reload();
               }}
@@ -49,26 +49,26 @@ export default function LandingTable() {
     },
   ];
   return (
-    <ProTable<API.Landing>
+    <ProTable<API.SysOrder>
       rowKey="id"
       search={false}
       actionRef={actionRef}
       toolbar={{
         actions: [
-          access.LANDING__EDIT && (
-            <LandingEditModal
+          access.SYS_ORDER__EDIT && (
+            <SysOrderEditModal
               key="create"
               onFinished={() => actionRef.current?.reload()}
             >
-              <Button type="primary">新建落地页</Button>
-            </LandingEditModal>
+              <Button type="primary">新建系统订单</Button>
+            </SysOrderEditModal>
           ),
         ],
       }}
       size="small"
       scroll={{ x: 1000 }}
       columns={columns}
-      request={api.landing.page}
+      request={api.sysOrder.page}
     ></ProTable>
   );
 }

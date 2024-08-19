@@ -3,38 +3,46 @@ import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import { Button, Popconfirm, message } from 'antd';
 import { useRef } from 'react';
 
-import LandingEditModal from '@/components/Landing/LandingEditModal';
+import CommodityItemEditModal from '@/components/CommodityItem/CommodityItemEditModal';
 import { useAccess } from '@@/plugin-access';
 
-export default function LandingTable() {
+export default function CommodityItemTable(props: { commodityId: number }) {
   const access = useAccess();
   const actionRef = useRef<ActionType>();
-  const columns: ProColumns<API.Landing>[] = [
+  const columns: ProColumns<API.CommodityItem>[] = [
     { dataIndex: 'id', title: 'ID', search: false, hidden: true },
-    { dataIndex: 'id', title: 'ID', width: 100, search: false },
+    { dataIndex: 'content', title: '内容', width: 100, search: false },
+    {
+      dataIndex: 'payed',
+      title: '是否售出',
+      width: 50,
+      search: false,
+      renderText: (text) => (text ? '✅' : '❎'),
+    },
     {
       dataIndex: 'id',
       title: '操作',
       valueType: 'option',
       fixed: 'right',
-      width: 100,
+      width: 50,
       render: (text, record, _, action) => {
         return [
-          access.LANDING__EDIT && (
-            <LandingEditModal
+          access.COMMODITY_ITEM__EDIT && (
+            <CommodityItemEditModal
               id={record.id}
+              commodityId={props.commodityId}
               key="edit"
               onFinished={() => actionRef.current?.reload()}
             >
               <a>编辑</a>
-            </LandingEditModal>
+            </CommodityItemEditModal>
           ),
-          access.LANDING__DELETE && (
+          access.COMMODITY_ITEM__DELETE && (
             <Popconfirm
               key="delete"
               title={`确定删除吗？`}
               onConfirm={async () => {
-                await api.landing.deleteById({ id: record.id });
+                await api.commodityItem.deleteById({ id: record.id });
                 message.success('删除成功');
                 action.reload();
               }}
@@ -49,26 +57,28 @@ export default function LandingTable() {
     },
   ];
   return (
-    <ProTable<API.Landing>
+    <ProTable<API.CommodityItem>
       rowKey="id"
       search={false}
+      ghost
       actionRef={actionRef}
       toolbar={{
         actions: [
-          access.LANDING__EDIT && (
-            <LandingEditModal
+          access.COMMODITY_ITEM__EDIT && (
+            <CommodityItemEditModal
               key="create"
+              commodityId={props.commodityId}
               onFinished={() => actionRef.current?.reload()}
             >
-              <Button type="primary">新建落地页</Button>
-            </LandingEditModal>
+              <Button type="primary">新建库存</Button>
+            </CommodityItemEditModal>
           ),
         ],
       }}
       size="small"
-      scroll={{ x: 1000 }}
       columns={columns}
-      request={api.landing.page}
+      params={{ commodityId: props.commodityId }}
+      request={api.commodityItem.page}
     ></ProTable>
   );
 }

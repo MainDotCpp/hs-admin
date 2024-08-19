@@ -5,7 +5,7 @@ import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import { PageContainer } from '@ant-design/pro-layout';
 import { Link } from '@umijs/max';
 import { useRequest } from 'ahooks';
-import { Button, message, Popconfirm, Space } from 'antd';
+import { Button, Popconfirm, Space, message } from 'antd';
 import { useRef } from 'react';
 
 export default function Page() {
@@ -152,7 +152,9 @@ export default function Page() {
                 action.reload();
               }}
             >
-              <a key="delete">删除</a>
+              <a key="delete" className="text-red-500">
+                删除
+              </a>
             </Popconfirm>
           ),
         ];

@@ -3,7 +3,7 @@ import UserEditModal from '@/pages/User/UserEditModal';
 import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import { PageContainer } from '@ant-design/pro-layout';
 import { useRequest } from 'ahooks';
-import { Button, message, Popconfirm, Space, Tag } from 'antd';
+import { Button, Popconfirm, Space, Tag, message } from 'antd';
 import { useRef } from 'react';
 
 export default function Page() {
@@ -88,7 +88,9 @@ export default function Page() {
               action.reload();
             }}
           >
-            <a key="delete">删除</a>
+            <a key="delete" className="text-red-500">
+              删除
+            </a>
           </Popconfirm>,
         ];
       },

@@ -1,10 +1,10 @@
-import React, { useRef } from 'react';
-import { PageContainer } from '@ant-design/pro-layout';
-import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import api from '@/api';
-import { Button, message, Popconfirm } from 'antd';
 import RoleEditModal from '@/pages/Role/RoleEditModal';
 import { useAccess } from '@@/plugin-access';
+import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
+import { PageContainer } from '@ant-design/pro-layout';
+import { Button, Popconfirm, message } from 'antd';
+import { useRef } from 'react';
 
 export default function Page() {
   const access = useAccess();
@@ -24,18 +24,26 @@ export default function Page() {
       width: 100,
       render: (text, record, _, action) => {
         return [
-          access.ROLE__EDIT && <RoleEditModal id={record.id} key="edit">
-            <a>编辑</a>
-          </RoleEditModal>,
-          access.ROLE__DELETE && <Popconfirm
-            key="delete"
-            title={`确定删除吗？`} onConfirm={async () => {
-            await api.role.deleteById({ id: record.id });
-            message.success('删除成功');
-            action.reload();
-          }}>
-            <a key="delete">删除</a>
-          </Popconfirm>,
+          access.ROLE__EDIT && (
+            <RoleEditModal id={record.id} key="edit">
+              <a>编辑</a>
+            </RoleEditModal>
+          ),
+          access.ROLE__DELETE && (
+            <Popconfirm
+              key="delete"
+              title={`确定删除吗？`}
+              onConfirm={async () => {
+                await api.role.deleteById({ id: record.id });
+                message.success('删除成功');
+                action.reload();
+              }}
+            >
+              <a key="delete" className="text-red-500">
+                删除
+              </a>
+            </Popconfirm>
+          ),
         ];
       },
     },
@@ -47,9 +55,14 @@ export default function Page() {
         actionRef={actionRef}
         toolbar={{
           actions: [
-            access.ROLE__EDIT && <RoleEditModal key="create" onFinished={() => actionRef.current?.reload()}>
-              <Button type="primary">新建</Button>
-            </RoleEditModal>,
+            access.ROLE__EDIT && (
+              <RoleEditModal
+                key="create"
+                onFinished={() => actionRef.current?.reload()}
+              >
+                <Button type="primary">新建</Button>
+              </RoleEditModal>
+            ),
           ],
         }}
         size="small"

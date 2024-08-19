@@ -40,5 +40,21 @@ export default (initialState: { userinfo?: API.Userinfo }) => {
     ORDER_GROUP__VIEW: permissions.includes('ORDER_GROUP__VIEW'),
     ORDER_GROUP__EDIT: permissions.includes('ORDER_GROUP__EDIT'),
     ORDER_GROUP__DELETE: permissions.includes('ORDER_GROUP__DELETE'),
+    // COMMODITY_GROUP_PERMISSIONS 商品组
+    COMMODITY_GROUP__VIEW: permissions.includes('COMMODITY_GROUP__VIEW'),
+    COMMODITY_GROUP__EDIT: permissions.includes('COMMODITY_GROUP__EDIT'),
+    COMMODITY_GROUP__DELETE: permissions.includes('COMMODITY_GROUP__DELETE'),
+    // COMMODITY_PERMISSIONS 商品
+    COMMODITY__VIEW: permissions.includes('COMMODITY__VIEW'),
+    COMMODITY__EDIT: permissions.includes('COMMODITY__EDIT'),
+    COMMODITY__DELETE: permissions.includes('COMMODITY__DELETE'),
+    // SYS_ORDER_PERMISSIONS 系统订单
+    SYS_ORDER__VIEW: permissions.includes('SYS_ORDER__VIEW'),
+    SYS_ORDER__EDIT: permissions.includes('SYS_ORDER__EDIT'),
+    SYS_ORDER__DELETE: permissions.includes('SYS_ORDER__DELETE'),
+      // COMMODITY_ITEM_PERMISSIONS 库存
+    COMMODITY_ITEM__VIEW: permissions.includes('COMMODITY_ITEM__VIEW'),
+    COMMODITY_ITEM__EDIT: permissions.includes('COMMODITY_ITEM__EDIT'),
+    COMMODITY_ITEM__DELETE: permissions.includes('COMMODITY_ITEM__DELETE'),
   };
 };

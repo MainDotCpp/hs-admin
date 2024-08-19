@@ -17,6 +17,13 @@ export default defineConfig({
     },
   },
   routes: [
+    // ROUTES START(
+    {
+      path: '/login',
+      layout: false,
+      hideInMenu: true,
+      component: './Login',
+    },
     {
       path: '/',
       redirect: '/shortlink',
@@ -47,6 +54,13 @@ export default defineConfig({
       path: '/site',
       access: 'DOMAIN__VIEW',
       component: './Domain',
+    },
+    {
+      name: '在线商店',
+      icon: 'ShopOutlined',
+      path: '/store',
+      access: 'COMMODITY__VIEW',
+      component: './Commodity',
     },
     {
       name: '资源管理',
@@ -110,14 +124,17 @@ export default defineConfig({
           access: 'ROLE__VIEW',
           component: './Dept',
         },
+        {
+          name: '系统订单',
+          icon: 'ClockCircleOutlined',
+          path: '/system/sysOrder',
+          access: 'SYS_ORDER__VIEW',
+          component: './SysOrder',
+        },
       ],
     },
-    {
-      path: '/login',
-      layout: false,
-      hideInMenu: true,
-      component: './Login',
-    },
+
+    // ROUTES END
   ],
   npmClient: 'pnpm',
 });
