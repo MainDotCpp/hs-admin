@@ -43,8 +43,8 @@ export default function Page() {
         <>
           {record.enableRegionDetection
             ? text?.split(',').map((code) => {
-                return <Tag>{countriesEnum[code]}</Tag>;
-              })
+              return <Tag>{countriesEnum[code]}</Tag>;
+            })
             : '✖'}
         </>
       ),
@@ -88,6 +88,15 @@ export default function Page() {
     {
       dataIndex: 'useCloakProvider',
       title: '第三方 CLOAK 检测',
+      width: 50,
+      align: 'center',
+      search: false,
+      ellipsis: true,
+      renderText: (text) => (text ? '✔' : '✖'),
+    },
+    {
+      dataIndex: 'enableBlacklistIpDetection',
+      title: '黑名单检测',
       width: 50,
       align: 'center',
       search: false,

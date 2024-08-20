@@ -1,8 +1,8 @@
 export default (initialState: { userinfo?: API.Userinfo }) => {
-  let permissions: string[] = initialState.userinfo?.permissions || [];
+  const permissions: string[] = initialState.userinfo?.permissions || []
   return {
-    hasAdminRole: initialState.userinfo?.roles.includes('ADMIN'),
-    SUPER_ADMIN: initialState.userinfo?.roles.includes('SUPER_ADMIN'),
+    hasAdminRole: initialState.userinfo?.roles?.includes('ADMIN'),
+    SUPER_ADMIN: initialState.userinfo?.roles?.includes('SUPER_ADMIN'),
     DATA__ALL: permissions.includes('DATA__ALL'),
     DATA__SELF: permissions.includes('DATA__SELF'),
     DATA__DEPT: permissions.includes('DATA__DEPT'),
@@ -52,9 +52,9 @@ export default (initialState: { userinfo?: API.Userinfo }) => {
     SYS_ORDER__VIEW: permissions.includes('SYS_ORDER__VIEW'),
     SYS_ORDER__EDIT: permissions.includes('SYS_ORDER__EDIT'),
     SYS_ORDER__DELETE: permissions.includes('SYS_ORDER__DELETE'),
-      // COMMODITY_ITEM_PERMISSIONS 库存
+    // COMMODITY_ITEM_PERMISSIONS 库存
     COMMODITY_ITEM__VIEW: permissions.includes('COMMODITY_ITEM__VIEW'),
     COMMODITY_ITEM__EDIT: permissions.includes('COMMODITY_ITEM__EDIT'),
     COMMODITY_ITEM__DELETE: permissions.includes('COMMODITY_ITEM__DELETE'),
-  };
-};
+  }
+}

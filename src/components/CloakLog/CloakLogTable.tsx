@@ -1,5 +1,6 @@
 import api from '@/api';
 import { countriesEnum } from '@/constants/countries';
+import IpItem from '@/pages/CloakLog/IpItem';
 import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import { useRequest } from 'ahooks';
 import { useRef } from 'react';
@@ -50,6 +51,9 @@ const CloakLogTable = (props: CloakLogProps) => {
       title: 'ip',
       width: 200,
       search: false,
+      render: (_, record) => (
+        <IpItem ip={record.ip || ''} inBlackList={false} />
+      ),
     },
     {
       dataIndex: 'countryCode',
@@ -80,6 +84,7 @@ const CloakLogTable = (props: CloakLogProps) => {
         FORBID_BY_USER_AGENT: '🐞 UA拦截',
         FORBID_BY_REFERER: '🚫 来源拦截',
         FORBID_BY_THIRD_CLOAK: '🚫 第三方CLOAK拦截',
+        FORBID_BY_BLACKLIST_IP: '🚫 黑名单IP拦截',
       },
     },
     {
