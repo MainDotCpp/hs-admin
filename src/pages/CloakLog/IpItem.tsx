@@ -20,8 +20,8 @@ function IpItem(props: IpItemProps) {
   };
   return (
     <div className="flex w-full items-center  justify-between ">
-      <span className={`${props.inBlackList && 'text-red'}`}>{props.ip}{inBlackList &&
-        <span className={'text-red'}>[黑名单]</span>}</span>
+      <span className={`${inBlackList && 'text-red'}`}>{props.ip}{inBlackList &&
+        <span>[黑名单]</span>}</span>
       {!inBlackList &&
         <Tooltip title={'添加黑名单'}>
           <AiOutlineCloseCircle className={'font-black text-red text-xl cursor-pointer'}
