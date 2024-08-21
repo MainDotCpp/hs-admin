@@ -1,14 +1,18 @@
-type IpItemProps = {
+// import { AiOutlineCloseCircle } from 'react-icons/ai';
+
+interface IpItemProps {
   ip: string;
   inBlackList: boolean;
-};
-const IpItem = (props: IpItemProps) => {
+}
+
+function IpItem(props: IpItemProps) {
+  const a = '';
   return (
-    <div className="flex w-full  justify-between">
+    <div className="flex w-full items-center  justify-between ">
       <span className={`${props.inBlackList && 'text-red'}`}>{props.ip}</span>
-      <a className="ml-2">添加黑名单</a>
+      {/* <AiOutlineCloseCircle className={'font-black text-red text-xl  '} /> */}
     </div>
   );
-};
+}
 
 export default IpItem;

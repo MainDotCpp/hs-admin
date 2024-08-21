@@ -1,14 +1,15 @@
-import api from '@/api';
-import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
-import { PageContainer } from '@ant-design/pro-layout';
-import { Button, List, Popconfirm, Space, message } from 'antd';
-import { useRef } from 'react';
+import type { ActionType, ProColumns } from '@ant-design/pro-components'
+import { ProTable } from '@ant-design/pro-components'
+import { PageContainer } from '@ant-design/pro-layout'
+import { Button, List, Popconfirm, Space, message } from 'antd'
+import { useRef } from 'react'
 
-import AutoLoading from '@/components/AutoLoading';
-import Modal from '@/components/Modal';
-import WebsiteTable from '@/components/WebsiteTable';
-import { Link } from '@@/exports';
-import { useAccess } from '@@/plugin-access';
+import { Link } from '@@/exports'
+import { useAccess } from '@@/plugin-access'
+import AutoLoading from '@/components/AutoLoading'
+import Modal from '@/components/Modal'
+import WebsiteTable from '@/components/WebsiteTable'
+import api from '@/api'
 
 function DomainLibModal({ onReceive }: { onReceive?: () => void }) {
   return (
@@ -17,25 +18,25 @@ function DomainLibModal({ onReceive }: { onReceive?: () => void }) {
       title="域名库"
       footer={false}
       request={async () => api.domain.list({ queryDTO: { ownerId: 0 } })}
-      trigger={
+      trigger={(
         <Button shape="round" size="small" type="dashed">
           域名库
         </Button>
-      }
+      )}
     >
       {(data, action) => (
         <List
           rowKey="id"
           dataSource={data}
-          renderItem={(item) => (
+          renderItem={item => (
             <List.Item
               actions={[
                 <AutoLoading
                   callback={async () => {
-                    await api.domain.receive({ id: item.id!! });
-                    message.success('领取成功');
-                    action.refresh();
-                    onReceive?.();
+                    await api.domain.receive({ id: item.id! })
+                    message.success('领取成功')
+                    action.refresh()
+                    onReceive?.()
                   }}
                 >
                   {(loading, call) => (
@@ -55,25 +56,25 @@ function DomainLibModal({ onReceive }: { onReceive?: () => void }) {
         />
       )}
     </Modal>
-  );
+  )
 }
 
 export default function Page() {
-  const access = useAccess();
-  const actionRef = useRef<ActionType>();
+  const access = useAccess()
+  const actionRef = useRef<ActionType>()
   const getTableData = async (params: any) => {
-    return api.domain.page(params);
-  };
+    return api.domain.page(params)
+  }
 
   /**
    * 开启作为短链域名
    * @param id 域名ID
    */
   const openProxyShortlink = async (id: number) => {
-    await api.domain.save({ id });
-    message.success('开启成功');
-    actionRef.current?.reload();
-  };
+    await api.domain.save({ id })
+    message.success('开启成功')
+    actionRef.current?.reload()
+  }
 
   const columns: ProColumns<API.DomainDTO>[] = [
     { dataIndex: 'id', title: 'ID', search: false, hidden: true },
@@ -107,9 +108,9 @@ export default function Page() {
           <a
             key="depoly"
             onClick={async () => {
-              message.success('部署中，请稍后');
-              await api.domain.deploy({ id: record.id!! });
-              message.success('部署成功');
+              message.success('部署中，请稍后')
+              await api.domain.deploy({ id: record.id! })
+              message.success('部署成功')
             }}
           >
             部署
@@ -117,11 +118,11 @@ export default function Page() {
           access.DOMAIN__DELETE && (
             <Popconfirm
               key="delete"
-              title={`确定删除吗？`}
+              title="确定删除吗？"
               onConfirm={async () => {
-                await api.domain.deleteById({ id: record.id!! });
-                message.success('删除成功');
-                action?.reload();
+                await api.domain.deleteById({ id: record.id! })
+                message.success('删除成功')
+                action?.reload()
               }}
             >
               <a key="delete" className="text-red-500" style={{ color: 'red' }}>
@@ -129,13 +130,13 @@ export default function Page() {
               </a>
             </Popconfirm>
           ),
-        ];
+        ]
       },
     },
-  ];
+  ]
   return (
     <PageContainer
-      extra={
+      extra={(
         <Space>
           <DomainLibModal onReceive={() => actionRef.current?.reload()} />
           <Link to="/resource/landing">
@@ -144,20 +145,21 @@ export default function Page() {
             </Button>
           </Link>
         </Space>
-      }
+      )}
     >
       <ProTable<API.DomainDTO>
         rowKey="id"
         search={false}
         actionRef={actionRef}
         expandable={{
-          expandedRowRender: (record) => <WebsiteTable domain={record} />,
+          expandedRowRender: record => <WebsiteTable domain={record} />,
         }}
         size="small"
         scroll={{ x: 1000 }}
         columns={columns}
         request={getTableData}
-      ></ProTable>
+      >
+      </ProTable>
     </PageContainer>
-  );
+  )
 }

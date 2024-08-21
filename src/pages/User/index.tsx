@@ -1,20 +1,21 @@
-import api from '@/api';
-import UserEditModal from '@/pages/User/UserEditModal';
-import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
-import { PageContainer } from '@ant-design/pro-layout';
-import { useRequest } from 'ahooks';
-import { Button, Popconfirm, Space, Tag, message } from 'antd';
-import { useRef } from 'react';
+import type { ActionType, ProColumns } from '@ant-design/pro-components'
+import { ProTable } from '@ant-design/pro-components'
+import { PageContainer } from '@ant-design/pro-layout'
+import { useRequest } from 'ahooks'
+import { Button, Popconfirm, Space, Tag, message } from 'antd'
+import { useRef } from 'react'
+import UserEditModal from '@/pages/User/UserEditModal'
+import api from '@/api'
 
 export default function Page() {
-  const actionRef = useRef<ActionType>();
+  const actionRef = useRef<ActionType>()
   const getTableData = async (params: any) => {
-    return api.user.page(params);
-  };
+    return api.user.page(params)
+  }
 
   const { data: deptList } = useRequest(api.dept.list, {
     defaultParams: [{}],
-  });
+  })
 
   const columns: ProColumns<API.User>[] = [
     { dataIndex: 'id', title: 'ID', search: false, hidden: true },
@@ -37,7 +38,7 @@ export default function Page() {
       search: false,
       render: (text, record) => (
         <Space>
-          {record.roleNames.map((role) => (
+          {record.roleNames.map(role => (
             <Tag key={role}>{role}</Tag>
           ))}
         </Space>
@@ -48,8 +49,8 @@ export default function Page() {
       title: '部门',
       width: 100,
       renderText: (text) => {
-        const dept = deptList?.find((item) => item.id === text);
-        return dept?.name;
+        const dept = deptList?.find(item => item.id === text)
+        return dept?.name
       },
     },
     {
@@ -81,21 +82,21 @@ export default function Page() {
           </UserEditModal>,
           <Popconfirm
             key="delete"
-            title={`确定删除吗？`}
+            title="确定删除吗？"
             onConfirm={async () => {
-              await api.user.deleteById({ id: record.id });
-              message.success('删除成功');
-              action.reload();
+              await api.user.deleteById({ id: record.id })
+              message.success('删除成功')
+              action.reload()
             }}
           >
             <a key="delete" className="text-red-500">
               删除
             </a>
           </Popconfirm>,
-        ];
+        ]
       },
     },
-  ];
+  ]
   return (
     <PageContainer>
       <ProTable
@@ -116,7 +117,8 @@ export default function Page() {
         scroll={{ x: 1000 }}
         columns={columns}
         request={getTableData}
-      ></ProTable>
+      >
+      </ProTable>
     </PageContainer>
-  );
+  )
 }
