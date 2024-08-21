@@ -199,6 +199,7 @@ declare namespace API {
     relatedId?: number;
     /** 访问 URL */
     accessUrl?: string;
+    inBlacklist?: boolean;
     scene?: 'SHORT_LINK' | 'LANDING_PAGE' | 'WEBSITE' | 'API';
   };
 

@@ -52,7 +52,7 @@ const CloakLogTable = (props: CloakLogProps) => {
       width: 200,
       search: false,
       render: (_, record) => (
-        <IpItem ip={record.ip || ''} inBlackList={false} />
+        <IpItem ip={record.ip || ''} inBlackList={record.inBlacklist} />
       ),
     },
     {
