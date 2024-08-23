@@ -1,5 +1,5 @@
 import type { ActionType, ProColumns } from '@ant-design/pro-components'
-import { ProTable } from '@ant-design/pro-components'
+import { ModalForm, ProFormText, ProFormTextArea, ProTable } from '@ant-design/pro-components'
 import { PageContainer } from '@ant-design/pro-layout'
 import { Button, List, Popconfirm, Space, message } from 'antd'
 import { useRef } from 'react'
@@ -10,6 +10,7 @@ import AutoLoading from '@/components/AutoLoading'
 import Modal from '@/components/Modal'
 import WebsiteTable from '@/components/WebsiteTable'
 import api from '@/api'
+import YModal from '@/components/Modal'
 
 function DomainLibModal({ onReceive }: { onReceive?: () => void }) {
   return (
@@ -97,6 +98,7 @@ export default function Page() {
       width: 100,
       search: false,
     },
+    {dataIndex:'remark',title:'备注',width:200,search:false},
     {
       dataIndex: 'id',
       title: '操作',
@@ -115,6 +117,15 @@ export default function Page() {
           >
             部署
           </a>,
+          <ModalForm key="remark-edit" trigger={<a>备注</a>} request={api.domain.getById} params={{id:record.id!!}} onFinish={async (data) => {
+              await api.domain.save(data)
+              message.success('修改成功')
+              action?.reload()
+              return true;
+          }}>
+            <ProFormText name="id" label="ID" hidden />
+            <ProFormTextArea name="remark" label="备注" />
+          </ModalForm>, 
           access.DOMAIN__DELETE && (
             <Popconfirm
               key="delete"
