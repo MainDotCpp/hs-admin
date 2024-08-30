@@ -2,6 +2,21 @@
 /* eslint-disable */
 import { request } from '@/utils/request';
 
+/** 配置SSL POST /domain/configSsl */
+export async function configSsl(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.configSslParams,
+  options?: { [key: string]: any },
+) {
+  return request<boolean>(`/api/domain/configSsl`, {
+    method: 'POST',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
 /** 通过ID删除域名 POST /domain/deleteById */
 export async function deleteById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)

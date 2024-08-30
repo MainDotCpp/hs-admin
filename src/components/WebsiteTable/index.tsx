@@ -30,7 +30,7 @@ export default function WebsiteTable({ domain }: { domain: API.DomainDTO }) {
       width: 100,
       search: false,
       render: (text) => {
-        const url = `https://${domain.domain}${text}`;
+        const url = `${domain.ssl ? 'https':'http'}://${domain.domain}${text}`;
         return (
           <a href={url} target="_blank">
             {url}

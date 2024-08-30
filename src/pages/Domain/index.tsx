@@ -1,7 +1,7 @@
 import type { ActionType, ProColumns } from '@ant-design/pro-components'
 import { ModalForm, ProFormText, ProFormTextArea, ProTable } from '@ant-design/pro-components'
 import { PageContainer } from '@ant-design/pro-layout'
-import { Button, List, Popconfirm, Space, message } from 'antd'
+import { Button, List, Popconfirm, Space, message, Tag } from 'antd';
 import { useRef } from 'react'
 
 import { Link } from '@@/exports'
@@ -67,21 +67,11 @@ export default function Page() {
     return api.domain.page(params)
   }
 
-  /**
-   * 开启作为短链域名
-   * @param id 域名ID
-   */
-  const openProxyShortlink = async (id: number) => {
-    await api.domain.save({ id })
-    message.success('开启成功')
-    actionRef.current?.reload()
-  }
-
   const columns: ProColumns<API.DomainDTO>[] = [
     { dataIndex: 'id', title: 'ID', search: false, hidden: true },
     { dataIndex: 'serverName', title: '服务器', width: 100, search: false },
     { dataIndex: 'domain', title: '域名', width: 100, search: false },
-
+    {dataIndex:'ssl',title:'类型',width:100,search:false,render:(_,record) => record.ssl ?  <Tag color="blue">HTTPS</Tag> :<Tag>HTTP</Tag>},
     {
       dataIndex: 'status',
       title: '状态',
@@ -104,10 +94,9 @@ export default function Page() {
       title: '操作',
       valueType: 'option',
       fixed: 'right',
-      width: 100,
       render: (_text, record, _, action) => {
         return [
-          <a
+          <Button type={'link'}
             key="depoly"
             onClick={async () => {
               message.success('部署中，请稍后')
@@ -116,7 +105,7 @@ export default function Page() {
             }}
           >
             部署
-          </a>,
+          </Button>,
           <ModalForm key="remark-edit" trigger={<a>备注</a>} request={api.domain.getById} params={{id:record.id!!}} onFinish={async (data) => {
               await api.domain.save(data)
               message.success('修改成功')
@@ -125,7 +114,20 @@ export default function Page() {
           }}>
             <ProFormText name="id" label="ID" hidden />
             <ProFormTextArea name="remark" label="备注" />
-          </ModalForm>, 
+          </ModalForm>,
+          <Button type={'link'} ghost  key={'ssl'} onClick={async () => {
+            message.loading({
+              content: '申请中，请稍后',
+              key: 'ssl',
+              duration: 0,
+            })
+            await api.domain.configSsl({ id: record.id! })
+            message.success({
+              content: '申请成功',
+              key: 'ssl',
+            })
+            action?.reload()
+          } }>申请证书</Button>,
           access.DOMAIN__DELETE && (
             <Popconfirm
               key="delete"
@@ -136,9 +138,9 @@ export default function Page() {
                 action?.reload()
               }}
             >
-              <a key="delete" className="text-red-500" style={{ color: 'red' }}>
+              <Button type={'link'} color={'red'} key="delete" >
                 删除
-              </a>
+              </Button>
             </Popconfirm>
           ),
         ]

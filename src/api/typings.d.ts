@@ -16,8 +16,8 @@ declare namespace API {
       address?: string;
       hostName?: string;
       linkLocalAddress?: boolean;
-      multicastAddress?: boolean;
       anyLocalAddress?: boolean;
+      multicastAddress?: boolean;
       loopbackAddress?: boolean;
       siteLocalAddress?: boolean;
       mcglobal?: boolean;
@@ -286,6 +286,10 @@ declare namespace API {
     commodityItems?: CommodityItemDto[];
   };
 
+  type configSslParams = {
+    id: number;
+  };
+
   type CreateCommodityOrderResponse = {
     qrCode?: string;
     orderNo?: string;
@@ -412,6 +416,8 @@ declare namespace API {
     domain?: string;
     server?: ServerDTO;
     websites?: WebsiteDTO[];
+    remark?: string;
+    ssl?: boolean;
   };
 
   type DomainDTO = {
@@ -423,6 +429,8 @@ declare namespace API {
     serverIp?: string;
     serverName?: string;
     status?: 'UNUSED' | 'USED';
+    remark?: string;
+    ssl?: boolean;
   };
 
   type get10Params = {
@@ -956,8 +964,8 @@ declare namespace API {
     data?: {
       name?: { empty?: boolean };
       id?: string;
-      parentId?: string;
       config?: TreeNodeConfig;
+      parentId?: string;
       weight?: Record<string, any>;
       empty?: boolean;
     };
