@@ -9,7 +9,7 @@ import { useAccess } from '@@/plugin-access';
 export default function {{pascalCase name}}Table() {
   const access = useAccess();
   const actionRef = useRef<ActionType>();
-  const columns: ProColumns<API.{{pascalCase name}}>[] = [
+  const columns: ProColumns<API.{{pascalCase name}}DTO>[] = [
     { dataIndex: 'id', title: 'ID', search: false, hidden: true },
     { dataIndex: 'id', title: 'ID', width: 100, search: false },
     {
@@ -36,7 +36,7 @@ export default function {{pascalCase name}}Table() {
               onConfirm={async () => {
                 await api.{{camelCase name}}.deleteById({ id: record.id });
                 message.success('删除成功');
-                action.reload();
+                action?.reload();
               }}
             >
               <a key="delete" className='text-red-500'>删除</a>
@@ -47,7 +47,7 @@ export default function {{pascalCase name}}Table() {
     },
   ];
   return (
-    <ProTable<API.{{pascalCase name}}>
+    <ProTable<API.{{pascalCase name}}DTO>
       rowKey="id"
       search={false}
       actionRef={actionRef}

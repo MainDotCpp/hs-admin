@@ -1,11 +1,12 @@
 import type { ActionType, ProColumns } from '@ant-design/pro-components'
 import { ModalForm, ProFormText, ProFormTextArea, ProTable } from '@ant-design/pro-components'
 import { PageContainer } from '@ant-design/pro-layout'
-import { Button, List, Popconfirm, Space, message, Tag } from 'antd';
+import { Button, List, Popconfirm, Space, Tag, message } from 'antd'
 import { useRef } from 'react'
 
 import { Link } from '@@/exports'
 import { useAccess } from '@@/plugin-access'
+import DomainEditModal from './DomainEditModal'
 import AutoLoading from '@/components/AutoLoading'
 import Modal from '@/components/Modal'
 import WebsiteTable from '@/components/WebsiteTable'
@@ -71,7 +72,7 @@ export default function Page() {
     { dataIndex: 'id', title: 'ID', search: false, hidden: true },
     { dataIndex: 'serverName', title: '服务器', width: 100, search: false },
     { dataIndex: 'domain', title: '域名', width: 100, search: false },
-    {dataIndex:'ssl',title:'类型',width:100,search:false,render:(_,record) => record.ssl ?  <Tag color="blue">HTTPS</Tag> :<Tag>HTTP</Tag>},
+    { dataIndex: 'ssl', title: '类型', width: 100, search: false, render: (_, record) => record.ssl ? <Tag color="blue">HTTPS</Tag> : <Tag>HTTP</Tag> },
     {
       dataIndex: 'status',
       title: '状态',
@@ -88,7 +89,7 @@ export default function Page() {
       width: 100,
       search: false,
     },
-    {dataIndex:'remark',title:'备注',width:200,search:false},
+    { dataIndex: 'remark', title: '备注', width: 200, search: false },
     {
       dataIndex: 'id',
       title: '操作',
@@ -96,7 +97,8 @@ export default function Page() {
       fixed: 'right',
       render: (_text, record, _, action) => {
         return [
-          <Button type={'link'}
+          <Button
+            type="link"
             key="depoly"
             onClick={async () => {
               message.success('部署中，请稍后')
@@ -106,28 +108,41 @@ export default function Page() {
           >
             部署
           </Button>,
-          <ModalForm key="remark-edit" trigger={<a>备注</a>} request={api.domain.getById} params={{id:record.id!!}} onFinish={async (data) => {
+          <ModalForm
+            key="remark-edit"
+            trigger={<a>备注</a>}
+            request={api.domain.getById}
+            params={{ id: record.id! }}
+            onFinish={async (data) => {
               await api.domain.save(data)
               message.success('修改成功')
               action?.reload()
-              return true;
-          }}>
+              return true
+            }}
+          >
             <ProFormText name="id" label="ID" hidden />
             <ProFormTextArea name="remark" label="备注" />
           </ModalForm>,
-          <Button type={'link'} ghost  key={'ssl'} onClick={async () => {
-            message.loading({
-              content: '申请中，请稍后',
-              key: 'ssl',
-              duration: 0,
-            })
-            await api.domain.configSsl({ id: record.id! })
-            message.success({
-              content: '申请成功',
-              key: 'ssl',
-            })
-            action?.reload()
-          } }>申请证书</Button>,
+          <Button
+            type="link"
+            ghost
+            key="ssl"
+            onClick={async () => {
+              message.loading({
+                content: '申请中，请稍后',
+                key: 'ssl',
+                duration: 0,
+              })
+              await api.domain.configSsl({ id: record.id! })
+              message.success({
+                content: '申请成功',
+                key: 'ssl',
+              })
+              action?.reload()
+            }}
+          >
+            申请证书
+          </Button>,
           access.DOMAIN__DELETE && (
             <Popconfirm
               key="delete"
@@ -138,7 +153,7 @@ export default function Page() {
                 action?.reload()
               }}
             >
-              <Button type={'link'} color={'red'} key="delete" >
+              <Button type="link" color="red" key="delete">
                 删除
               </Button>
             </Popconfirm>
@@ -164,6 +179,13 @@ export default function Page() {
         rowKey="id"
         search={false}
         actionRef={actionRef}
+        toolbar={{
+          actions: [
+            <DomainEditModal key="create" onFinished={() => actionRef.current?.reload()}>
+              <Button type="primary">添加域名</Button>
+            </DomainEditModal>,
+          ],
+        }}
         expandable={{
           expandedRowRender: record => <WebsiteTable domain={record} />,
         }}

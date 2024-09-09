@@ -5,7 +5,7 @@ import { request } from '@/utils/request';
 /** 通过ID删除商品分组 POST /commodityGroup/deleteById */
 export async function deleteById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.delete18Params,
+  params: API.delete19Params,
   options?: { [key: string]: any },
 ) {
   return request<boolean>(`/api/commodityGroup/deleteById`, {
@@ -20,7 +20,7 @@ export async function deleteById(
 /** 根据ID获取商品分组 GET /commodityGroup/getById */
 export async function getById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.get18Params,
+  params: API.get19Params,
   options?: { [key: string]: any },
 ) {
   return request<API.CommodityGroupDTO>(`/api/commodityGroup/getById`, {
@@ -35,7 +35,7 @@ export async function getById(
 /** 商品分组列表 GET /commodityGroup/list */
 export async function list(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.list17Params,
+  params: API.list18Params,
   options?: { [key: string]: any },
 ) {
   return request<API.CommodityGroupDTO[]>(`/api/commodityGroup/list`, {
@@ -52,7 +52,7 @@ export async function list(
 /** 分页查询商品分组 GET /commodityGroup/page */
 export async function page(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.page18Params,
+  params: API.page19Params,
   options?: { [key: string]: any },
 ) {
   return request<API.PageDTOCommodityGroupDTO>(`/api/commodityGroup/page`, {

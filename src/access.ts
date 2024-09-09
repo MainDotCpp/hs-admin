@@ -56,5 +56,9 @@ export default (initialState: { userinfo?: API.Userinfo }) => {
     COMMODITY_ITEM__VIEW: permissions.includes('COMMODITY_ITEM__VIEW'),
     COMMODITY_ITEM__EDIT: permissions.includes('COMMODITY_ITEM__EDIT'),
     COMMODITY_ITEM__DELETE: permissions.includes('COMMODITY_ITEM__DELETE'),
+    // DOMAIN_ACCOUNT 域名账户
+    DOMAIN_ACCOUNT__VIEW: permissions.includes('DOMAIN_ACCOUNT__VIEW'),
+    DOMAIN_ACCOUNT__EDIT: permissions.includes('DOMAIN_ACCOUNT__EDIT'),
+    DOMAIN_ACCOUNT__DELETE: permissions.includes('DOMAIN_ACCOUNT__DELETE'),
   }
 }

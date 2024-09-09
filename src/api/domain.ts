@@ -20,7 +20,7 @@ export async function configSsl(
 /** 通过ID删除域名 POST /domain/deleteById */
 export async function deleteById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.delete14Params,
+  params: API.delete15Params,
   options?: { [key: string]: any },
 ) {
   return request<boolean>(`/api/domain/deleteById`, {
@@ -65,7 +65,7 @@ export async function getAgentConfig(
 /** 根据ID获取域名 GET /domain/getById */
 export async function getById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.get14Params,
+  params: API.get15Params,
   options?: { [key: string]: any },
 ) {
   return request<API.DomainDTO>(`/api/domain/getById`, {
@@ -80,7 +80,7 @@ export async function getById(
 /** 域名列表 GET /domain/list */
 export async function list(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.list13Params,
+  params: API.list14Params,
   options?: { [key: string]: any },
 ) {
   return request<API.DomainDTO[]>(`/api/domain/list`, {
@@ -97,7 +97,7 @@ export async function list(
 /** 分页查询域名 GET /domain/page */
 export async function page(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.page14Params,
+  params: API.page15Params,
   options?: { [key: string]: any },
 ) {
   return request<API.PageDTODomainDTO>(`/api/domain/page`, {

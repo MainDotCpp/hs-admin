@@ -17,7 +17,7 @@ export async function batchSave(body: API.CommodityItemDTO[], options?: { [key: 
 /** 通过ID删除商品库存 POST /commodityItem/deleteById */
 export async function deleteById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.delete17Params,
+  params: API.delete18Params,
   options?: { [key: string]: any },
 ) {
   return request<boolean>(`/api/commodityItem/deleteById`, {
@@ -32,7 +32,7 @@ export async function deleteById(
 /** 根据ID获取商品库存 GET /commodityItem/getById */
 export async function getById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.get17Params,
+  params: API.get18Params,
   options?: { [key: string]: any },
 ) {
   return request<API.CommodityItemDTO>(`/api/commodityItem/getById`, {
@@ -47,7 +47,7 @@ export async function getById(
 /** 商品库存列表 GET /commodityItem/list */
 export async function list(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.list16Params,
+  params: API.list17Params,
   options?: { [key: string]: any },
 ) {
   return request<API.CommodityItemDTO[]>(`/api/commodityItem/list`, {
@@ -64,7 +64,7 @@ export async function list(
 /** 分页查询商品库存 GET /commodityItem/page */
 export async function page(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.page17Params,
+  params: API.page18Params,
   options?: { [key: string]: any },
 ) {
   return request<API.PageDTOCommodityItemDTO>(`/api/commodityItem/page`, {

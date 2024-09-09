@@ -13,6 +13,7 @@ import * as commodityItem from './commodityItem';
 import * as commodityOrder from './commodityOrder';
 import * as dept from './dept';
 import * as domain from './domain';
+import * as domainAccount from './domainAccount';
 import * as landing from './landing';
 import * as landingCloak from './landingCloak';
 import * as landingTemplate from './landingTemplate';
@@ -45,6 +46,7 @@ export default {
   landingTemplate,
   landing,
   landingCloak,
+  domainAccount,
   domain,
   dept,
   commodityOrder,

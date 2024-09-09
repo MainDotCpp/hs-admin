@@ -12,11 +12,11 @@ declare namespace API {
   type BlacklistIp = {
     id?: number;
     ip: {
+      linkLocalAddress?: boolean;
+      canonicalHostName?: string;
       hostAddress?: string;
       address?: string;
       hostName?: string;
-      linkLocalAddress?: boolean;
-      anyLocalAddress?: boolean;
       multicastAddress?: boolean;
       loopbackAddress?: boolean;
       siteLocalAddress?: boolean;
@@ -25,7 +25,7 @@ declare namespace API {
       mclinkLocal?: boolean;
       mcsiteLocal?: boolean;
       mcorgLocal?: boolean;
-      canonicalHostName?: string;
+      anyLocalAddress?: boolean;
     };
   };
 
@@ -341,10 +341,14 @@ declare namespace API {
   };
 
   type delete20Params = {
-    id: string;
+    id: number;
   };
 
   type delete21Params = {
+    id: string;
+  };
+
+  type delete22Params = {
     id: number;
   };
 
@@ -411,6 +415,13 @@ declare namespace API {
     total?: number;
   };
 
+  type DomainAccountDTO = {
+    id?: number;
+    name?: string;
+    key?: string;
+    secret?: string;
+  };
+
   type DomainAgentConfig = {
     id?: number;
     domain?: string;
@@ -431,6 +442,10 @@ declare namespace API {
     status?: 'UNUSED' | 'USED';
     remark?: string;
     ssl?: boolean;
+  };
+
+  type domainListParams = {
+    accountId: number;
   };
 
   type get10Params = {
@@ -482,10 +497,14 @@ declare namespace API {
   };
 
   type get21Params = {
-    id: string;
+    id: number;
   };
 
   type get22Params = {
+    id: string;
+  };
+
+  type get23Params = {
     id: number;
   };
 
@@ -536,6 +555,25 @@ declare namespace API {
 
   type getParams = {
     id: number;
+  };
+
+  type GoddyDomainDTO = {
+    createdAt?: string;
+    domain?: string;
+    domainId?: number;
+    expirationProtected?: boolean;
+    expires?: string;
+    exposeWhois?: boolean;
+    holdRegistrar?: boolean;
+    locked?: boolean;
+    nameServers?: Record<string, any>;
+    privacy?: boolean;
+    registrarCreatedAt?: string;
+    renewAuto?: boolean;
+    renewDeadline?: string;
+    renewable?: boolean;
+    status?: string;
+    transferProtected?: boolean;
   };
 
   type HttpResultBlacklistIp = {
@@ -604,6 +642,12 @@ declare namespace API {
     data?: Dept;
   };
 
+  type HttpResultDomainAccountDTO = {
+    code?: number;
+    message?: string;
+    data?: DomainAccountDTO;
+  };
+
   type HttpResultDomainDTO = {
     code?: number;
     message?: string;
@@ -664,10 +708,22 @@ declare namespace API {
     data?: Dept[];
   };
 
+  type HttpResultListDomainAccountDTO = {
+    code?: number;
+    message?: string;
+    data?: DomainAccountDTO[];
+  };
+
   type HttpResultListDomainDTO = {
     code?: number;
     message?: string;
     data?: DomainDTO[];
+  };
+
+  type HttpResultListGoddyDomainDTO = {
+    code?: number;
+    message?: string;
+    data?: GoddyDomainDTO[];
   };
 
   type HttpResultListLandingDTO = {
@@ -820,6 +876,12 @@ declare namespace API {
     data?: PageDTODept;
   };
 
+  type HttpResultPageDTODomainAccountDTO = {
+    code?: number;
+    message?: string;
+    data?: PageDTODomainAccountDTO;
+  };
+
   type HttpResultPageDTODomainDTO = {
     code?: number;
     message?: string;
@@ -964,8 +1026,8 @@ declare namespace API {
     data?: {
       name?: { empty?: boolean };
       id?: string;
-      config?: TreeNodeConfig;
       parentId?: string;
+      config?: TreeNodeConfig;
       weight?: Record<string, any>;
       empty?: boolean;
     };
@@ -1055,31 +1117,31 @@ declare namespace API {
   };
 
   type list13Params = {
-    queryDTO: DomainDTO;
+    queryDTO: DomainAccountDTO;
   };
 
   type list14Params = {
-    queryDTO: DeptQueryDTO;
+    queryDTO: DomainDTO;
   };
 
   type list15Params = {
-    queryDTO: CommodityOrderDTO;
+    queryDTO: DeptQueryDTO;
   };
 
   type list16Params = {
-    queryDTO: CommodityItemDTO;
+    queryDTO: CommodityOrderDTO;
   };
 
   type list17Params = {
-    queryDTO: CommodityGroupDTO;
+    queryDTO: CommodityItemDTO;
   };
 
   type list18Params = {
-    queryDTO: CommodityDTO;
+    queryDTO: CommodityGroupDTO;
   };
 
   type list19Params = {
-    queryDTO: CloakConfigQueryDTO;
+    queryDTO: CommodityDTO;
   };
 
   type list1Params = {
@@ -1087,6 +1149,10 @@ declare namespace API {
   };
 
   type list20Params = {
+    queryDTO: CloakConfigQueryDTO;
+  };
+
+  type list21Params = {
     queryDTO: BlacklistIpQueryDTO;
   };
 
@@ -1198,35 +1264,35 @@ declare namespace API {
   };
 
   type page14Params = {
-    queryDTO: DomainDTO;
+    queryDTO: DomainAccountDTO;
     current: number;
     pageSize: number;
   };
 
   type page15Params = {
-    queryDTO: DeptQueryDTO;
+    queryDTO: DomainDTO;
+    current: number;
+    pageSize: number;
   };
 
   type page16Params = {
+    queryDTO: DeptQueryDTO;
+  };
+
+  type page17Params = {
     queryDTO: CommodityOrderDTO;
     current: number;
     pageSize: number;
   };
 
-  type page17Params = {
+  type page18Params = {
     queryDTO: CommodityItemDTO;
     current: number;
     pageSize: number;
   };
 
-  type page18Params = {
-    queryDTO: CommodityGroupDTO;
-    current: number;
-    pageSize: number;
-  };
-
   type page19Params = {
-    queryDTO: CommodityDTO;
+    queryDTO: CommodityGroupDTO;
     current: number;
     pageSize: number;
   };
@@ -1236,14 +1302,20 @@ declare namespace API {
   };
 
   type page20Params = {
-    queryDTO: CloakLogQueryDTO;
+    queryDTO: CommodityDTO;
+    current: number;
+    pageSize: number;
   };
 
   type page21Params = {
-    queryDTO: CloakConfigQueryDTO;
+    queryDTO: CloakLogQueryDTO;
   };
 
   type page22Params = {
+    queryDTO: CloakConfigQueryDTO;
+  };
+
+  type page23Params = {
     queryDTO: BlacklistIpQueryDTO;
   };
 
@@ -1363,6 +1435,16 @@ declare namespace API {
     /** 页面大小 */
     pageSize?: number;
     data?: Dept[];
+    /** 总数 */
+    total?: number;
+  };
+
+  type PageDTODomainAccountDTO = {
+    /** 页码 */
+    current?: number;
+    /** 页面大小 */
+    pageSize?: number;
+    data?: DomainAccountDTO[];
     /** 总数 */
     total?: number;
   };

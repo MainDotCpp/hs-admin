@@ -1,4 +1,4 @@
-import { defineConfig } from '@umijs/max';
+import { defineConfig } from '@umijs/max'
 
 export default defineConfig({
 
@@ -12,8 +12,8 @@ export default defineConfig({
   },
   proxy: {
     '/api': {
-      // target: 'http://localhost:8888/',
-      target: 'https://console.d-l.ink/',
+      target: 'http://localhost:8888/',
+      // target: 'https://console.d-l.ink/',
       changeOrigin: true,
     },
   },
@@ -96,6 +96,13 @@ export default defineConfig({
           access: 'SERVER__VIEW',
           component: './Server',
         },
+        {
+          name: '域名账户',
+          icon: 'ClockCircleOutlined',
+          path: '/resource/domainAccount',
+          access: 'DOMAIN_ACCOUNT__VIEW',
+          component: './DomainAccount',
+        },
       ],
     },
     {
@@ -145,4 +152,4 @@ export default defineConfig({
     // 检测 className 的文件范围，若项目不包含 src 目录，可使用 `pages/**/*.tsx`
     watch: ['src/**/*.tsx'],
   },
-});
+})

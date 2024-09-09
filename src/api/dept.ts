@@ -5,7 +5,7 @@ import { request } from '@/utils/request';
 /** 通过ID删除部门 POST /dept/deleteById */
 export async function deleteById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.delete15Params,
+  params: API.delete16Params,
   options?: { [key: string]: any },
 ) {
   return request<boolean>(`/api/dept/deleteById`, {
@@ -20,7 +20,7 @@ export async function deleteById(
 /** 根据ID获取部门 GET /dept/getById */
 export async function getById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.get15Params,
+  params: API.get16Params,
   options?: { [key: string]: any },
 ) {
   return request<API.Dept>(`/api/dept/getById`, {
@@ -37,8 +37,8 @@ export async function getDeptTree(options?: { [key: string]: any }) {
   return request<{
     name?: { empty?: boolean };
     id?: string;
-    config?: API.TreeNodeConfig;
     parentId?: string;
+    config?: API.TreeNodeConfig;
     weight?: Record<string, any>;
     empty?: boolean;
   }>(`/api/dept/getDeptTree`, {
@@ -50,7 +50,7 @@ export async function getDeptTree(options?: { [key: string]: any }) {
 /** 部门列表 GET /dept/list */
 export async function list(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.list14Params,
+  params: API.list15Params,
   options?: { [key: string]: any },
 ) {
   return request<API.Dept[]>(`/api/dept/list`, {
@@ -67,7 +67,7 @@ export async function list(
 /** 分页查询部门 GET /dept/page */
 export async function page(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.page15Params,
+  params: API.page16Params,
   options?: { [key: string]: any },
 ) {
   return request<API.PageDTODept>(`/api/dept/page`, {
